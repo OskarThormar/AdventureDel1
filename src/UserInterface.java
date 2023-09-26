@@ -38,12 +38,14 @@ public class UserInterface {
     }
 
     public void help() {
+       // if { adventure.currentRoom = adventure.
+        System.out.println("To start the game press Start");
+        System.out.println("Where do you want to go");
         System.out.println("To go on north press N");
         System.out.println("You cant go that way");
         System.out.println("Do you want to go east press E");
         System.out.println("Do you want to go south press S");
         System.out.println("Go to right press R");
-        System.out.println("You are in the room");
         System.out.println("You made it to room 9 would you like to continue?");
 
     }
@@ -82,9 +84,10 @@ public class UserInterface {
 
             //Ask user for commands
             System.out.println("Enter a command: \n" +
+                    "Type 'look' to search the room \n" +
+                    "Type 'go...' (direction) to move \n" +
                     "Type 'help' for help \n" +
-                    "Type 'exit' to exit the game \n" +
-                    "Type 'go... (direction) to move'");
+                    "Type 'exit' to exit the game \n");
             
             handleUserInput();
         }
@@ -107,7 +110,7 @@ public class UserInterface {
                 break;
             default:
                 //Check the users desired direction - n,s,w,e still doesn't work :(
-                if (userInput.startsWith("go ")) {
+                if (userInput.startsWith("go <")) {
                     String direction = userInput.substring(3);
                     move(direction);
                 } else if (userInput.startsWith("n") || userInput.startsWith("w") || userInput.startsWith("e") || userInput.startsWith("s")) {
