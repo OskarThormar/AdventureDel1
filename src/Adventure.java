@@ -2,7 +2,8 @@ import java.util.Locale;
 import java.util.Scanner;
 
 public class Adventure {
-private Rooms currentRoom;
+public Rooms currentRoom;
+UserInterface ui = new UserInterface();
 
 public Adventure() {
     //Initialize rooms (names and descriptions) and connections
@@ -55,9 +56,8 @@ public Adventure() {
 
 }
 
-
 //start game method
-    public void start() {
+    /*public void start() {
 
     Scanner keyboard = new Scanner(System.in).useLocale(Locale.US);
 
@@ -68,13 +68,18 @@ public Adventure() {
         System.out.println(currentRoom.getDiscription());
 
         //Ask user for commands
-        System.out.println("Enter a command");
+        System.out.println("Enter a command: \n" +
+                "Type 'help' for help \n" +
+                "Type 'exit' to exit the game \n" +
+                "Type 'go... (direction) to move'" );
         String userInput = keyboard.nextLine().toLowerCase();
 
         switch (userInput) {
             case "look":
                 System.out.println(currentRoom.getDiscription());
                 break;
+            case "help":
+                ui.help();
             case "exit":
                 System.out.println("Goodbye");
                 System.exit(0);
@@ -94,10 +99,12 @@ public Adventure() {
         }
     }
 
-    }
+
+    }*/
+
 
     //Assign the new room
-    private void move(String direction) {
+    public void move(String direction) {
     Rooms nextRoom = null;
 
     switch (direction) {
