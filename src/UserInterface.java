@@ -5,7 +5,7 @@ public class UserInterface {
     private Adventure adventure;
 
     public UserInterface() {
-        adventure = new Adventure();
+        this.adventure = new Adventure();
     }
 
     public void startProgram() {
