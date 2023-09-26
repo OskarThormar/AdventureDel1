@@ -1,12 +1,12 @@
-public class Rooms {
+public class Room {
     private String name;
     private String discription;
-    private Rooms north;
-    private Rooms east;
-    private Rooms south;
-    private Rooms west;
+    private Room north;
+    private Room east;
+    private Room south;
+    private Room west;
 
-    public Rooms(String name, String discription) {
+    public Room(String name, String discription) {
         this.name = name;
         this.discription = discription;
     }
@@ -27,35 +27,35 @@ public class Rooms {
         this.discription = discription;
     }
 
-    public Rooms getNorth() {
+    public Room getNorth() {
         return north;
     }
 
-    public void setNorth(Rooms north) {
+    public void setNorth(Room north) {
         this.north = north;
     }
 
-    public Rooms getEast() {
+    public Room getEast() {
         return east;
     }
 
-    public void setEast(Rooms east) {
+    public void setEast(Room east) {
         this.east = east;
     }
 
-    public Rooms getSouth() {
+    public Room getSouth() {
         return south;
     }
 
-    public void setSouth(Rooms south) {
+    public void setSouth(Room south) {
         this.south = south;
     }
 
-    public Rooms getWest() {
+    public Room getWest() {
         return west;
     }
 
-    public void setWest(Rooms west) {
+    public void setWest(Room west) {
         this.west = west;
     }
 }
