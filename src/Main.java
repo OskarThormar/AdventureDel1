@@ -1,6 +1,6 @@
 public class Main {
     public static void main(String[] args) {
-        System.out.println("virker måske?");
-
-    }
+            UserInterface m = new UserInterface();
+            m.startProgram();
+        }
 }
