@@ -1,6 +1,6 @@
 public class Main {
     public static void main(String[] args) {
-            UserInterface m = new UserInterface();
-            m.startProgram();
-        }
+        UserInterface m = new UserInterface();
+        m.startProgram();
+    }
 }
