@@ -6,9 +6,12 @@ private Rooms currentRoom;
 
 public Adventure() {
     //Initialize rooms (names and descriptions) and connections
-    Rooms room1 = new Rooms("Room1", "ababababa");
-    Rooms room2 = new Rooms("Room2", "ababababa");
-    Rooms room3 = new Rooms("Room3", "ababababa");
+    //Indsæt det med at samle et kompas op
+    Rooms room1 = new Rooms("Room1", "You are standing in a cave, you hear the water silently dripping from above. \n" +
+            "You can see a dim light east of you, and hear water running to your south. Which way would you like to go?");
+    Rooms room2 = new Rooms("Room2", "You can see the remains of a fire and the embers glowing in the dark.\n" +
+            " You discover footsteps going further in to the cave. Would you like to go east or west?");
+    Rooms room3 = new Rooms("Room3", "");
     Rooms room4 = new Rooms("Room4", "ababababa");
     Rooms room5 = new Rooms("Room5", "ababababa");
     Rooms room6 = new Rooms("Room6", "ababababa");
