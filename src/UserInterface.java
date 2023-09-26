@@ -38,12 +38,14 @@ public class UserInterface {
     }
 
     public void help() {
+        System.out.println("To start the game press Start");
+        System.out.println("Congratulations you have started the game");
+        System.out.println("Where do you want to go");
         System.out.println("To go on north press N");
         System.out.println("You cant go that way");
         System.out.println("Do you want to go east press E");
         System.out.println("Do you want to go south press S");
         System.out.println("Go to right press R");
-        System.out.println("You are in the room");
         System.out.println("You made it to room 9 would you like to continue?");
 
     }

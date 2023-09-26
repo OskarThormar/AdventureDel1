@@ -16,8 +16,10 @@ public class Adventure {
             "and you need to cross a wooden bridge to get over to the other side. Would you like to go west or south?");
     Room room4 = new Room("Room4", "You have followed the sound of water, and now you are standing on a riverbank.\n" +
             "You see a small boat floating around. Do you want to back north or continue further south?");
-    Room room5 = new Room("Room5", "");
-    Room room6 = new Room("Room6", "ababababa");
+    Room room5 = new Room("Room5", "You have entered a great cave with a big lake covered in shimmering light.\n " +
+            "Three stones leads the way to the center of the lake, where you see a big chest with a big rusty lock on it. \n" +
+            "Would you like to go back south?");
+    Room room6 = new Room("Room6", "");
     Room room7 = new Room("Room7", "ababababa");
     Room room8 = new Room("Room8", "ababababa");
     Room room9 = new Room("Room9", "ababababa");
