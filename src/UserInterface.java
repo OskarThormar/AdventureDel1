@@ -12,12 +12,12 @@ public class UserInterface {
 
         System.out.println("Welcome to the Adventure Game!");
         System.out.println("""
-            ---------------------------------------|
-            1. Type 'Help' to show instructions \s  |
-            2. Type 'Start' to start the game \s    |
-            3. Type 'Exit' to exit the game        |
-            ---------------------------------------|
-            """);
+                ---------------------------------------|
+                1. Type 'Help' to show instructions \s |
+                2. Type 'Start' to start the game \s   |
+                3. Type 'Exit' to exit the game        |
+                ---------------------------------------|
+                """);
 
         String userSelection = keyboard.nextLine();
 

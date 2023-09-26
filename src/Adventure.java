@@ -5,20 +5,25 @@ public class Adventure {
     public Room currentRoom;
 
 
-public Adventure() {
+    public Adventure() {
+
+
+    
     //Initialize rooms (names and descriptions) and connections
     //Indsæt det med at samle et kompas op
-    Rooms room1 = new Rooms("Room1", "You are standing in a cave, you hear the water silently dripping from above. \n" +
+    Room room1 = new Room("Room1", "You are standing in a cave, you hear the water silently dripping from above. \n" +
             "You can see a dim light east of you, and hear water running to your south. Which way would you like to go?");
-    Rooms room2 = new Rooms("Room2", "You can see the remains of a fire and the embers glowing in the dark.\n" +
+    Room room2 = new Room("Room2", "You can see the remains of a fire and the embers glowing in the dark.\n" +
             " You discover footsteps going further in to the cave. Would you like to go east or west?");
-    Rooms room3 = new Rooms("Room3", "");
-    Rooms room4 = new Rooms("Room4", "ababababa");
-    Rooms room5 = new Rooms("Room5", "ababababa");
-    Rooms room6 = new Rooms("Room6", "ababababa");
-    Rooms room7 = new Rooms("Room7", "ababababa");
-    Rooms room8 = new Rooms("Room8", "ababababa");
-    Rooms room9 = new Rooms("Room9", "ababababa");
+    Room room3 = new Room("Room3", "You stop and see that you are standing on edge of a cliff, \n " +
+            "and you need to cross a wooden bridge to get over to the other side. Would you like to go west or south?");
+    Room room4 = new Room("Room4", "You have followed the sound of water, and now you are standing on a riverbank.\n" +
+            "You see a small boat floating around. Do you want to back north or continue further south?");
+    Room room5 = new Room("Room5", "");
+    Room room6 = new Room("Room6", "ababababa");
+    Room room7 = new Room("Room7", "ababababa");
+    Room room8 = new Room("Room8", "ababababa");
+    Room room9 = new Room("Room9", "ababababa");
 
     //setting the starting room
     currentRoom = room1;
