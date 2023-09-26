@@ -3,6 +3,4 @@ public class Controller {
     //public Controller(){
     //    this.adventure = new Adventure();
     //}
-
-
 }
