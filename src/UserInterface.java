@@ -28,8 +28,45 @@ public class UserInterface {
                case "help":
                    help();
                case "start":
-                   adventure.start();
-                   break;
+                   //adventure.start();
+                   //while loop so the game keeps running until the player decides to exit
+                   while (true) {
+                       //Display room information
+                       System.out.println("You are in " + adventure.currentRoom.getName());
+                       System.out.println(adventure.currentRoom.getDiscription());
+
+                       //Ask user for commands
+                       System.out.println("Enter a command: \n" +
+                               "Type 'help' for help \n" +
+                               "Type 'exit' to exit the game \n" +
+                               "Type 'go... (direction) to move'" );
+                       String userInput = keyboard.nextLine().toLowerCase();
+
+                       switch (userInput) {
+                           case "look":
+                               System.out.println(adventure.currentRoom.getDiscription());
+                               break;
+                           case "help":
+                               help();
+                               break;
+                           case "exit":
+                               System.out.println("Goodbye");
+                               System.exit(0);
+                               break;
+                           default:
+                               //Check the users desired direction - n,s,w,e still doesn't work :(
+                               if (userInput.startsWith("go ")) {
+                                   String direction = userInput.substring(3);
+                                   adventure.move(direction);
+                               } else if (userInput.startsWith("n") || userInput.startsWith("w") || userInput.startsWith("e") || userInput.startsWith("s")) {
+                                   String direction = userInput;
+                                   adventure.move(direction);
+                               } else {
+                                   System.out.println("Invalid command");
+                               }
+                               break;
+                       }
+                   }
                case "exit":
                    System.out.println("Have a great day");
                    System.exit(0);
@@ -39,8 +76,8 @@ public class UserInterface {
                    break;
            }
        }
-       }
-    private void help(){
+    }
+    public void help(){
         System.out.println("help, bla bla");
     }
 }
