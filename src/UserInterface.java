@@ -82,9 +82,10 @@ public class UserInterface {
 
             //Ask user for commands
             System.out.println("Enter a command: \n" +
+                    "Type 'look' to search the room \n" +
+                    "Type 'go...' (direction) to move \n" +
                     "Type 'help' for help \n" +
-                    "Type 'exit' to exit the game \n" +
-                    "Type 'go... (direction) to move'");
+                    "Type 'exit' to exit the game \n");
             
             handleUserInput();
         }
