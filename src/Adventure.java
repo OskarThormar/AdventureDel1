@@ -1,14 +1,9 @@
-import java.util.Locale;
-import java.util.Scanner;
-
 public class Adventure {
     public Room currentRoom;
 
 
     public Adventure() {
 
-
-    
     //Initialize rooms (names and descriptions) and connections
     //Indsæt det med at samle et kompas op
     Room room1 = new Room("Room1", "You are standing in a cave, you hear the water silently dripping from above. \n" +
