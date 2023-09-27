@@ -4,6 +4,7 @@ public class UserInterface {
     private Scanner keyboard = new Scanner(System.in);
     private Adventure adventure;
 
+
     public UserInterface() {
 
         this.adventure = new Adventure();
