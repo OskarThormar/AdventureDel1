@@ -11,8 +11,8 @@ public class UserInterface {
     }
 
     public void startProgram() {
-        String userSelection = "start";
-        do {
+        String userSelection;
+
             System.out.println("Welcome to the Adventure Game!");
             System.out.println("""
                     ---------------------------------------|
@@ -24,9 +24,8 @@ public class UserInterface {
 
             System.out.println("Enter selection");
             userSelection = keyboard.nextLine();
-            handleUserSelection();
 
-                 /*   switch (userSelection.toLowerCase()) {
+                    switch (userSelection.toLowerCase()) {
                         case "help":
                             help();
                         case "start":
@@ -40,9 +39,8 @@ public class UserInterface {
                             System.out.println("Choose an option from above");
                             break;
 
-        }*/
         }
-        while (!userSelection.toLowerCase().equals("Exit"));
+
     }
 
     public void startGame() {
@@ -63,9 +61,6 @@ public class UserInterface {
     }
 
     private void handleUserSelection() {
-        boolean gameRunning = true;
-
-        while (gameRunning) {
             String[] userSelection = keyboard.nextLine().toLowerCase().trim().split(" ");
             String firstWord = userSelection[0];
             switch (firstWord) {
@@ -82,8 +77,8 @@ public class UserInterface {
                 case "quit":
                 case "exit":
                 case "bye":
-                    gameRunning = false;
                     System.out.println("Thank you for playing Adventure Game! Come back another time :-)");
+                    System.exit(0);
                     break;
                 case "go":
                     String secondWord = userSelection[1];
@@ -92,7 +87,7 @@ public class UserInterface {
                 default:
                     System.out.println("I don't understand");
             }
-        }
+
     }
 
     private void userLook() {
