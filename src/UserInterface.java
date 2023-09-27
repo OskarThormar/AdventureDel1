@@ -80,7 +80,7 @@ public class UserInterface {
         while (true) {
             //Display room information
             System.out.println("You are in " + adventure.currentRoom.getName());
-            System.out.println(adventure.currentRoom.getDiscription());
+            System.out.println(adventure.currentRoom.getDescription());
 
             //Ask user for commands
             System.out.println("Enter a command: \n" +
@@ -123,6 +123,6 @@ public class UserInterface {
         }
     }
     private void userLook() {
-        System.out.println(adventure.currentRoom.getDiscription());
+        System.out.println(adventure.currentRoom.getDescription());
     }
 }
