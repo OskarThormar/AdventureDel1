@@ -1,22 +1,25 @@
 public class Adventure {
-    public Room currentRoom;
     private Player player;
+    private Map map;
 
     public Adventure() {
-        this.player = new Player();
+        this.map = new Map();
+        this.player = new Player(map.getStartingRoom());
+
+        initializeGame();
     }
 
-    //public Adventure(Room startingRoom) {
-    //    this.player = new Player(startingRoom);
-    //}
+    //sets the players initial starting room
+    public void initializeGame() {
+        player.setCurrentRoom(map.getStartingRoom());
+    }
 
     public void move(String direction){
         this.player.move(direction);
     }
 
-
-    public Room currentRoom() {
+    //retrieves the currentroom of the player
+    public Room getCurrentRoom() {
         return player.getCurrentRoom();
     }
-
 }

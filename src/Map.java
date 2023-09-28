@@ -1,4 +1,6 @@
 public class Map {
+    private Room startingRoom;
+
     public Map(){
         Room room1 = new Room("Room1", "You are standing in a cave, you hear the water silently dripping from above. \n" +
                 "You can see a dim light to one side of you, and hear water running in a distance. Which way would you like to go?");
@@ -21,6 +23,8 @@ public class Map {
                 "around you, dangerously close. There are stones floating around like an iced sea. Where would you like to go?");
         Room room9 = new Room("Room9", "You are now deep into the cave, you have to climb up a steep hill to go west. \n "+
                 "Can you take the climp, or go in another direction?");
+
+        startingRoom = room1;
 
         room1.setEast(room2);
         room1.setSouth(room4);
@@ -56,5 +60,10 @@ public class Map {
 
     }
 
+
+    //Getter for startingroom
+    public Room getStartingRoom() {
+        return startingRoom;
+    }
 
 }
