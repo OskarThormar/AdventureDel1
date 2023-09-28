@@ -1,3 +1,6 @@
+import java.util.ArrayList;
+import java.util.List;
+
 public class Room {
     private String name;
     private String discription;
@@ -5,10 +8,38 @@ public class Room {
     private Room east;
     private Room south;
     private Room west;
+    private List<Item> items;
 
     public Room(String name, String discription) {
         this.name = name;
         this.discription = discription;
+        items = new ArrayList<>();
+    }
+
+    //getter for items in the room
+    public Item getItemByName(String itemName) {
+        for (Item item : items) {
+            if (item.getName().equalsIgnoreCase(itemName)) {
+                return item;
+            }
+        }
+        return null; // Item not found in this room
+    }
+
+    public void addItem(Item item) {
+        items.add(item);
+    }
+
+    public void removeItem(Item item) {
+        items.remove(item);
+    }
+
+    public boolean containsItem(Item item) {
+        return items.contains(item);
+    }
+
+    public List<Item> getItems() {
+        return items;
     }
 
     public String getName() {
