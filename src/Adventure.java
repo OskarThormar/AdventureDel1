@@ -4,7 +4,8 @@ public class Adventure {
 
     public Adventure() {
         this.map = new Map();
-        this.player = new Player(map.getStartingRoom());
+        //set the player maximum inventory to 5
+        this.player = new Player(map.getStartingRoom(), 5);
 
         initializeGame();
     }
@@ -21,5 +22,10 @@ public class Adventure {
     //retrieves the currentroom of the player
     public Room getCurrentRoom() {
         return player.getCurrentRoom();
+    }
+
+    //Allow classes to access player
+    public Player getPlayer() {
+        return player;
     }
 }
