@@ -109,6 +109,9 @@ public class UserInterface {
                 case "help":
                     help();
                     break;
+                case "show inventory":
+                    showInventory();
+                    break;
                 case "exit":
                     System.out.println("Goodbye");
                     System.exit(0);
@@ -204,6 +207,13 @@ public class UserInterface {
         player.dropItem(itemName, adventure.getCurrentRoom());
     }
 
-
+    public void showInventory() {
+        System.out.println("Inventory:");
+        for (Item item : adventure.showInventory()) {
+            if (item != null) {
+                System.out.println(item);
+            }
+        }
+    }
 }
 

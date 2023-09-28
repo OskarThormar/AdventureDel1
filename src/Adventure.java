@@ -1,3 +1,5 @@
+import java.util.List;
+
 public class Adventure {
     private Player player;
     private Map map;
@@ -27,5 +29,8 @@ public class Adventure {
     //Allow classes to access player
     public Player getPlayer() {
         return player;
+    }
+    public List<Item> showInventory() {
+        return player.showInventory();
     }
 }
