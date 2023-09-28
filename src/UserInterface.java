@@ -15,9 +15,9 @@ public class UserInterface {
         System.out.println("Welcome to the Adventure Game!");
         System.out.println("""
                 ---------------------------------------|
-                1. Type 'Help' to show instructions      |
-                2. Type 'Start' to start the game        |
-                3. Type 'Exit' to exit the game          |
+                 - Type 'Help' to show instructions    |
+                 - Type 'Start' to start the game      |
+                 - Type 'Exit' to exit the game        |
                 ---------------------------------------|
                 """);
 
