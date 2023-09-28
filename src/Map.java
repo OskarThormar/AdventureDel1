@@ -24,6 +24,11 @@ public class Map {
         Room room9 = new Room("Room9", "You are now deep into the cave, you have to climb up a steep hill to go west. \n "+
                 "Can you take the climp, or go in another direction?");
 
+
+        //ITEMS FOR EACH ROOM
+        Item item1 = new Item("Sword", "A sharp, shiny sword.");
+        Item item2 = new Item("Key", "A rusty old key.");
+
         startingRoom = room1;
 
         room1.setEast(room2);
@@ -57,6 +62,11 @@ public class Map {
         //room4
         room4.setSouth(room7);
         room4.setNorth(room1);
+
+
+        // ADD ITEMS TO EACH ROOM
+        room1.addItem(item1);
+        room2.addItem(item2);
 
     }
 
