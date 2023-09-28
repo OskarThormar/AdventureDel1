@@ -1,23 +1,23 @@
+import java.util.List;
 import java.util.Scanner;
 
 public class UserInterface {
     private Scanner keyboard = new Scanner(System.in);
     private Adventure adventure;
 
-
     public UserInterface() {
-
         this.adventure = new Adventure();
     }
 
     public void startProgram() {
+        adventure.initializeGame();
 
         System.out.println("Welcome to the Adventure Game!");
         System.out.println("""
                 ---------------------------------------|
-                1. Type 'Help' to show instructions    |
-                2. Type 'Start' to start the game      |
-                3. Type 'Exit' to exit the game        |
+                1. Type 'Help' to show instructions      |
+                2. Type 'Start' to start the game        |
+                3. Type 'Exit' to exit the game          |
                 ---------------------------------------|
                 """);
 
@@ -41,60 +41,98 @@ public class UserInterface {
 
     public void startGame() {
         while (true) {
-            // Display room information
-            System.out.println("You are in " + adventure.currentRoom.getName());
-            System.out.println(adventure.currentRoom.getDescription());
+            Room currentRoom = adventure.getCurrentRoom();
 
-            // Ask user for commands
-            System.out.println("Enter a command: \n" +
-                    "Type 'look' to search the room \n" +
-                    "Type 'go...' (direction) to move \n" +
-                    "Type 'help' for help \n" +
-                    "Type 'exit' to exit the game \n");
+            System.out.println("You are in " + currentRoom.getName());
+            System.out.println(currentRoom.getDiscription());
 
-            handleUserSelection();
+            //Display items in the currentRoom
+            List<Item> itemsInRoom = currentRoom.getItems();
+            if(!itemsInRoom.isEmpty()) {
+                System.out.println("Items in this room: ");
+                for (Item item : itemsInRoom) {
+                    System.out.println(item.getName() + " ");
+                }
+                System.out.println(" ");
+            }
+
+            System.out.println("Enter a command:");
+
+            handleUserInput();
         }
     }
 
-    private void handleUserSelection() {
-        boolean gameRunning = true;
+    private void handleUserInput() {
 
-        while (gameRunning) {
-            String[] userSelection = keyboard.nextLine().toLowerCase().trim().split(" ");
-            String firstWord = userSelection[0];
-            switch (firstWord) {
+        /*String[] userSelection = keyboard.nextLine().toLowerCase().trim().split(" ");
+        String firstWord = userSelection[0];
+        switch (firstWord) {
+            case "look":
+                userLook();
+                break;
+            case "start":
+                startGame();
+                break;
+            case "help":
+            case "info":
+                help();
+                break;
+            case "quit":
+            case "exit":
+            case "bye":
+                System.out.println("Thank you for playing Adventure Game! Come back another time :-)");
+                System.exit(0);
+                break;
+            case "go":
+                String secondWord = userSelection[1];
+                adventure.move(secondWord);
+                break;
+            default:
+                System.out.println("I don't understand");
+        }*/
+
+
+
+        String userInput = keyboard.nextLine().toLowerCase();
+
+        if (userInput.startsWith("pick up ")) {
+            playerPickUpItem(userInput);
+
+        } else if (userInput.startsWith("drop ")) {
+            playerDropItem(userInput);
+
+        } else {
+            switch (userInput) {
                 case "look":
                     userLook();
                     break;
-                case "start":
-                    startGame();
-                    break;
                 case "help":
-                case "info":
                     help();
                     break;
-                case "quit":
                 case "exit":
-                case "bye":
-                    gameRunning = false;
-                    System.out.println("Thank you for playing Adventure Game! Come back another time :-)");
-                    break;
-                case "go":
-                    String secondWord = userSelection[1];
-                    adventure.move(secondWord);
+                    System.out.println("Goodbye");
+                    System.exit(0);
                     break;
                 default:
-                    System.out.println("I don't understand");
+                    // Check the user's desired direction
+                    if (userInput.startsWith("go ")) {
+                        String direction = userInput.substring(3);
+                        adventure.move(direction);
+                    } else if (userInput.startsWith("n") || userInput.startsWith("w") || userInput.startsWith("e") || userInput.startsWith("s")) {
+                        String direction = userInput;
+                        adventure.move(direction);
+                    } else {
+                        System.out.println("Invalid command");
+                    }
+                    break;
             }
         }
-    }
 
-    private void userLook() {
-        System.out.println(adventure.currentRoom.getDescription());
+
+
     }
 
     public void help() {
-        // if { adventure.currentRoom = adventure.
         System.out.println("== Help Menu ==");
         System.out.println("Basic Needs:");
         System.out.println("- Water: Stay hydrated during your adventure.");
@@ -135,4 +173,35 @@ public class UserInterface {
         System.out.println("- Skills and Abilities: Improve your skills and abilities as you progress.");
         System.out.println("- Wildlife Interaction: Encounter and interact with various wildlife.");
     }
+
+    private void userLook() {
+        Room currentRoom = adventure.getCurrentRoom();
+
+        if (currentRoom == null) {
+            System.out.println("Current room is null! Exiting game.");
+            System.exit(0);
+        }
+
+        System.out.println(currentRoom.getDiscription());
+    }
+
+    //pick up item method
+    public void playerPickUpItem(String userInput) {
+        String itemName = userInput.substring(8);
+        Item itemToPickUp = adventure.getCurrentRoom().getItemByName(itemName);
+        if (itemToPickUp != null) {
+            adventure.getPlayer().pickUpItem(itemToPickUp);
+            System.out.println("You picked up " + itemName);
+        } else {
+            System.out.println("Item not found in this room");
+        }
+    }
+
+    //drop item method
+    public void playerDropItem(String userInput) {
+        String itemName = userInput.substring(5);
+        Player player = adventure.getPlayer();
+        player.dropItem(itemName, adventure.getCurrentRoom());
+    }
 }
+
