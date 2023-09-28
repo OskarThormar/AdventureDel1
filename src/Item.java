@@ -15,6 +15,9 @@ public class Item {
     public String getDescription() {
         return description;
     }
-
-
+    public String toString() {
+        return "Item" +
+                " name '" + name + '\'' +
+                ", description -'" + description;
+    }
 }

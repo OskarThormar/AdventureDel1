@@ -83,6 +83,9 @@ public class Player {
             System.out.println("You cannot go that way.");
         }
     }
+    public List<Item> showInventory() {
+        return inventory;
+    }
 
 
 
