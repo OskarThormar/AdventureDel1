@@ -1,18 +1,18 @@
 public class Player {
     private Room currentRoom;
-    private Room room;
 
-    //Adventure adventure = new Adventure();
-    Map map = new Map();
+    public Player(Room startingRoom) {
+        this.currentRoom = startingRoom;
+    }
 
+    //retrieves the currentroom of the player
+    public Room getCurrentRoom() {
+        return currentRoom;
+    }
 
-
-    //    public Player(Room startingRoom){
-    //        this.currentRoom = startingRoom;
-    //    }
-
-
-
+    public void setCurrentRoom(Room room) {
+        currentRoom = room;
+    }
 
     public void move(String direction) {
         Room nextRoom = null;
@@ -34,17 +34,7 @@ public class Player {
             case "s":
                 nextRoom = currentRoom.getSouth();
                 break;
-
         }
-
-        if (nextRoom != null) {
             currentRoom = nextRoom;
-        } else {
-            System.out.println("You cannot go that way.");
-        }
-    }
-
-    public Room getCurrentRoom() {
-        return currentRoom;
     }
 }

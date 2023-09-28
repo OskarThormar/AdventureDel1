@@ -11,38 +11,32 @@ public class UserInterface {
     }
 
     public void startProgram() {
-        String userSelection = "start";
-        do {
-            System.out.println("Welcome to the Adventure Game!");
-            System.out.println("""
-                    ---------------------------------------|
-                    1. Type 'Help' to show instructions    |
-                    2. Type 'Start' to start the game      |
-                    3. Type 'Exit' to exit the game        |
-                    ---------------------------------------|
-                    """);
 
-            System.out.println("Enter selection");
-            userSelection = keyboard.nextLine();
-            handleUserSelection();
+        System.out.println("Welcome to the Adventure Game!");
+        System.out.println("""
+                ---------------------------------------|
+                1. Type 'Help' to show instructions    |
+                2. Type 'Start' to start the game      |
+                3. Type 'Exit' to exit the game        |
+                ---------------------------------------|
+                """);
 
-                 /*   switch (userSelection.toLowerCase()) {
-                        case "help":
-                            help();
-                        case "start":
-                            startGame();
-                            break;
-                        case "exit":
-                            System.out.println("Have a great day");
-                            System.exit(0);
-                            break;
-                        default:
-                            System.out.println("Choose an option from above");
-                            break;
+        String userSelection = keyboard.nextLine();
 
-        }*/
+        switch (userSelection.toLowerCase()) {
+            case "help":
+                help();
+            case "start":
+                startGame();
+                break;
+            case "exit":
+                System.out.println("Have a great day");
+                System.exit(0);
+                break;
+            default:
+                System.out.println("Choose an option from above");
+                break;
         }
-        while (!userSelection.toLowerCase().equals("Exit"));
     }
 
     public void startGame() {
