@@ -40,27 +40,90 @@ public class UserInterface {
     }
 
     public void startGame() {
+        boolean firstLook = true;
+
         while (true) {
             Room currentRoom = adventure.getCurrentRoom();
 
-            System.out.println("You are in " + currentRoom.getName());
             System.out.println(currentRoom.getDiscription());
 
-            //Display items in the currentRoom
-            List<Item> itemsInRoom = currentRoom.getItems();
-            if(!itemsInRoom.isEmpty()) {
-                System.out.println("Items in this room: ");
-                for (Item item : itemsInRoom) {
-                    System.out.println(item.getName() + " ");
-                }
-                System.out.println(" ");
+            if (firstLook) {
+                System.out.println("Search the room for items: type 'look'");
             }
 
             System.out.println("Enter a command:");
 
-            handleUserInput();
+            String userInput = keyboard.nextLine().toLowerCase();
+
+            if (userInput.equals("look")) {
+                userLook();
+                firstLook = false;
+            } else {
+                handleUserInput();
+            }
+
+            if (userInput.startsWith("pick up ")) {
+                playerPickUpItem(userInput);
+
+            } else if (userInput.startsWith("drop ")) {
+                playerDropItem(userInput);
+
+            } else if (userInput.startsWith("item")) {
+                List<Item> itemsInRoom = adventure.getCurrentRoom().getItems();
+                if (!itemsInRoom.isEmpty()) {
+                    System.out.println("Items in this room:");
+                    for (Item item : itemsInRoom) {
+                        System.out.println(item.getName());
+                    }
+                } else {
+                    System.out.println("There is no items in this room.");
+                }
+            } else {
+                switch (userInput) {
+                    case "look":
+                        userLook();
+                        break;
+                    case "help":
+                        help();
+                        break;
+                    case "show inventory":
+                        showInventory();
+                        break;
+                    case "exit":
+                        System.out.println("Goodbye");
+                        System.exit(0);
+                        break;
+                    default:
+                        //Direction
+                        if (userInput.startsWith("go ")) {
+                            String direction = userInput.substring(3);
+                            adventure.move(direction);
+                        } else if (userInput.startsWith("n") || userInput.startsWith("w") || userInput.startsWith("e") || userInput.startsWith("s")) {
+                            String direction = userInput;
+                            adventure.move(direction);
+                        } else {
+                            System.out.println("Invalid command");
+                        }
+                        break;
+                }
+            }
         }
     }
+
+//            //Display items in the currentRoom
+//            List<Item> itemsInRoom = currentRoom.getItems();
+//            if(!itemsInRoom.isEmpty()) {
+//                //
+//                System.out.println("Search rooms for items write 'look' ");
+//                for (Item item : itemsInRoom) {
+//                    System.out.println("You have found " + item.getName() + " ");
+//                }
+//                System.out.println(" ");
+//            }
+//
+//            System.out.println("Enter a command:");
+//
+//            handleUserInput();
 
     private void handleUserInput() {
 
@@ -93,47 +156,8 @@ public class UserInterface {
 
 
 
-        String userInput = keyboard.nextLine().toLowerCase();
 
-        if (userInput.startsWith("pick up ")) {
-            playerPickUpItem(userInput);
-
-        } else if (userInput.startsWith("drop ")) {
-            playerDropItem(userInput);
-
-        } else {
-            switch (userInput) {
-                case "look":
-                    userLook();
-                    break;
-                case "help":
-                    help();
-                    break;
-                case "show inventory":
-                    showInventory();
-                    break;
-                case "exit":
-                    System.out.println("Goodbye");
-                    System.exit(0);
-                    break;
-                default:
-                    // Check the user's desired direction
-                    if (userInput.startsWith("go ")) {
-                        String direction = userInput.substring(3);
-                        adventure.move(direction);
-                    } else if (userInput.startsWith("n") || userInput.startsWith("w") || userInput.startsWith("e") || userInput.startsWith("s")) {
-                        String direction = userInput;
-                        adventure.move(direction);
-                    } else {
-                        System.out.println("Invalid command");
-                    }
-                    break;
-            }
         }
-
-
-
-    }
 
     public void help() {
         System.out.println("== Help Menu ==");
@@ -185,20 +209,20 @@ public class UserInterface {
             System.exit(0);
         }
 
-        System.out.println(currentRoom.getDiscription());
+        System.out.println(currentRoom.getItems());
     }
 
     //pick up item method
-    public void playerPickUpItem(String userInput) {
-        String itemName = userInput.substring(8);
-        Item itemToPickUp = adventure.getCurrentRoom().getItemByName(itemName);
-        if (itemToPickUp != null) {
-            adventure.getPlayer().pickUpItem(itemToPickUp);
-            System.out.println("You picked up " + itemName);
-        } else {
-            System.out.println("Item not found in this room");
+    public void playerPickUpItem(String userInput){
+            String itemName = userInput.substring(8);
+            Item itemToPickUp = adventure.getCurrentRoom().getItemByName(itemName);
+            if (itemToPickUp != null) {
+                adventure.getPlayer().pickUpItem(itemToPickUp);
+                System.out.println("You picked up " + itemName);
+            } else {
+                System.out.println("Item not found in this room");
+            }
         }
-    }
 
     //drop item method
     public void playerDropItem(String userInput) {
@@ -208,12 +232,11 @@ public class UserInterface {
     }
 
     public void showInventory() {
-        System.out.println("Inventory:");
-        for (Item item : adventure.showInventory()) {
-            if (item != null) {
-                System.out.println(item);
+            System.out.println("Inventory:");
+            for (Item item : adventure.showInventory()) {
+                if (item != null) {
+                    System.out.println(item);
+                }
             }
-        }
-    }
-}
+        }}
 
