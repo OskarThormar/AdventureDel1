@@ -6,6 +6,7 @@ public class Map {
                 "You can see a dim light to one side of you, and hear water running in a distance. Which way would you like to go?");
         Room room2 = new Room("Room2", "You can see the remains of a fire and the embers glowing in the dark.\n" +
                 " You discover footsteps going further in to the cave. Which way would you like to explore?");
+
         Room room3 = new Room("Room3", "You stop and see that you are standing on edge of a cliff, \n " +
                 "and you need to cross a wooden bridge to get over to the other side. Would you like to go across or in another direction?");
         Room room4 = new Room("Room4", "You have followed the sound of water, and now you are standing on a riverbank.\n" +
