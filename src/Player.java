@@ -84,18 +84,57 @@ public class Player {
             System.out.println("You cannot go that way.");
         }
     }
-    public List<Item> showInventory()
-    {
+
+    public List<Item> showInventory() {
         return inventory;
     }
 
-    public List<Item> look () {
+    public List<Item> look() {
         return currentRoom.getItems();
     }
-    public int healthPoints(){
+
+    public int healthPoints() {
         return health;
     }
-    public void setHealthPoints(int health){
+
+    public void setHealthPoints(int health) {
         this.health = health;
+    }
+
+    public Item findItem(String name) {
+        for (Item item : inventory) {
+            if (item.getName().startsWith(name)) {
+                return item;
+            }
+        }
+        return null;
+    }
+
+
+    public ReturnMessage eat(String name) {
+        Item item = findItem(name);
+        if (item != null) {
+            if (item instanceof Food) {
+                health += (((Food) item).getHealth());
+                inventory.remove(item);
+                return ReturnMessage.OK;
+            } else {
+                return ReturnMessage.CANT;
+            }
+        }
+
+        //Nothing in player`s inventory, we look in room
+      /*  item = currentRoom.removeItem(name);
+        if (item != null){
+            if (item instanceof Food food) {
+                health += food.getHealth();
+                return ReturnMessage.OK;
+            }else {
+                return ReturnMessage.CANT;
+            }
+            return ReturnMessage.NOT_FOUND;
+        }*/
+
+        return null;
     }
 }

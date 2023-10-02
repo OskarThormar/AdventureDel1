@@ -15,7 +15,8 @@ public class Map {
         Room room3 = new Room(" ", "You stop and see that you are standing on edge of a cliff, \n " +
                 "and you need to cross a wooden bridge to get over to the other side. Would you like to go across or in another direction?");
         Item food2Room3 = new Food("Mushroom", "funky looking", -40);
-        //Item or food?
+        room3.addItem(food2Room3);
+
         Room room4 = new Room(" ", "You have followed the sound of water, and now you are standing on a riverbank.\n" +
                 "You see a small boat floating around. The boat seems rather broken, would you like to try to get to the other side or explore another direction?");
         Item item2Room4 = new Item("paddle", "an old rotten paddle.");

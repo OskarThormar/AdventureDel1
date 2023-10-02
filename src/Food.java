@@ -11,6 +11,10 @@ public class Food extends Item {
         System.out.println("food");
 
     }
+    public int getHealth(){
+        return health;
+    }
+
 
 
 }

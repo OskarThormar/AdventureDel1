@@ -89,10 +89,23 @@ public class UserInterface {
                     case "show inventory":
                         showInventory();
                         break;
-                    case "eat food":
+                    case "eat":
+                        result = adventure.eat();
+                        switch (result){
+                            case ReturnMessage.NOT_FOUND:
+                                System.out.println("no such thing");
+                                break;
+                            case ReturnMessage.CANT:
+                                System.out.println("you cant eat that");
+                                break;
+                            case ReturnMessage.OK:
+                                System.out.println("you have eaten ..");
+                            default:
+                                System.err.println("internal error");
+                        }
                         eatFood();
                         break;
-                    case "check health":
+                    case "health":
                         showHealth();
                         break;
                     case "exit":
@@ -256,6 +269,16 @@ public class UserInterface {
     }
     public void showHealth(){
         System.out.println(adventure.getPlayerHealth());
+    }
+    public void eat(String foodName){
+        // look in players inventory
+        //Item item = findItem(foodName);
+        if (item != null){
+            if (item instanceof Food){
+                adventure.showInventory().remove(item);
+                return ReturnMessage;
+            }
+        }
     }
 
 }
