@@ -3,16 +3,16 @@ import java.util.List;
 
 public class Room {
     private String name;
-    private String discription;
+    private String description;
     private Room north;
     private Room east;
     private Room south;
     private Room west;
     private List<Item> items;
 
-    public Room(String name, String discription) {
+    public Room(String name, String description) {
         this.name = name;
-        this.discription = discription;
+        this.description = description;
         items = new ArrayList<>();
     }
 
@@ -50,12 +50,12 @@ public class Room {
         this.name = name;
     }
 
-    public String getDiscription() {
-        return discription;
+    public String getDescription() {
+        return description;
     }
 
-    public void setDiscription(String discription) {
-        this.discription = discription;
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public Room getNorth() {

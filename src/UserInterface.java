@@ -45,7 +45,7 @@ public class UserInterface {
         while (true) {
             Room currentRoom = adventure.getCurrentRoom();
 
-            System.out.println(currentRoom.getDiscription());
+            System.out.println(currentRoom.getDescription());
 
             if (firstLook) {
                 System.out.println("Search the room for items: type 'look'");
