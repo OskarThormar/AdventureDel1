@@ -5,12 +5,14 @@ public class Player {
     private Room currentRoom;
     private List<Item> inventory;
     private int maxInventorySize;
+    private int health;
 
     //added inventory to represent the player inventory size
     public Player(Room startingRoom, int maxInventorySize) {
         this.currentRoom = startingRoom;
         this.inventory = new ArrayList<>();
         this.maxInventorySize = maxInventorySize;
+        health = 100;
     }
 
     //Check the items in the currentRoom before adding them to the inventory

@@ -89,6 +89,11 @@ public class UserInterface {
                     case "show inventory":
                         showInventory();
                         break;
+                    case "eat food":
+                        eatFood();
+                        break;
+                    case "check health":
+
                     case "exit":
                         System.out.println("Goodbye");
                         System.exit(0);
@@ -238,5 +243,16 @@ public class UserInterface {
                     System.out.println(item);
                 }
             }
-        }}
+        }
+    public void eatFood(){
+        for (Item food : adventure.showInventory()){
+            System.out.println(food);
+            if (food instanceof Food){
+                ((Food) food).foodObjekt();
+
+            }
+        }
+    }
+
+}
 
