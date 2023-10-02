@@ -93,7 +93,7 @@ public class UserInterface {
                         eatFood();
                         break;
                     case "check health":
-                        adventure.getPlayer();
+                        showHealth();
                         break;
                     case "exit":
                         System.out.println("Goodbye");
@@ -253,6 +253,9 @@ public class UserInterface {
 
             }
         }
+    }
+    public void showHealth(){
+        System.out.println(adventure.getPlayerHealth());
     }
 
 }

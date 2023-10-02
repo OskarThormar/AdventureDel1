@@ -5,7 +5,7 @@ public class Player {
     private Room currentRoom;
     private List<Item> inventory;
     private int maxInventorySize;
-    private int health;
+    private int health = 100;
 
     //added inventory to represent the player inventory size
     public Player(Room startingRoom, int maxInventorySize, int health) {
@@ -92,5 +92,8 @@ public class Player {
 
     public List<Item> look () {
         return currentRoom.getItems();
+    }
+    public int healthPoints(){
+        return health;
     }
 }

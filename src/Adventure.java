@@ -33,4 +33,7 @@ public class Adventure {
     public List<Item> showInventory() {
         return player.showInventory();
     }
+    public int getPlayerHealth(){
+        return player.healthPoints();
+    }
 }
