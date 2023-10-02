@@ -2,33 +2,32 @@ public class Map {
     private Room startingRoom;
 
     public Map(){
-        Room room1 = new Room("Room1", "You are standing in a cave, you hear the water silently dripping from above. \n" +
+        Room room1 = new Room(" ", "You are standing in a cave, you hear the water silently dripping from above. \n" +
                 "You can see a dim light to one side of you, and hear water running in a distance. Which way would you like to go?");
         Item item1Room1 = new Item("Sword", "A sharp, shiny sword.");
         room1.addItem(item1Room1);
         Item food1Room1 = new Food("apple", "nutritious", 20);
         room1.addItem(food1Room1);
-        Item item2Room1 = new Item("Key", "A rusty old key.");
-        room1.addItem(item2Room1);
-        Room room2 = new Room("Room2", "You can see the remains of a fire and the embers glowing in the dark.\n" +
+        Room room2 = new Room(" ", "You can see the remains of a fire and the embers glowing in the dark.\n" +
                 " You discover footsteps going further in to the cave. Which way would you like to explore?");
-
-        Room room3 = new Room("Room3", "You stop and see that you are standing on edge of a cliff, \n " +
+//        Item item2Room1 = new Item("Key", "A rusty old key.");
+//        room1.addItem(item2Room1);
+        Room room3 = new Room(" ", "You stop and see that you are standing on edge of a cliff, \n " +
                 "and you need to cross a wooden bridge to get over to the other side. Would you like to go across or in another direction?");
-        Room room4 = new Room("Room4", "You have followed the sound of water, and now you are standing on a riverbank.\n" +
+        Room room4 = new Room(" ", "You have followed the sound of water, and now you are standing on a riverbank.\n" +
                 "You see a small boat floating around. The boat seems rather broken, would you like to try to get to the other side or explore another direction?");
-        Room room5 = new Room("Room5", "You have entered a great cave with a big lake covered in shimmering light.\n " +
+        Room room5 = new Room(" ", "You have entered a great cave with a big lake covered in shimmering light.\n " +
                 "Three stones leads the way to the center of the lake, where you see a big chest with a big rusty lock on it. \n" +
                 "Which way would like to go?");
-        Room room6 = new Room("Room6", "You are now going down a small path, there is suspeciously quit. The path splits up in serveal directions\n"+
+        Room room6 = new Room(" ", "You are now going down a small path, there is suspeciously quit. The path splits up in serveal directions\n"+
                 "which way would you to go?");
         //Skal vi tilføje lyd?
-        Room room7 = new Room("Room7", "You are now standing on the riverbank. Suddenly you notice a silent sound of drums. \n"+
+        Room room7 = new Room(" ", "You are now standing on the riverbank. Suddenly you notice a silent sound of drums. \n"+
                 "The sound of the drums get louder and louder. You can't quite hear where the sound is comming from, which way would you like to go?");
         //DET STORE FARLIGE RUM!! :O :O :O :O
-        Room room8 = new Room("Room8", "You feel a sudden heat, and starts to sweat. You look down and see lava floating \n"+
+        Room room8 = new Room(" ", "You feel a sudden heat, and starts to sweat. You look down and see lava floating \n"+
                 "around you, dangerously close. There are stones floating around like an iced sea. Where would you like to go?");
-        Room room9 = new Room("Room9", "You are now deep into the cave, you have to climb up a steep hill to go west. \n "+
+        Room room9 = new Room(" ", "You are now deep into the cave, you have to climb up a steep hill to go west. \n "+
                 "Can you take the climp, or go in another direction?");
 
 
