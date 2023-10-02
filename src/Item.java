@@ -16,8 +16,7 @@ public class Item {
         return description;
     }
     public String toString() {
-        return "Item" +
-                " name '" + name + '\'' +
+        return name + '\'' +
                 ", description -'" + description;
     }
 }
