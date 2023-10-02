@@ -7,7 +7,7 @@ public class Adventure {
     public Adventure() {
         this.map = new Map();
         //set the player maximum inventory to 5
-        this.player = new Player(map.getStartingRoom(), 5, 100);
+        this.player = new Player(map.getStartingRoom(), 5);
 
         initializeGame();
     }
@@ -35,5 +35,8 @@ public class Adventure {
     }
     public int getPlayerHealth(){
         return player.healthPoints();
+    }
+    public void setPlayerHealth(int health){
+        return player.setHealthPoints(health);
     }
 }
