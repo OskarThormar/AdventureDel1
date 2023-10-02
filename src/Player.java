@@ -8,11 +8,11 @@ public class Player {
     private int health;
 
     //added inventory to represent the player inventory size
-    public Player(Room startingRoom, int maxInventorySize) {
+    public Player(Room startingRoom, int maxInventorySize, int health) {
         this.currentRoom = startingRoom;
         this.inventory = new ArrayList<>();
         this.maxInventorySize = maxInventorySize;
-        health = 100;
+        this.health = health;
     }
 
     //Check the items in the currentRoom before adding them to the inventory
@@ -93,5 +93,4 @@ public class Player {
     public List<Item> look () {
         return currentRoom.getItems();
     }
-    public
 }

@@ -93,7 +93,8 @@ public class UserInterface {
                         eatFood();
                         break;
                     case "check health":
-
+                        adventure.getPlayer();
+                        break;
                     case "exit":
                         System.out.println("Goodbye");
                         System.exit(0);
