@@ -4,6 +4,12 @@ public class Map {
     public Map(){
         Room room1 = new Room("Room1", "You are standing in a cave, you hear the water silently dripping from above. \n" +
                 "You can see a dim light to one side of you, and hear water running in a distance. Which way would you like to go?");
+        Item item1Room1 = new Item("Sword", "A sharp, shiny sword.");
+        room1.addItem(item1Room1);
+        Item food1Room1 = new Food("apple", "nutritious", 20);
+        room1.addItem(food1Room1);
+        Item item2Room1 = new Item("Key", "A rusty old key.");
+        room1.addItem(item2Room1);
         Room room2 = new Room("Room2", "You can see the remains of a fire and the embers glowing in the dark.\n" +
                 " You discover footsteps going further in to the cave. Which way would you like to explore?");
 
@@ -27,8 +33,8 @@ public class Map {
 
 
         //ITEMS FOR EACH ROOM
-        Item item1 = new Item("Sword", "A sharp, shiny sword.");
-        Item item2 = new Item("Key", "A rusty old key.");
+
+
 
         startingRoom = room1;
 
@@ -66,8 +72,7 @@ public class Map {
 
 
         // ADD ITEMS TO EACH ROOM
-        room1.addItem(item1);
-        room2.addItem(item2);
+
 
     }
 

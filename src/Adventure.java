@@ -21,7 +21,7 @@ public class Adventure {
         this.player.move(direction);
     }
 
-    //retrieves the currentroom of the player
+    //retrieves the current room of the player
     public Room getCurrentRoom() {
         return player.getCurrentRoom();
     }
