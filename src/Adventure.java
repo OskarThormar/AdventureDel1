@@ -45,6 +45,9 @@ public class Adventure {
     public Item findItem(String name){
         return player.findItem(name);
     }
+    public List<Item> itemsInRoom(){
+        return player.itemsInRoom();
+    }
 
 
 }

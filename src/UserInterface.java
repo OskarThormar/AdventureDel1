@@ -60,8 +60,9 @@ public class UserInterface {
             String userInput = keyboard.nextLine().toLowerCase();
 
             if (userInput.equals("look")) {
-                userLook();
                 firstLook = false;
+                userLook();
+
             } else {
                 handleUserInput();
             }
@@ -84,6 +85,7 @@ public class UserInterface {
                 }
             } else {
                 switch (userInput) {
+
                     case "look":
                         userLook();
                         break;
@@ -93,19 +95,23 @@ public class UserInterface {
                     case "show inventory":
                         showInventory();
                         break;
+
                     case "eat":
-                        result = eat();
-                        switch (result){
+                        System.out.println("Enter the name of the item you want to eat:");
+                       // String itemName = keyboard.nextLine().toLowerCase();
+                        //result = eat(itemName);
+                        switch (result) {
                             case NOT_FOUND:
-                                System.out.println("no such thing");
+                                System.out.println("No such thing");
                                 break;
                             case CANT:
-                                System.out.println("you cant eat that");
+                                System.out.println("You can't eat that");
                                 break;
                             case OK:
-                                System.out.println("you have eaten ..");
+                                System.out.println("You have eaten ..");
+                                break;
                             default:
-                                System.err.println("internal error");
+                                System.err.println("Internal error");
                         }
                         eatFood();
                         break;
@@ -225,14 +231,11 @@ public class UserInterface {
     }
 
     private void userLook() {
-        Room currentRoom = adventure.getCurrentRoom();
+        // adventure.itemsInRoom();
 
-        if (currentRoom == null) {
-            System.out.println("Current room is null! Exiting game.");
-            System.exit(0);
-        }
+       // String itemsInRoom = adventure.look();
+       System.out.println("You found " + adventure.itemsInRoom());
 
-        System.out.println(currentRoom.getItems());
     }
 
     //pick up item method
@@ -280,6 +283,7 @@ public class UserInterface {
         if (item != null){
             if (item instanceof Food){
                 adventure.showInventory().remove(item);
+                System.out.println("You ate " + item.getName());
                 return ReturnMessage.OK;
             } else {
                 return ReturnMessage.CANT;
