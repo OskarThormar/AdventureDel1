@@ -4,6 +4,7 @@ import java.util.Scanner;
 public class UserInterface {
     private Scanner keyboard = new Scanner(System.in);
     private Adventure adventure;
+    private ReturnMessage result;
 
     public UserInterface() {
         this.adventure = new Adventure();
@@ -92,13 +93,13 @@ public class UserInterface {
                     case "eat":
                         result = eat();
                         switch (result){
-                            case ReturnMessage.NOT_FOUND:
+                            case NOT_FOUND:
                                 System.out.println("no such thing");
                                 break;
-                            case ReturnMessage.CANT:
+                            case CANT:
                                 System.out.println("you cant eat that");
                                 break;
-                            case ReturnMessage.OK:
+                            case OK:
                                 System.out.println("you have eaten ..");
                             default:
                                 System.err.println("internal error");
@@ -270,14 +271,18 @@ public class UserInterface {
     public void showHealth(){
         System.out.println(adventure.getPlayerHealth());
     }
-    public void eat(String name){
+    public ReturnMessage eat(String name){
         // look in players inventory
         Item item = adventure.findItem(name);
         if (item != null){
             if (item instanceof Food){
                 adventure.showInventory().remove(item);
                 return ReturnMessage.OK;
+            } else {
+                return ReturnMessage.CANT;
             }
+        } else {
+            return ReturnMessage.NOT_FOUND;
         }
     }
 
