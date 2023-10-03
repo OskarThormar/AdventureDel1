@@ -90,7 +90,7 @@ public class UserInterface {
                         showInventory();
                         break;
                     case "eat":
-                        result = adventure.eat();
+                        result = eat();
                         switch (result){
                             case ReturnMessage.NOT_FOUND:
                                 System.out.println("no such thing");
@@ -270,13 +270,13 @@ public class UserInterface {
     public void showHealth(){
         System.out.println(adventure.getPlayerHealth());
     }
-    public void eat(String foodName){
+    public void eat(String name){
         // look in players inventory
-        //Item item = findItem(foodName);
+        Item item = adventure.findItem(name);
         if (item != null){
             if (item instanceof Food){
                 adventure.showInventory().remove(item);
-                return ReturnMessage;
+                return ReturnMessage.OK;
             }
         }
     }

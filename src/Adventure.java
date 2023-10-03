@@ -42,6 +42,9 @@ public class Adventure {
     public ReturnMessage eat(String name){
         return player.eat(name);
     }
+    public Item findItem(String name){
+        return player.findItem(name);
+    }
 
 
 }
