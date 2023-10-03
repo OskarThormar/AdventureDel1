@@ -51,6 +51,9 @@ public class Player {
     public Room getCurrentRoom() {
         return currentRoom;
     }
+    public List<Item> itemsInRoom(){
+        return currentRoom.getItems();
+    }
 
     public void setCurrentRoom(Room room) {
         currentRoom = room;
@@ -136,5 +139,12 @@ public class Player {
         }*/
 
         return null;
+    }
+
+    @Override
+    public String toString() {
+        return "Player{" +
+                "currentRoom=" + currentRoom +
+                '}';
     }
 }

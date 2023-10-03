@@ -41,7 +41,10 @@ public class UserInterface {
     }
 
     public void startGame() {
-        boolean firstLook = true;
+        System.out.println(adventure.getCurrentRoom());
+        handleUserInput();
+
+/*        boolean firstLook = true;
 
         while (true) {
             Room currentRoom = adventure.getCurrentRoom();
@@ -127,7 +130,7 @@ public class UserInterface {
                         break;
                 }
             }
-        }
+        }*/
     }
 
 //            //Display items in the currentRoom
@@ -147,7 +150,7 @@ public class UserInterface {
 
     private void handleUserInput() {
 
-        /*String[] userSelection = keyboard.nextLine().toLowerCase().trim().split(" ");
+        String[] userSelection = keyboard.nextLine().toLowerCase().trim().split(" ");
         String firstWord = userSelection[0];
         switch (firstWord) {
             case "look":
@@ -172,7 +175,7 @@ public class UserInterface {
                 break;
             default:
                 System.out.println("I don't understand");
-        }*/
+        }
 
 
 
