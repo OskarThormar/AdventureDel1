@@ -41,7 +41,7 @@ public class UserInterface {
     }
 
     public void startGame() {
-        System.out.println(adventure.getCurrentRoom());
+        System.out.println(adventure.getCurrentRoom().getDescription());
         handleUserInput();
 
 /*        boolean firstLook = true;
