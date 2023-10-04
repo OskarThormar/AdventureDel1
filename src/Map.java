@@ -2,36 +2,36 @@ public class Map {
     private Room startingRoom;
 
     public Map(){
-        Room room1 = new Room(" ", "You are standing in a cave, you hear the water silently dripping from above. \n" +
+        Room room1 = new Room(" ", "You are standing in a cave, you hear the water dripping from above. \n" +
                 "You can see a dim light to one side of you, and hear water running in a distance. Which way would you like to go?");
-        Item food1Room1 = new Food("apple", "extremely delicious", 20);
+        Item food1Room1 = new Food("Apple", "Extremely delicious", 20);
         room1.addItem(food1Room1);
 
         Room room2 = new Room(" ", "You can see the remains of a fire and the embers glowing in the dark.\n" +
-                " You discover footsteps going further in to the cave. Which way would you like to explore?");
+                " There are footsteps going further in to the cave. Which way would you like to explore?");
         Item item1Room2 = new Item("Sword", "A sharp, shiny sword.");
         room2.addItem(item1Room2);
 
         Room room3 = new Room(" ", "You stop and see that you are standing on edge of a cliff, \n " +
                 "and you need to cross a wooden bridge to get over to the other side. Would you like to go across or in another direction?");
-        Item food2Room3 = new Food("Mushroom", "funky looking", -40);
+        Item food2Room3 = new Food("Mushroom", "Funky looking", -40);
         room3.addItem(food2Room3);
 
         Room room4 = new Room(" ", "You have followed the sound of water, and now you are standing on a riverbank.\n" +
                 "You see a small boat floating around. The boat seems rather broken, would you like to try to get to the other side or explore another direction?");
         Item item2Room4 = new Item("paddle", "an old rotten paddle.");
         room4.addItem(item2Room4);
-        Item food3Room4= new Food("seaweed", "tasty.. not", 1);
+        Item food3Room4= new Food("Seaweed", "Tasty.. not", 1);
         room4.addItem(food3Room4);
 
         Room room5 = new Room(" ", "You have entered a great cave with a big lake covered in shimmering light.\n " +
                 "Three stones leads the way to the center of the lake, where you see a big chest with a big rusty lock on it. \n" +
                 "Which way would like to go?");
-        Item food4Room5 = new Food("bær", "Blå glimtende ", -80);
+        Item food4Room5 = new Food("Berries", "Black ", -80);
         room5.addItem(food4Room5);
 
-        Room room6 = new Room(" ", "You are now going down a small path, there is suspeciously quit. The darkness is overwhelming you can't see\n" +
-                " see anything, and you feel your way through the darkness. You suddenly feel a wooden box, and it seems like the path splits up in serveal directions\n"+
+        Room room6 = new Room(" ", "You are now going down a small path, there is suspeciously quiet. The darkness is overwhelming you can't see\n" +
+                " see anything, and you feel your way through the darkness. You suddenly feel a wooden box, and it seems like the path splits up in serveral directions\n"+
                 "which way would you to go?");
             Item item3Room6 = new Item("Key", "A rusty old key.");
             room6.addItem(item3Room6);
@@ -44,8 +44,8 @@ public class Map {
 
         //DET STORE FARLIGE RUM!! :O :O :O :O
         Room room8 = new Room(" ", "You feel a sudden heat, and starts to sweat. You look down and see lava floating \n"+
-                "around you, dangerously close. There are stones floating around like an iced sea. Where would you like to go?");
-        Item food5Room8 = new Food("Ice cream", "cold and refreshing", 20);
+                "around you, dangerously close. There are stones floating around in the lava. Where would you like to go?");
+        Item food5Room8 = new Food("water", "refreshing and very much needed", 20);
         room8.addItem(food5Room8);
 
         Room room9 = new Room(" ", "You are now deep into the cave, you have to climb up a steep hill to go west. \n "+
