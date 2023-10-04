@@ -8,9 +8,13 @@ public class Food extends Item {
     }
 
     public void foodObjekt(){
-        System.out.println("food");
+        System.out.println("You found food!");
 
     }
+    public int getHealth(){
+        return health;
+    }
+
 
 
 }

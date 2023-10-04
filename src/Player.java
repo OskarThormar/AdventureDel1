@@ -8,11 +8,10 @@ public class Player {
     private int health = 100;
 
     //added inventory to represent the player inventory size
-    public Player(Room startingRoom, int maxInventorySize, int health) {
+    public Player(Room startingRoom, int maxInventorySize) {
         this.currentRoom = startingRoom;
         this.inventory = new ArrayList<>();
         this.maxInventorySize = maxInventorySize;
-        this.health = health;
     }
 
     //Check the items in the currentRoom before adding them to the inventory
@@ -52,6 +51,9 @@ public class Player {
     public Room getCurrentRoom() {
         return currentRoom;
     }
+    public List<Item> itemsInRoom(){
+        return currentRoom.getItems();
+    }
 
     public void setCurrentRoom(Room room) {
         currentRoom = room;
@@ -85,15 +87,64 @@ public class Player {
             System.out.println("You cannot go that way.");
         }
     }
-    public List<Item> showInventory()
-    {
+
+    public List<Item> showInventory() {
         return inventory;
     }
 
-    public List<Item> look () {
+    public List<Item> look() {
         return currentRoom.getItems();
     }
-    public int healthPoints(){
+
+    public int healthPoints() {
         return health;
+    }
+
+    public void setHealthPoints(int health) {
+        this.health = health;
+    }
+
+    public Item findItem(String name) {
+        for (Item item : inventory) {
+            if (item.getName().startsWith(name)) {
+                return item;
+            }
+        }
+        return null;
+    }
+
+
+    public ReturnMessage eat(String name) {
+        Item item = findItem(name);
+        if (item != null) {
+            if (item instanceof Food) {
+                health += (((Food) item).getHealth());
+                inventory.remove(item);
+                return ReturnMessage.OK;
+            } else {
+                return ReturnMessage.CANT;
+            }
+        }
+
+        //Nothing in player`s inventory, we look in room
+      /*  item = currentRoom.removeItem(name);
+        if (item != null){
+            if (item instanceof Food food) {
+                health += food.getHealth();
+                return ReturnMessage.OK;
+            }else {
+                return ReturnMessage.CANT;
+            }
+            return ReturnMessage.NOT_FOUND;
+        }*/
+
+        return null;
+    }
+
+    @Override
+    public String toString() {
+        return "Player{" +
+                "currentRoom=" + currentRoom +
+                '}';
     }
 }
