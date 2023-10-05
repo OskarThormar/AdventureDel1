@@ -10,6 +10,7 @@ public class Room {
     private Room west;
     private List<Item> items;
 
+
     public Room(String name, String description) {
         this.name = name;
         this.description = description;

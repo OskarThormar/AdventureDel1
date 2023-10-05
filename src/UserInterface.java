@@ -46,15 +46,17 @@ public class UserInterface {
     }
 
     private void handleUserInput() {
-        String exit = null;
-        String[] userSelection = keyboard.nextLine().toLowerCase().trim().split(" ");
-        String firstWord = userSelection[0];
-        do {
+        boolean firstlook = true;
+
+        while (firstlook) {
+            String[] userSelection = keyboard.nextLine().toLowerCase().trim().split(" ");
+            String firstWord = userSelection[0];
+            //String userSelection = keyboard.nextLine().toLowerCase().trim();
             switch (firstWord) {
                 case "look":
                     userLook();
                     break;
-                case "show inventory":
+                case "inventory":
                     showInventory();
                     break;
                 case "health":
@@ -74,8 +76,9 @@ public class UserInterface {
                     String secondWord1 = userSelection[1];
                     playerPickUpItem(secondWord1);
                 case "drop":
-                    String secondWord2 = userSelection[1];
-                    playerDropItem(secondWord2);
+                    String secondWordDrop = userSelection[1];
+                    playerDrop(secondWordDrop);
+                    break;
                 case "eat":
                     String secondWord3 = userSelection[1];
                     System.out.println("Enter the name of the item you want to eat:");
@@ -94,10 +97,21 @@ public class UserInterface {
                         default:
                             System.err.println("Internal error");
                     }
-                    break;
                 case "go":
-                    String secondWord4 = userSelection[1];
-                    adventure.move(secondWord4);
+                    if (userSelection.length > 1) {
+                        String secondWordMove = userSelection[1];
+                        switch (secondWordMove) {
+                            case "north", "south", "west", "east":
+                                adventure.move(secondWordMove);
+                                System.out.println(adventure.getCurrentRoom().getDescription());
+                                break;
+                            default:
+                                System.out.println("Invalid direction. ");
+                                break;
+                        }
+                    } else {
+                        System.out.println(" What way?");
+                    }
                     break;
                 default:
                     System.out.println("I don't understand");
@@ -152,8 +166,8 @@ public class UserInterface {
         }
 
     //drop item method
-    public void playerDropItem(String userInput) {
-        String itemName = userInput.substring(5);
+    public void playerDrop(String userSelection) {
+        //String itemName = userSelection.substring(5);
         Player player = adventure.getPlayer();
         player.dropItem(itemName, adventure.getCurrentRoom());
     }

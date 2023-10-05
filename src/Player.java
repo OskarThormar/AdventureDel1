@@ -41,9 +41,6 @@ public class Player {
         if (itemToDrop != null) {
             inventory.remove(itemToDrop);
             currentRoom.addItem(itemToDrop);
-            System.out.println("You dropped " + itemName + " in " + currentRoom.getName());
-        } else {
-            System.out.println("You don't have the item " + itemName + " in your inventory.");
         }
     }
 
