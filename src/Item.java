@@ -40,4 +40,12 @@ public class Item {
         }
         return stringBuilder.toString();
     }*/
+
+    @Override
+    public String toString() {
+        return "Item{" +
+                "name='" + name + '\'' +
+                '}';
+    }
+
 }

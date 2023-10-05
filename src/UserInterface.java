@@ -43,150 +43,68 @@ public class UserInterface {
     public void startGame() {
         System.out.println(adventure.getCurrentRoom().getDescription());
         handleUserInput();
-
-/*        boolean firstLook = true;
-
-        while (true) {
-            Room currentRoom = adventure.getCurrentRoom();
-
-            System.out.println(currentRoom.getDescription());
-
-            if (firstLook) {
-                System.out.println("Search the room for items: type 'look'");
-            }
-
-            System.out.println("Enter a command:");
-
-            String userInput = keyboard.nextLine().toLowerCase();
-
-            if (userInput.equals("look")) {
-                firstLook = false;
-                userLook();
-
-            } else {
-                handleUserInput();
-            }
-
-            if (userInput.startsWith("pick up ")) {
-                playerPickUpItem(userInput);
-
-            } else if (userInput.startsWith("drop ")) {
-                playerDropItem(userInput);
-
-            } else if (userInput.startsWith("item")) {
-                List<Item> itemsInRoom = adventure.getCurrentRoom().getItems();
-                if (!itemsInRoom.isEmpty()) {
-                    System.out.println("Items in this room:");
-                    for (Item item : itemsInRoom) {
-                        System.out.println(item.getName());
-                    }
-                } else {
-                    System.out.println("There is no items in this room.");
-                }
-            } else {
-                switch (userInput) {
-
-                    case "look":
-                        userLook();
-                        break;
-                    case "help":
-                        help();
-                        break;
-                    case "show inventory":
-                        showInventory();
-                        break;
-
-                    case "eat":
-                        System.out.println("Enter the name of the item you want to eat:");
-                       // String itemName = keyboard.nextLine().toLowerCase();
-                        //result = eat(itemName);
-                        switch (result) {
-                            case NOT_FOUND:
-                                System.out.println("No such thing");
-                                break;
-                            case CANT:
-                                System.out.println("You can't eat that");
-                                break;
-                            case OK:
-                                System.out.println("You have eaten ..");
-                                break;
-                            default:
-                                System.err.println("Internal error");
-                        }
-                        eatFood();
-                        break;
-                    case "health":
-                        showHealth();
-                        break;
-                    case "exit":
-                        System.out.println("Goodbye");
-                        System.exit(0);
-                        break;
-                    default:
-                        //Direction
-                        if (userInput.startsWith("go ")) {
-                            String direction = userInput.substring(3);
-                            adventure.move(direction);
-                        } else if (userInput.startsWith("n") || userInput.startsWith("w") || userInput.startsWith("e") || userInput.startsWith("s")) {
-                            String direction = userInput;
-                            adventure.move(direction);
-                        } else {
-                            System.out.println("Invalid command");
-                        }
-                        break;
-                }
-            }
-        }*/
     }
 
-//            //Display items in the currentRoom
-//            List<Item> itemsInRoom = currentRoom.getItems();
-//            if(!itemsInRoom.isEmpty()) {
-//                //
-//                System.out.println("Search rooms for items write 'look' ");
-//                for (Item item : itemsInRoom) {
-//                    System.out.println("You have found " + item.getName() + " ");
-//                }
-//                System.out.println(" ");
-//            }
-//
-//            System.out.println("Enter a command:");
-//
-//            handleUserInput();
-
     private void handleUserInput() {
-
+        String exit = null;
         String[] userSelection = keyboard.nextLine().toLowerCase().trim().split(" ");
         String firstWord = userSelection[0];
-        switch (firstWord) {
-            case "look":
-                userLook();
-                break;
-            case "start":
-                startGame();
-                break;
-            case "help":
-            case "info":
-                help();
-                break;
-            case "quit":
-            case "exit":
-            case "bye":
-                System.out.println("Thank you for playing Adventure Game! Come back another time :-)");
-                System.exit(0);
-                break;
-            case "go":
-                String secondWord = userSelection[1];
-                adventure.move(secondWord);
-                break;
-            default:
-                System.out.println("I don't understand");
-        }
-
-
-
-
-        }
+        do {
+            switch (firstWord) {
+                case "look":
+                    userLook();
+                    break;
+                case "show inventory":
+                    showInventory();
+                    break;
+                case "health":
+                    showHealth();
+                    break;
+                case "help":
+                case "info":
+                    help();
+                    break;
+                case "quit":
+                case "exit":
+                case "bye":
+                    System.out.println("Thank you for playing Adventure Game! Come back another time :-)");
+                    System.exit(0);
+                    break;
+                case "take":
+                    String secondWord1 = userSelection[1];
+                    playerPickUpItem(secondWord1);
+                case "drop":
+                    String secondWord2 = userSelection[1];
+                    playerDropItem(secondWord2);
+                case "eat":
+                    String secondWord3 = userSelection[1];
+                    System.out.println("Enter the name of the item you want to eat:");
+                    // String itemName = keyboard.nextLine().toLowerCase();
+                    result = eat(secondWord3);
+                    switch (result) {
+                        case NOT_FOUND:
+                            System.out.println("No such thing");
+                            break;
+                        case CANT:
+                            System.out.println("You can't eat that");
+                            break;
+                        case OK:
+                            System.out.println("You have eaten ..");
+                            break;
+                        default:
+                            System.err.println("Internal error");
+                    }
+                    break;
+                case "go":
+                    String secondWord4 = userSelection[1];
+                    adventure.move(secondWord4);
+                    break;
+                default:
+                    System.out.println("I don't understand");
+                    break;
+            }
+        } while (firstWord.equals(exit));
+    }
 
     public void help() {
         System.out.println("== Help Menu ==");
@@ -215,16 +133,15 @@ public class UserInterface {
     }
 
     private void userLook() {
-        // adventure.itemsInRoom();
+        //adventure.itemsInRoom();
 
        // String itemsInRoom = adventure.look();
        System.out.println("You found " + adventure.itemsInRoom());
-
     }
 
     //pick up item method
-    public void playerPickUpItem(String userInput){
-            String itemName = userInput.substring(8);
+    public void playerPickUpItem(String userSelection){
+            String itemName = userSelection.substring(1);
             Item itemToPickUp = adventure.getCurrentRoom().getItemByName(itemName);
             if (itemToPickUp != null) {
                 adventure.getPlayer().pickUpItem(itemToPickUp);

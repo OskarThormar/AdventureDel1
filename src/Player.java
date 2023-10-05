@@ -147,4 +147,11 @@ public class Player {
                 "currentRoom=" + currentRoom +
                 '}';
     }
+    public String floorItemName(){
+        StringBuilder stringBuilder = new StringBuilder();
+        for (Item item : currentRoom.getItems()){
+            stringBuilder.append(item);
+        }
+        return stringBuilder.toString();
+    }
 }

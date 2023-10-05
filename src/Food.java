@@ -12,6 +12,12 @@ public class Food extends Item {
     public int getHealth(){
         return health;
     }
+    @Override
+    public String getName() {
+        StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append(super.getName());
+        return stringBuilder.toString();
+    }
 
 
 }
