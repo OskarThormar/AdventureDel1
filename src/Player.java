@@ -15,7 +15,7 @@ public class Player {
     }
 
     //Check the items in the currentRoom before adding them to the inventory
-    public void pickUpItem(Item item) {
+    public void playerTake(Item item) {
         if (currentRoom.containsItem(item)) {
             if (inventory.size() < maxInventorySize) {
                 inventory.add(item);
@@ -37,7 +37,6 @@ public class Player {
                 break;
             }
         }
-
         if (itemToDrop != null) {
             inventory.remove(itemToDrop);
             currentRoom.addItem(itemToDrop);

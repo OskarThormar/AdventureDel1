@@ -1,4 +1,3 @@
-import java.util.List;
 import java.util.Scanner;
 
 public class UserInterface {
@@ -62,8 +61,7 @@ public class UserInterface {
                 case "health":
                     showHealth();
                     break;
-                case "help":
-                case "info":
+                case "help", "info":
                     help();
                     break;
                 case "quit":
@@ -73,17 +71,21 @@ public class UserInterface {
                     System.exit(0);
                     break;
                 case "take":
-                    String secondWord1 = userSelection[1];
-                    playerPickUpItem(secondWord1);
+                   if (userSelection.length > 1) {
+                       String secondWordTake = userSelection[1];
+                       playerTake(secondWordTake);
+                   } else {
+                       System.out.println("What do you want to take?");
+                   }
+                    break;
                 case "drop":
                     String secondWordDrop = userSelection[1];
                     playerDrop(secondWordDrop);
                     break;
                 case "eat":
-                    String secondWord3 = userSelection[1];
                     System.out.println("Enter the name of the item you want to eat:");
                     // String itemName = keyboard.nextLine().toLowerCase();
-                    result = eat(secondWord3);
+                    result = eat(result.name());
                     switch (result) {
                         case NOT_FOUND:
                             System.out.println("No such thing");
@@ -117,7 +119,7 @@ public class UserInterface {
                     System.out.println("I don't understand");
                     break;
             }
-        } while (firstWord.equals(exit));
+        } firstlook = false;
     }
 
     public void help() {
@@ -154,12 +156,12 @@ public class UserInterface {
     }
 
     //pick up item method
-    public void playerPickUpItem(String userSelection){
-            String itemName = userSelection.substring(1);
-            Item itemToPickUp = adventure.getCurrentRoom().getItemByName(itemName);
-            if (itemToPickUp != null) {
-                adventure.getPlayer().pickUpItem(itemToPickUp);
-                System.out.println("You picked up " + itemName);
+    public void playerTake(String userSelection){
+            //String itemName = userSelection.substring(5);
+            Item itemToTake = adventure.getCurrentRoom().getItemByName(userSelection);
+            if (itemToTake != null) {
+                adventure.getPlayer().playerTake(itemToTake);
+                System.out.println("You picked up " + userSelection);
             } else {
                 System.out.println("Item not found in this room");
             }
@@ -169,7 +171,8 @@ public class UserInterface {
     public void playerDrop(String userSelection) {
         //String itemName = userSelection.substring(5);
         Player player = adventure.getPlayer();
-        player.dropItem(itemName, adventure.getCurrentRoom());
+        player.dropItem(userSelection, adventure.getCurrentRoom());
+        System.out.println("you dropped " + userSelection);
     }
 
     public void showInventory() {
