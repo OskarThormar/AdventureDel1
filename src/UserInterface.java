@@ -64,9 +64,7 @@ public class UserInterface {
                 case "help", "info":
                     help();
                     break;
-                case "quit":
-                case "exit":
-                case "bye":
+                case "quit", "exit", "bye":
                     System.out.println("Thank you for playing Adventure Game! Come back another time :-)");
                     System.exit(0);
                     break;
