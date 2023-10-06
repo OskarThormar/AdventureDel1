@@ -3,7 +3,7 @@ import java.util.Scanner;
 public class UserInterface {
     private Scanner keyboard = new Scanner(System.in);
     private Adventure adventure;
-    private ReturnMessage result;
+    private Eatable result;
 
     public UserInterface() {
         this.adventure = new Adventure();
@@ -81,21 +81,28 @@ public class UserInterface {
                     playerDrop(secondWordDrop);
                     break;
                 case "eat":
-                    System.out.println("Enter the name of the item you want to eat:");
-                    // String itemName = keyboard.nextLine().toLowerCase();
-                    result = eat(result.name());
-                    switch (result) {
-                        case NOT_FOUND:
-                            System.out.println("No such thing");
-                            break;
-                        case CANT:
-                            System.out.println("You can't eat that");
-                            break;
-                        case OK:
-                            System.out.println("You have eaten ..");
-                            break;
-                        default:
-                            System.err.println("Internal error");
+                    if (userSelection.length > 1) {
+                        String secondWordEat = userSelection[1];
+                        Eatable result = adventure.playerEat(secondWordEat);
+                        switch (result) {
+                            case NOT_FOUND:
+                                System.out.println("No such thing");
+                                break;
+                            case CANT:
+                                System.out.println("You can't eat that");
+                                break;
+                            case OK:
+                                System.out.println("You have eaten ..");
+                                break;
+                            case EATEN:
+                                System.out.println("You have eaten and gained health.");
+                                System.out.println("Current health: " + adventure.getPlayerHealth());
+                                break;
+                            default:
+                                System.err.println("Internal error");
+                        }
+                    } else {
+                        System.out.println("eat what?");
                     }
                 case "go":
                     if (userSelection.length > 1) {
@@ -195,21 +202,5 @@ public class UserInterface {
     public void showHealth(){
         System.out.println(adventure.getPlayerHealth());
     }
-    public ReturnMessage eat(String name){
-        // look in players inventory
-        Item item = adventure.findItem(name);
-        if (item != null){
-            if (item instanceof Food){
-                adventure.showInventory().remove(item);
-                System.out.println("You ate " + item.getName());
-                return ReturnMessage.OK;
-            } else {
-                return ReturnMessage.CANT;
-            }
-        } else {
-            return ReturnMessage.NOT_FOUND;
-        }
-    }
-
 }
 
