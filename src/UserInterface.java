@@ -45,9 +45,9 @@ public class UserInterface {
     }
 
     private void handleUserInput() {
-        boolean firstlook = true;
+        boolean menuLoop = true;
 
-        while (firstlook) {
+        while (menuLoop) {
             String[] userSelection = keyboard.nextLine().toLowerCase().trim().split(" ");
             String firstWord = userSelection[0];
             //String userSelection = keyboard.nextLine().toLowerCase().trim();
@@ -117,7 +117,7 @@ public class UserInterface {
                     System.out.println("I don't understand");
                     break;
             }
-        } firstlook = false;
+        } menuLoop = false;
     }
 
     public void help() {
@@ -147,9 +147,9 @@ public class UserInterface {
     }
 
     private void userLook() {
+        System.out.println("You found");
         for (Item item : adventure.itemsInRoom()) {
             if (item != null) {
-                System.out.println("You found");
                 System.out.println(item);
             }
         }
