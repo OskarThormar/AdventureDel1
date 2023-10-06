@@ -4,12 +4,12 @@ public class Map {
     public Map(){
         Room room1 = new Room(" ", "You are standing in a cave, you hear the water dripping from above. \n" +
                 "You can see a dim light to one side of you, and hear water running in a distance. Which way would you like to go?");
-        Item food1Room1 = new Food("Apple", "Extremely delicious", 20);
+        Item food1Room1 = new Food("Apple", "Edible and nutritious", 20);
         room1.addItem(food1Room1);
 
         Room room2 = new Room(" ", "You can see the remains of a fire and the embers glowing in the dark.\n" +
                 " There are footsteps going further in to the cave. Which way would you like to explore?");
-        Item item1Room2 = new Item("Sword", "A sharp, shiny sword.");
+        Item item1Room2 = new Weapon("Sword", "A sharp, shiny sword", 4, "Melee");
         room2.addItem(item1Room2);
 
         Room room3 = new Room(" ", "You stop and see that you are standing on edge of a cliff, \n " +
@@ -39,7 +39,7 @@ public class Map {
         Room room7 = new Room(" ", "You are now standing on the riverbank. Suddenly you notice a silent sound of drums. \n"+
                 "The sound of the drums get louder and louder. You can't quite hear where the sound is comming from. Nearby in the river something is floating around. \n" +
                 "Which way would you like to go?");
-        Item item4Room7 = new Item("Shield", "a wooden round shield");
+        Item item4Room7 = new Weapon("Bow", "looks Elvish", 2, "Ranged");
         room7.addItem(item4Room7);
 
         //DET STORE FARLIGE RUM!! :O :O :O :O
@@ -99,5 +99,4 @@ public class Map {
     public Room getStartingRoom() {
         return startingRoom;
     }
-
 }

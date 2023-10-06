@@ -1,6 +1,6 @@
 public class Item {
-    private String name;
-    private String description;
+    protected String name;
+    protected String description;
 
 
     public Item(String name, String description) {
@@ -43,8 +43,7 @@ public class Item {
 
     @Override
     public String toString() {
-        return "Item" +
-                "name='" + name + '\'' + description;
+        return name + " " + description;
     }
 
 }

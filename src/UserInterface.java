@@ -147,10 +147,12 @@ public class UserInterface {
     }
 
     private void userLook() {
-        //adventure.itemsInRoom();
-
-       // String itemsInRoom = adventure.look();
-       System.out.println("You found " + adventure.itemsInRoom());
+        for (Item item : adventure.itemsInRoom()) {
+            if (item != null) {
+                System.out.println("You found");
+                System.out.println(item);
+            }
+        }
     }
 
     //pick up item method

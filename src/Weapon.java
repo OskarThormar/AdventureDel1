@@ -7,4 +7,12 @@ public class Weapon extends Item{
         this.damage = damage;
         this.type = type;
     }
+
+    @Override
+    public String toString() {
+        return "Weapon{" +
+                "damage=" + damage +
+                ", type='" + type + '\'' +
+                '}';
+    }
 }
