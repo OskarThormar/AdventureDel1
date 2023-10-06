@@ -39,8 +39,8 @@ public class Adventure {
 //    public void setPlayerHealth(int health){
 //        return player.setHealthPoints(health);
 //    }
-    public ReturnMessage eat(String name){
-        return player.eat(name);
+    public Eatable playerEat(String name){
+        return player.playerEat(name);
     }
     public Item findItem(String name){
         return player.findItem(name);

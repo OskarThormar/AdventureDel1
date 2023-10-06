@@ -110,31 +110,28 @@ public class Player {
     }
 
 
-    public ReturnMessage eat(String name) {
-        Item item = findItem(name);
-        if (item != null) {
-            if (item instanceof Food) {
-                health += (((Food) item).getHealth());
-                inventory.remove(item);
-                return ReturnMessage.OK;
-            } else {
-                return ReturnMessage.CANT;
+
+    public Eatable playerEat(String name) {
+        Item itemToEat = null;
+        for (Item item : inventory) {
+            if (item.getName().equalsIgnoreCase(name)) {
+                itemToEat = item;
+                break;
             }
         }
+        if (itemToEat != null) {
+            if (itemToEat instanceof Food) {
+                int healthRestored = ((Food) itemToEat).getHealth();
+                health += healthRestored;
+                inventory.remove(itemToEat);
+                return Eatable.EATEN;
+            } else {
+                return Eatable.CANT;
+        }
+        } else {
+            return Eatable.NOT_FOUND;
+        }
 
-        //Nothing in player`s inventory, we look in room
-      /*  item = currentRoom.removeItem(name);
-        if (item != null){
-            if (item instanceof Food food) {
-                health += food.getHealth();
-                return ReturnMessage.OK;
-            }else {
-                return ReturnMessage.CANT;
-            }
-            return ReturnMessage.NOT_FOUND;
-        }*/
-
-        return null;
     }
 
     public String floorItemName(){

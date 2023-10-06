@@ -104,6 +104,7 @@ public class UserInterface {
                     } else {
                         System.out.println("eat what?");
                     }
+                    break;
                 case "go":
                     if (userSelection.length > 1) {
                         String secondWordMove = userSelection[1];
@@ -190,15 +191,15 @@ public class UserInterface {
                 }
             }
         }
-    public void eatFood(){
-        for (Item food : adventure.showInventory()){
-            System.out.println(food);
-            if (food instanceof Food){
-                ((Food) food).foodObjekt();
-
-            }
-        }
-    }
+//    public void eatFood(){
+//        for (Item food : adventure.showInventory()){
+//            System.out.println(food);
+//            if (food instanceof Food){
+//                ((Food) food).foodObjekt();
+//
+//            }
+//        }
+//    }
     public void showHealth(){
         System.out.println(adventure.getPlayerHealth());
     }
