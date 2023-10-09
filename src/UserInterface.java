@@ -12,7 +12,7 @@ public class UserInterface {
     public void startProgram() {
         adventure.initializeGame();
 
-        System.out.println("Welcome to the Adventure Game!");
+        System.out.println("\uD83E\uDDD9\uD83C\uDFFCWelcome to the Adventure Game!\uD83E\uDDD9\uD83C\uDFFC");
         System.out.println("""
                 ---------------------------------------|
                  - Type 'Help' to show instructions    |
@@ -96,8 +96,7 @@ public class UserInterface {
                     }
                 case "eat":
                     if (userSelection.length > 1) {
-                        String secondWordEat = userSelection[1];
-                        Eatable result = adventure.playerEat(secondWordEat);
+                        Eatable result = adventure.playerEat(userSelection[1]);
                         switch (result) {
                             case NOT_FOUND:
                                 System.out.println("No such thing");
@@ -116,7 +115,7 @@ public class UserInterface {
                                 System.err.println("Internal error");
                         }
                     } else {
-                        System.out.println("eat what?");
+                        System.out.println("Eat what?");
                     }
                     break;
                 case "go":
@@ -169,7 +168,7 @@ public class UserInterface {
     }
 
     private void userLook() {
-        System.out.println("You found");
+        System.out.println("You found: ");
         for (Item item : adventure.itemsInRoom()) {
             if (item != null) {
                 System.out.println(item);
