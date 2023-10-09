@@ -42,6 +42,15 @@ public class Adventure {
     public Eatable playerEat(String name){
         return player.playerEat(name);
     }
+    public Equipable playerEquip(String name){
+        return player.playerEquip(name);
+    }
+    public List<Item> getEquipment(){
+        return player.getEquipment();
+    }
+    public Player getCurrentWeapon(){
+        return player.getCurrentWeapon();
+    }
     public Item findItem(String name){
         return player.findItem(name);
     }

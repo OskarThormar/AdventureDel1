@@ -4,3 +4,4 @@ public enum Eatable {
     OK,
     EATEN
 }
+

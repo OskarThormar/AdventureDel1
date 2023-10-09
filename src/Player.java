@@ -3,7 +3,9 @@ import java.util.List;
 
 public class Player {
     private Room currentRoom;
+    private Player currentWeapon;
     private List<Item> inventory;
+    private List<Item> equipment;
     private int maxInventorySize;
     private int health = 100;
 
@@ -12,6 +14,7 @@ public class Player {
         this.currentRoom = startingRoom;
         this.inventory = new ArrayList<>();
         this.maxInventorySize = maxInventorySize;
+        this.equipment = new ArrayList<>();
     }
 
     //Check the items in the currentRoom before adding them to the inventory
@@ -26,6 +29,35 @@ public class Player {
         } else {
             System.out.println("Item not found in this room");
         }
+    }
+    public Equipable playerEquip(String name) {
+        Item itemToEquip = null;
+        for (Item item : inventory) {
+            if (item.getName().equalsIgnoreCase(name)) {
+                itemToEquip = item;
+                break;
+            }
+        }
+        if (itemToEquip != null) {
+            if (itemToEquip instanceof Weapon) {
+                inventory.remove(itemToEquip);
+                equipment.add(itemToEquip);
+                return Equipable.EQUIPPED;
+            } else {
+                return Equipable.CANT;
+            }
+        } return Equipable.NOT_FOUND;
+    }
+    public void playerAttack(String name){
+
+    }
+
+    public List<Item> getEquipment(){
+        return equipment;
+    }
+
+    public Player getCurrentWeapon (){
+        return currentWeapon;
     }
 
     //Allows the player to drop the item, and add the item to the current room.

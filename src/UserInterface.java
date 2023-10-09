@@ -70,16 +70,30 @@ public class UserInterface {
                     break;
                 case "take":
                    if (userSelection.length > 1) {
-                       String secondWordTake = userSelection[1];
-                       playerTake(secondWordTake);
+                       //String secondWordTake = userSelection[1];
+                       playerTake(userSelection[1]);
                    } else {
                        System.out.println("What do you want to take?");
                    }
                     break;
                 case "drop":
-                    String secondWordDrop = userSelection[1];
-                    playerDrop(secondWordDrop);
+                    //secondword
+                    playerDrop(userSelection[1]);
                     break;
+                case "equip":
+                    if (userSelection.length > 1) {
+                        Equipable result = adventure.playerEquip(userSelection[1]);
+                        switch (result){
+                            case NOT_FOUND -> System.out.println("No such thing");
+                            case CANT -> System.out.println("You can't equip that");
+                            case EQUIPPED ->{
+                                System.out.println("You have equipped");
+                                System.out.println("Current weapon:" + adventure.getEquipment());
+                            }
+
+
+                        }
+                    }
                 case "eat":
                     if (userSelection.length > 1) {
                         String secondWordEat = userSelection[1];
@@ -107,10 +121,10 @@ public class UserInterface {
                     break;
                 case "go":
                     if (userSelection.length > 1) {
-                        String secondWordMove = userSelection[1];
-                        switch (secondWordMove) {
+                        //String secondWordMove = userSelection[1];
+                        switch (userSelection[1]) {
                             case "north", "south", "west", "east":
-                                adventure.move(secondWordMove);
+                                adventure.move(userSelection[1]);
                                 System.out.println(adventure.getCurrentRoom().getDescription());
                                 break;
                             default:
