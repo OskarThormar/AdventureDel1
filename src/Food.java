@@ -16,11 +16,11 @@ public class Food extends Item {
     @Override
     public String toString() {
         StringBuilder stringBuilder = new StringBuilder();
-        stringBuilder.append("\u2665");
+        stringBuilder.append("❤\uFE0F ");
         stringBuilder.append(super.name);
-        stringBuilder.append(" - ");
+        stringBuilder.append(" \u2022 ");
         stringBuilder.append(super.description);
-        stringBuilder.append(" - ");
+        stringBuilder.append(" \u2022 ");
         stringBuilder.append(health + " health");
         return stringBuilder.toString();
         //return super.name + "\n" + super.description + "\n" + health + "\u2764";

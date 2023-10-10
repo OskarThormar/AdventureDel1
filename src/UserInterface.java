@@ -13,14 +13,15 @@ public class UserInterface {
     public void startProgram() {
         adventure.initializeGame();
 
-        System.out.println("\uD83E\uDDD9\uD83C\uDFFCWelcome to the Adventure Game!\uD83E\uDDD9\uD83C\uDFFC");
+        System.out.println("✨\uD83E\uDDD9\uD83C\uDFFCWelcome to the Adventure Game!\uD83E\uDDD9\uD83C\uDFFC✨");
         System.out.println("""
                 ---------------------------------------|
-                 - Type 'Help' to show instructions    |
-                 - Type 'Start' to start the game      |
-                 - Type 'Exit' to exit the game        |
+                 - 📜Type 'Help' to show instructions  |
+                 - ⛰️Type 'Start' to start the game    |
+                 - 🔚Type 'Exit' to exit the game      |
                 ---------------------------------------|
                 """);
+
 
         String userSelection = keyboard.nextLine();
 
@@ -31,7 +32,7 @@ public class UserInterface {
                 startGame();
                 break;
             case "exit":
-                System.out.println("Have a great day");
+                System.out.println("Have a great day \uD83C\uDF1E");
                 System.exit(0);
                 break;
             default:
@@ -72,7 +73,7 @@ public class UserInterface {
                     help();
                     break;
                 case "quit", "exit", "bye":
-                    System.out.println("Thank you for playing Adventure Game! Come back another time :-)");
+                    System.out.println("Thank you for playing Adventure Game! Come back another time \uD83D\uDC4B");
                     System.exit(0);
                     break;
                 case "take":
@@ -116,17 +117,17 @@ public class UserInterface {
                                 System.out.println("You can't eat that");
                                 break;
                             case OK:
-                                System.out.println("You have eaten ..");
+                                System.out.println("You have eaten: ");
                                 break;
                             case EATEN:
-                                System.out.println("You have eaten and gained health.");
-                                System.out.println("Current health: " + adventure.getPlayerHealth());
+                                System.out.println("You have eaten and gained health ❤\uFE0F");
+                                System.out.println("Current healthstatus: " + adventure.getPlayerHealth());
                                 break;
                             default:
                                 System.err.println("Internal error");
                         }
                     } else {
-                        System.out.println("Eat what?");
+                        System.out.println("Sorry, what would you like to eat?");
                     }
                     break;
                 case "go":
@@ -142,7 +143,7 @@ public class UserInterface {
                                 break;
                         }
                     } else {
-                        System.out.println(" What way?");
+                        System.out.println(" Which way would you like to go?");
                     }
                     break;
                 case "attack":
@@ -156,7 +157,7 @@ public class UserInterface {
     }
 
     public void help() {
-        System.out.println("== Help Menu ==");
+        System.out.println("\uD83C\uDD98 Help Menu \uD83C\uDD98");
         System.out.println("Basic Needs:");
         System.out.println("- Water: Stay hydrated during your adventure.");
         System.out.println("- Food: Restore your energy, but be aware! Some food can be poisonous.");
@@ -165,16 +166,7 @@ public class UserInterface {
         System.out.println("- Sword: Use for close combat.");
         System.out.println("- Shield: Provides defense against enemy attacks.");
 
-/*        System.out.println("Assistance:");
-        System.out.println("- Elf for Dragon: Seek help from the Elf to battle the Dragon.");
-        System.out.println("- Fairies: Call upon fairies for assistance.");
-        System.out.println("- Summon Familiar: Summon a magical being to assist you.");
-        System.out.println("- Healing Circle: Create a healing circle to restore health.");
-        System.out.println("- Clairvoyance: See enemy positions or hidden paths.");
-        System.out.println("- Summon Allies: Call upon allies to aid you in battle.");
-        System.out.println("Magic Potion for Temporary Invisibility: Brew a potion for temporary invisibility");*/
-
-        System.out.println("Navigation:");
+        System.out.println(" \uD83E\uDDED Navigation:");
         System.out.println("- N: Go North");
         System.out.println("- E: Go East");
         System.out.println("- S: Go South");
@@ -182,7 +174,7 @@ public class UserInterface {
     }
 
     private void userLook() {
-        System.out.println("Items in the room:");
+        System.out.println("You look around and see: ");
         for (Item item : adventure.itemsInRoom()) {
             if (item != null) {
                 System.out.println(item);
@@ -207,18 +199,18 @@ public class UserInterface {
         //String itemName = userSelection.substring(5);
         Player player = adventure.getPlayer();
         player.dropItem(userSelection, adventure.getCurrentRoom());
-        System.out.println("you dropped " + userSelection);
+        System.out.println("You have dropped " + userSelection);
     }
 
     public void showInventory() {
-        System.out.println("Inventory:");
+        System.out.println("\uD83C\uDF92 Inventory: ");
         List<Item> inventory = adventure.showInventory();
         if (inventory != null){
             for (Item item : inventory){
                 System.out.println(item.getName());
             }
         } else {
-            System.out.println("inventory is empty");
+            System.out.println("You don't have any items in your inventory.");
         }
     }
 
@@ -233,24 +225,24 @@ public class UserInterface {
             }
         }
     }
-    public void playerAttack(){
-        if (adventure.enemiesInRoom() != null){
-            for (Enemy enemy : adventure.enemiesInRoom()){
+    public void playerAttack() {
+        if (adventure.enemiesInRoom() != null) {
+            for (Enemy enemy : adventure.enemiesInRoom()) {
                 int healthLeftEnemy = enemy.getEnemyHealth() - adventure.getCurrentWeaponDamage();
                 enemy.setEnemyHealth(healthLeftEnemy);
-                if (enemy.getEnemyHealth() < 1){
+                if (enemy.getEnemyHealth() < 1) {
 
                 }
-                System.out.println("monster liv tilbage " + healthLeftEnemy);
-                if (enemy.getEnemyHealth() > 0){
+                System.out.println("Your enemy have: " + healthLeftEnemy + " health left");
+                if (enemy.getEnemyHealth() > 0) {
                     int healthLeftPlayer = adventure.getPlayerHealth() - enemy.getEnemyDamage();
                     adventure.setPlayerHealth(healthLeftPlayer);
-                    System.out.println(" spiller liv tilbage " + healthLeftPlayer);
+                    System.out.println("You have: " + healthLeftPlayer + " health left");
                 } else {
-                    System.out.println(enemy.getEnemyName() + "is already dead");
+                    System.out.println(enemy.getEnemyName() + " is already dead..");
 
+                }
             }
         }
-    }
-}
+    }}
 
