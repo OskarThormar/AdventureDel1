@@ -62,5 +62,10 @@ public class Adventure {
         return player.enemiesInRoom();
     }
 
-
+/*    public void setCurrentWeaponUnarmed() {
+        this.player.setUnarmed();
+    }
+    public void setCurrentWeaponUnarmedDamage(){
+        this.player.setUnarmedDamage();
+    }*/
 }

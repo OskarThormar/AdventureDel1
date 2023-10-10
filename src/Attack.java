@@ -1,5 +1,6 @@
 public enum Attack {
     CANT,
     SUCCESS,
-    NOWEAPON,
+    NO_WEAPON,
+    NO_AMMO
 }

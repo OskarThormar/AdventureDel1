@@ -29,6 +29,7 @@ public class Player {
             System.out.println("Item not found in this room");
         }
     }
+
     public Equipable playerEquip(String name) {
         Item itemToEquip = null;
         for (Item item : inventory) {
@@ -47,12 +48,18 @@ public class Player {
             }
         } return Equipable.NOT_FOUND;
     }
-    public void playerAttack(){
-
+    public void playerUnequip(Item item) {
+        inventory.add(item);
+        currentWeaponDamage = unarmedDamage;
     }
 
-    public List<Item> getEquipment(){
-        return equipment;
+    public void playerAttack() {
+        if (enemiesInRoom() != null){
+
+        }
+    }
+    public String getCurrentWeapon(){
+        return currentWeapon;
     }
 
   /*  public int getCurrentWeaponDamage(){

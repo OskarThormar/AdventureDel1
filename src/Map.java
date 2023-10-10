@@ -9,11 +9,12 @@ public class Map {
 
         Room room2 = new Room(" ", "You can see the remains of a fire and the embers glowing in the dark.\n" +
                 " There are footsteps going further in to the cave. Which way would you like to explore?");
-        Item item1Room2 = new MeleeWeapon("Sword", "A sharp, shiny sword", 4, "Melee");
-        room2.addItem(item1Room2);
+        Item Sword = new MeleeWeapon("Sword", "A sharp, shiny sword", 4, "Melee");
+        room2.addItem(Sword);
 
         Room room3 = new Room(" ", "You stop and see that you are standing on edge of a cliff, \n " +
-                "and you need to cross a wooden bridge to get over to the other side. Would you like to go across or in another direction? \n " + "WAAAUUUUUGHH" + "There's an enemy in the room!");
+                "and you need to cross a wooden bridge to get over to the other side. Would you like to go across or in another direction? \n "
+                + "WAAAUUUUUGHH \n" + "There's an enemy in the room!");
         Item food2Room3 = new Food("Mushroom", "Funky looking", -40);
         room3.addItem(food2Room3);
         Enemy enemyRoom3 = new Enemy("Goblin", "Small but aggressive", 20, 3);
@@ -41,8 +42,8 @@ public class Map {
         Room room7 = new Room(" ", "You are now standing on the riverbank. Suddenly you notice a silent sound of drums. \n"+
                 "The sound of the drums get louder and louder. You can't quite hear where the sound is comming from. Nearby in the river something is floating around. \n" +
                 "Which way would you like to go?");
-        Item item4Room7 = new RangedWeapon("Bow", "looks Elvish", 2, "Ranged", 0);
-        room7.addItem(item4Room7);
+        Item Bow = new RangedWeapon("Bow", "looks Elvish", 2, "Ranged", 0);
+        room7.addItem(Bow);
 
         //DET STORE FARLIGE RUM!! :O :O :O :O
         Room room8 = new Room(" ", "You feel a sudden heat, and starts to sweat. You look down and see lava floating \n"+

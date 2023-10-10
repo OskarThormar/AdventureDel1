@@ -205,13 +205,6 @@ public class UserInterface {
             }
         }
     }
-    public void showEquipment(){
-        for (Item item : adventure.getEquipment()) {
-            if (item != null){
-                System.out.println(item);
-            }
-        }
-    }
 
     public void showHealth(){
         System.out.println(adventure.getPlayerHealth());
