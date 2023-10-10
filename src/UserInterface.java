@@ -1,3 +1,4 @@
+import java.util.List;
 import java.util.Scanner;
 
 public class UserInterface {
@@ -40,6 +41,8 @@ public class UserInterface {
     }
 
     public void startGame() {
+        //adventure.setCurrentWeaponUnarmed();
+        //adventure.setCurrentWeaponUnarmedDamage();
         System.out.println(adventure.getCurrentRoom().getDescription());
         handleUserInput();
     }
@@ -57,7 +60,10 @@ public class UserInterface {
                     break;
                 case "inventory":
                     showInventory();
-                    showEquipment();
+                    //showEquipment();
+                    //GØR PÆNT
+                    System.out.println(adventure.getCurrentWeaponDamage());
+                    System.out.println(adventure.getCurrentWeapon());
                     break;
                 case "health":
                     showHealth();
@@ -81,6 +87,10 @@ public class UserInterface {
                     //secondword
                     playerDrop(userSelection[1]);
                     break;
+                case "unequip":
+                    if (userSelection.length > 1) {
+
+                    }
                 case "equip":
                     if (userSelection.length > 1) {
                         Equipable result = adventure.playerEquip(userSelection[1]);
@@ -89,7 +99,7 @@ public class UserInterface {
                             case CANT -> System.out.println("You can't equip that");
                             case EQUIPPED ->{
                                 System.out.println("You have equipped");
-                                System.out.println("Current weapon:" + adventure.getEquipment());
+                                System.out.println("Current weapon:" + adventure.getCurrentWeapon());
                             }
 
 
@@ -134,6 +144,9 @@ public class UserInterface {
                     } else {
                         System.out.println(" What way?");
                     }
+                    break;
+                case "attack":
+                    playerAttack();
                     break;
                 default:
                     System.out.println("I don't understand");
@@ -199,10 +212,13 @@ public class UserInterface {
 
     public void showInventory() {
         System.out.println("Inventory:");
-        for (Item item : adventure.showInventory()) {
-            if (item != null) {
-                    System.out.println(item);
+        List<Item> inventory = adventure.showInventory();
+        if (inventory != null){
+            for (Item item : inventory){
+                System.out.println(item.getName());
             }
+        } else {
+            System.out.println("inventory is empty");
         }
     }
 
@@ -214,6 +230,20 @@ public class UserInterface {
         for (Enemy enemy : adventure.enemiesInRoom()){
             if (enemy != null){
                 System.out.println(enemy);
+            }
+        }
+    }
+    public void playerAttack(){
+        if (adventure.enemiesInRoom() != null){
+            for (Enemy enemy : adventure.enemiesInRoom()){
+                int healthLeftEnemy = enemy.getEnemyHealth() - adventure.getCurrentWeaponDamage();
+                enemy.setEnemyHealth(healthLeftEnemy);
+                System.out.println("monster liv tilbage " + healthLeftEnemy);
+                if (enemy.getEnemyHealth() > 0){
+                    int healthLeftPlayer = adventure.getPlayerHealth() - enemy.getEnemyDamage();
+                    adventure.setPlayerHealth(healthLeftPlayer);
+                    System.out.println(" spiller liv tilbage " + healthLeftPlayer);
+                }
             }
         }
     }

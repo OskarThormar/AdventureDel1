@@ -7,8 +7,8 @@ public class Adventure {
 
     public Adventure() {
         this.map = new Map();
-        //set the player maximum inventory to 5
-        this.player = new Player(map.getStartingRoom(), 5);
+        //set the player maximum inventory to
+        this.player = new Player(map.getStartingRoom(), "Unarmed", 2, 5);
 
         initializeGame();
     }
@@ -37,21 +37,22 @@ public class Adventure {
     public int getPlayerHealth(){
         return player.healthPoints();
     }
-//    public void setPlayerHealth(int health){
-//        return player.setHealthPoints(health);
-//    }
+    public void setPlayerHealth(int health){
+        this.player.setHealthPoints(health);
+    }
     public Eatable playerEat(String name){
         return player.playerEat(name);
     }
     public Equipable playerEquip(String name){
         return player.playerEquip(name);
     }
-    public List<Item> getEquipment(){
-        return player.getEquipment();
+    public String getCurrentWeapon(){
+        return player.getCurrentWeapon();
     }
-//    public Player getCurrentWeapon(){
-//        return player.getCurrentWeaponDamage();
-//    }
+
+    public int getCurrentWeaponDamage(){
+        return player.getCurrentWeaponDamage();
+    }
     public Item findItem(String name){
         return player.findItem(name);
     }
@@ -61,6 +62,7 @@ public class Adventure {
     public ArrayList<Enemy> enemiesInRoom(){
         return player.enemiesInRoom();
     }
+
 
 /*    public void setCurrentWeaponUnarmed() {
         this.player.setUnarmed();

@@ -3,17 +3,23 @@ import java.util.List;
 
 public class Player {
     private Room currentRoom;
-    private List<Item> inventory;
-    private List<Item> equipment;
-    private int maxInventorySize;
+    private String currentWeapon;
+    private int currentWeaponDamage;
+    private final int unarmedDamage = 2;
+    private ArrayList<Item> inventory;
+    //private List<Item> equipment;
+    //Kan implementeres senere
     private int health = 100;
+    private int maxInventorySize;
 
     //added inventory to represent the player inventory size
-    public Player(Room startingRoom, int maxInventorySize) {
-        this.currentRoom = startingRoom;
-        this.inventory = new ArrayList<>();
+
+    public Player(Room currentRoom, String currentWeapon, int currentWeaponDamage, int maxInventorySize) {
+        this.currentRoom = currentRoom;
+        this.currentWeapon = currentWeapon;
+        this.currentWeaponDamage = currentWeaponDamage;
         this.maxInventorySize = maxInventorySize;
-        this.equipment = new ArrayList<>();
+        this.inventory = new ArrayList<>();
     }
 
     //Check the items in the currentRoom before adding them to the inventory
@@ -32,16 +38,19 @@ public class Player {
 
     public Equipable playerEquip(String name) {
         Item itemToEquip = null;
-        for (Item item : inventory) {
-            if (item.getName().equalsIgnoreCase(name)) {
-                itemToEquip = item;
+        for (Item weapon : inventory) {
+            if (weapon.getName().equalsIgnoreCase(name)) {
+                itemToEquip = weapon;
                 break;
             }
         }
         if (itemToEquip != null) {
             if (itemToEquip instanceof Weapon) {
+                //inventory.remove(itemToEquip);
+              //  equipment.add(itemToEquip);
+                currentWeapon = ((Weapon) itemToEquip).getName();
+                currentWeaponDamage = ((Weapon) itemToEquip).getDamage();
                 inventory.remove(itemToEquip);
-                equipment.add(itemToEquip);
                 return Equipable.EQUIPPED;
             } else {
                 return Equipable.CANT;
@@ -61,14 +70,9 @@ public class Player {
     public String getCurrentWeapon(){
         return currentWeapon;
     }
-
-  /*  public int getCurrentWeaponDamage(){
-        for (Item item : equipment){
-            if (item.){
-
-            }
-        }
-    }*/
+    public int getCurrentWeaponDamage() {
+        return currentWeaponDamage;
+    }
 
     //Allows the player to drop the item, and add the item to the current room.
     public void dropItem(String itemName, Room currentRoom) {
@@ -150,9 +154,9 @@ public class Player {
 
     public Eatable playerEat(String name) {
         Item itemToEat = null;
-        for (Item item : inventory) {
-            if (item.getName().equalsIgnoreCase(name)) {
-                itemToEat = item;
+        for (Item food : inventory) {
+            if (food.getName().equalsIgnoreCase(name)) {
+                itemToEat = food;
                 break;
             }
         }

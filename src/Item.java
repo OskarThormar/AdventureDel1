@@ -45,4 +45,9 @@ public class Item {
     public String toString() {
         return name + " " + description;
     }
+
+    public void setCurrentWeapon() {
+
+    }
+
 }
