@@ -244,6 +244,7 @@ public class UserInterface {
                     adventure.setPlayerHealth(healthLeftPlayer);
                     System.out.println(" spiller liv tilbage " + healthLeftPlayer);
                 }
+
             }
         }
     }
