@@ -238,12 +238,16 @@ public class UserInterface {
             for (Enemy enemy : adventure.enemiesInRoom()){
                 int healthLeftEnemy = enemy.getEnemyHealth() - adventure.getCurrentWeaponDamage();
                 enemy.setEnemyHealth(healthLeftEnemy);
+                if (enemy.getEnemyHealth() < 1){
+
+                }
                 System.out.println("monster liv tilbage " + healthLeftEnemy);
                 if (enemy.getEnemyHealth() > 0){
                     int healthLeftPlayer = adventure.getPlayerHealth() - enemy.getEnemyDamage();
                     adventure.setPlayerHealth(healthLeftPlayer);
                     System.out.println(" spiller liv tilbage " + healthLeftPlayer);
-                }
+                } else {
+                    System.out.println(enemy.getEnemyName() + "is already dead");
 
             }
         }
