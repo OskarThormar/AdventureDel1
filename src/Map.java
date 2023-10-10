@@ -4,12 +4,12 @@ public class Map {
     public Map(){
         Room room1 = new Room(" ", "You are standing in a cave, you hear the water dripping from above. \n" +
                 "You can see a dim light to one side of you, and hear water running in a distance. Which way would you like to go?");
-        Item food1Room1 = new Food("Apple", "Edible and nutritious", 20);
+        Item food1Room1 = new Food("Apple", "edible and nutritious", 20);
         room1.addItem(food1Room1);
 
         Room room2 = new Room(" ", "You can see the remains of a fire and the embers glowing in the dark.\n" +
                 " There are footsteps going further in to the cave. Which way would you like to explore?");
-        Item Sword = new MeleeWeapon("Sword", "A sharp, shiny sword", 4, "Melee");
+        Item Sword = new MeleeWeapon("Sword", "appears sharp and shiny", 4, "Melee");
         room2.addItem(Sword);
 
         Room room3 = new Room(" ", "You stop and see that you are standing on edge of a cliff, \n " +
@@ -17,12 +17,12 @@ public class Map {
                 + "WAAAUUUUUGHH \n" + "There's an enemy in the room!");
         Item food2Room3 = new Food("Mushroom", "Funky looking", -40);
         room3.addItem(food2Room3);
-        Enemy enemyRoom3 = new Enemy("Goblin", "Small but aggressive", 20, 3);
+        Enemy enemyRoom3 = new Enemy("Goblin", " small but aggressive", 20, 3);
         room3.addEnemy(enemyRoom3);
 
         Room room4 = new Room(" ", "You have followed the sound of water, and now you are standing on a riverbank.\n" +
                 "You see a small boat floating around. The boat seems rather broken, would you like to try to get to the other side or explore another direction?");
-        Item item2Room4 = new MeleeWeapon("paddle", "an old rotten paddle.", 1, "Melee");
+        Item item2Room4 = new MeleeWeapon("paddle", ", looks old and rotten", 1, "Melee");
         room4.addItem(item2Room4);
         Item food3Room4= new Food("Seaweed", "Tasty.. not", 1);
         room4.addItem(food3Room4);

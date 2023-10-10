@@ -186,10 +186,4 @@ public class Player {
         return currentRoom.getEnemies();
     }
 
-    @Override
-    public String toString() {
-        return "Player{" +
-                "currentRoom=" + currentRoom +
-                '}';
-    }
 }
