@@ -3,7 +3,6 @@ import java.util.List;
 
 public class Player {
     private Room currentRoom;
-    private Player currentWeapon;
     private List<Item> inventory;
     private List<Item> equipment;
     private int maxInventorySize;
@@ -48,7 +47,7 @@ public class Player {
             }
         } return Equipable.NOT_FOUND;
     }
-    public void playerAttack(String name){
+    public void playerAttack(){
 
     }
 
@@ -56,9 +55,13 @@ public class Player {
         return equipment;
     }
 
-    public Player getCurrentWeapon (){
-        return currentWeapon;
-    }
+  /*  public int getCurrentWeaponDamage(){
+        for (Item item : equipment){
+            if (item.){
+
+            }
+        }
+    }*/
 
     //Allows the player to drop the item, and add the item to the current room.
     public void dropItem(String itemName, Room currentRoom) {
@@ -119,11 +122,6 @@ public class Player {
     public List<Item> showInventory() {
         return inventory;
     }
-
-    public List<Item> look() {
-        return currentRoom.getItems();
-    }
-
     public int healthPoints() {
         return health;
     }
@@ -172,6 +170,9 @@ public class Player {
             stringBuilder.append(item);
         }
         return stringBuilder.toString();
+    }
+    public ArrayList<Enemy> enemiesInRoom(){
+        return currentRoom.getEnemies();
     }
 
     @Override

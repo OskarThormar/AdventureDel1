@@ -9,12 +9,14 @@ public class Room {
     private Room south;
     private Room west;
     private List<Item> items;
+    private ArrayList<Enemy> enemies;
 
 
     public Room(String name, String description) {
         this.name = name;
         this.description = description;
         items = new ArrayList<>();
+        enemies = new ArrayList<>();
     }
 
     //getter for items in the room
@@ -90,6 +92,10 @@ public class Room {
     public void setWest(Room west) {
         this.west = west;
     }
-
-
+    public void addEnemy(Enemy enemy) {
+        enemies.add(enemy);
+    }
+    public ArrayList<Enemy> getEnemies(){
+        return enemies;
+    }
 }

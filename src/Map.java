@@ -13,9 +13,11 @@ public class Map {
         room2.addItem(item1Room2);
 
         Room room3 = new Room(" ", "You stop and see that you are standing on edge of a cliff, \n " +
-                "and you need to cross a wooden bridge to get over to the other side. Would you like to go across or in another direction?");
+                "and you need to cross a wooden bridge to get over to the other side. Would you like to go across or in another direction? \n " + "WAAAUUUUUGHH" + "There's an enemy in the room!");
         Item food2Room3 = new Food("Mushroom", "Funky looking", -40);
         room3.addItem(food2Room3);
+        Enemy enemyRoom3 = new Enemy("Goblin", "Small but aggressive", 20, 3);
+        room3.addEnemy(enemyRoom3);
 
         Room room4 = new Room(" ", "You have followed the sound of water, and now you are standing on a riverbank.\n" +
                 "You see a small boat floating around. The boat seems rather broken, would you like to try to get to the other side or explore another direction?");
@@ -39,7 +41,7 @@ public class Map {
         Room room7 = new Room(" ", "You are now standing on the riverbank. Suddenly you notice a silent sound of drums. \n"+
                 "The sound of the drums get louder and louder. You can't quite hear where the sound is comming from. Nearby in the river something is floating around. \n" +
                 "Which way would you like to go?");
-        Item item4Room7 = new RangedWeapon("Bow", "looks Elvish", 2, "Ranged");
+        Item item4Room7 = new RangedWeapon("Bow", "looks Elvish", 2, "Ranged", 0);
         room7.addItem(item4Room7);
 
         //DET STORE FARLIGE RUM!! :O :O :O :O

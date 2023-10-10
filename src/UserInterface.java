@@ -50,13 +50,14 @@ public class UserInterface {
         while (menuLoop) {
             String[] userSelection = keyboard.nextLine().toLowerCase().trim().split(" ");
             String firstWord = userSelection[0];
-            //String userSelection = keyboard.nextLine().toLowerCase().trim();
             switch (firstWord) {
                 case "look":
                     userLook();
+                    enemiesInRoom();
                     break;
                 case "inventory":
                     showInventory();
+                    showEquipment();
                     break;
                 case "health":
                     showHealth();
@@ -168,7 +169,7 @@ public class UserInterface {
     }
 
     private void userLook() {
-        System.out.println("You found: ");
+        System.out.println("Items in the room:");
         for (Item item : adventure.itemsInRoom()) {
             if (item != null) {
                 System.out.println(item);
@@ -197,24 +198,31 @@ public class UserInterface {
     }
 
     public void showInventory() {
-            System.out.println("Inventory:");
-            for (Item item : adventure.showInventory()) {
-                if (item != null) {
+        System.out.println("Inventory:");
+        for (Item item : adventure.showInventory()) {
+            if (item != null) {
                     System.out.println(item);
-                }
             }
         }
-//    public void eatFood(){
-//        for (Item food : adventure.showInventory()){
-//            System.out.println(food);
-//            if (food instanceof Food){
-//                ((Food) food).foodObjekt();
-//
-//            }
-//        }
-//    }
+    }
+    public void showEquipment(){
+        for (Item item : adventure.getEquipment()) {
+            if (item != null){
+                System.out.println(item);
+            }
+        }
+    }
+
     public void showHealth(){
         System.out.println(adventure.getPlayerHealth());
+    }
+    public void enemiesInRoom(){
+        System.out.println("Enemies in the room:");
+        for (Enemy enemy : adventure.enemiesInRoom()){
+            if (enemy != null){
+                System.out.println(enemy);
+            }
+        }
     }
 }
 

@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.List;
 
 public class Adventure {
@@ -48,14 +49,17 @@ public class Adventure {
     public List<Item> getEquipment(){
         return player.getEquipment();
     }
-    public Player getCurrentWeapon(){
-        return player.getCurrentWeapon();
-    }
+//    public Player getCurrentWeapon(){
+//        return player.getCurrentWeaponDamage();
+//    }
     public Item findItem(String name){
         return player.findItem(name);
     }
     public List<Item> itemsInRoom(){
         return player.itemsInRoom();
+    }
+    public ArrayList<Enemy> enemiesInRoom(){
+        return player.enemiesInRoom();
     }
 
 

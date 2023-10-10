@@ -1,7 +1,9 @@
 public class RangedWeapon extends Weapon{
+    public int arrows;
 
-    public RangedWeapon(String name, String description, int damage, String type) {
+    public RangedWeapon(String name, String description, int damage, String type, int arrows) {
         super(name, description, damage, type);
+        this.arrows = arrows;
     }
 
     @Override
