@@ -20,9 +20,9 @@ public class Room {
     }
 
     //getter for items in the room
-    public Item getItemByName(String itemName) {
+    public Item getItemByName(String indexName) {
         for (Item item : items) {
-            if (item.getName().equalsIgnoreCase(itemName)) {
+            if (item.getIndexName().equalsIgnoreCase(indexName)) {
                 return item;
             }
         }

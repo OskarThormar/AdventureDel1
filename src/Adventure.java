@@ -5,6 +5,7 @@ public class Adventure {
     private Player player;
     private Map map;
     private Enemy enemy;
+    private Item item;
 
     public Adventure() {
         this.map = new Map();
@@ -12,6 +13,9 @@ public class Adventure {
         this.player = new Player(map.getStartingRoom(), "Unarmed", "Melee", 2, 5);
 
         initializeGame();
+    }
+    public String getIndexName(){
+        return item.getIndexName();
     }
 
     //sets the players initial starting room
@@ -35,6 +39,9 @@ public class Adventure {
     public List<Item> showInventory() {
         return player.showInventory();
     }
+    public Item getInventoryByItemName(String indexName){
+        return player.getInventoryByItemName(indexName);
+    }
     public ArrayList<Item>showEquipment(){
         return player.showEquipment();
     }
@@ -47,8 +54,8 @@ public class Adventure {
     public Eatable playerEat(String name){
         return player.playerEat(name);
     }
-    public Equipable playerEquip(String name){
-        return player.playerEquip(name);
+    public Equipable playerEquip(String indexName){
+        return player.playerEquip(indexName);
     }
     public String getCurrentWeapon(){
         return player.getCurrentWeapon();

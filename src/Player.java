@@ -26,7 +26,7 @@ public class Player {
         this.currentWeaponDamage = currentWeaponDamage;
         this.maxInventorySize = maxInventorySize;
         this.inventory = new ArrayList<>();
-        this.equipment = new ArrayList<>();
+        this.equipment = new ArrayList<>(1);
     }
 
     //Check the items in the currentRoom before adding them to the inventory
@@ -68,14 +68,24 @@ public class Player {
         return equipped;
     }*/
 
-    public Equipable playerEquip(String name) {
-        if (name != null) {
+    public Equipable playerEquip(String indexName) {
+        if (indexName != null) {
             for (Item item : inventory) {
                 if (item instanceof Weapon) {
-                    setCurrentWeaponType(((Weapon) item).getType());
-                    setCurrentWeapon(name);
-                    setCurrentWeaponDamage(((Weapon) item).getDamage());
-                    return Equipable.EQUIPPED;
+                    if (equipment.size() > 1){
+                        Item equippedItem = equipment.get(0);
+                        equipment.remove(equippedItem);
+                        equipment.add(item);
+                        setCurrentWeaponType(((Weapon) item).getType());
+                        setCurrentWeapon(indexName);
+                        setCurrentWeaponDamage(((Weapon) item).getDamage());
+                        return Equipable.EQUIPPED;
+                    } else {
+                        equipment.add(item);
+                        setCurrentWeaponType(((Weapon) item).getType());
+                        setCurrentWeapon(indexName);
+                        setCurrentWeaponDamage(((Weapon) item).getDamage());
+                    }
 
                 } else {
                     return Equipable.CANT;
@@ -83,7 +93,7 @@ public class Player {
             }
         } else {
             return Equipable.NOT_FOUND;
-        } return null;
+        } return Equipable.ERROR;
     }
 
 
@@ -125,10 +135,10 @@ public class Player {
     public int getCurrentArrowCount() {
         return currentArrowCount;
     }
-    public void dropItem(String itemName, Room currentRoom) {
+    public void dropItem(String indexName, Room currentRoom) {
         Item itemToDrop = null;
         for (Item item : inventory) {
-            if (item.getName().equalsIgnoreCase(itemName)) {
+            if (item.getIndexName().equalsIgnoreCase(indexName)) {
                 itemToDrop = item;
                 break;
             }
@@ -172,6 +182,14 @@ public class Player {
     public ArrayList<Item> showEquipment() {
         return equipment;
     }
+    public Item getInventoryByItemName(String indexName){
+        for (Item item : inventory) {
+            if (item.getIndexName().equalsIgnoreCase(indexName)) {
+                return item;
+            }
+        }
+        return null; // Item not found in this room
+    }
 
     public int getPlayerHealth() {
         return health;
@@ -181,9 +199,9 @@ public class Player {
         this.health = health;
     }
 
-    public Item findItem(String name) {
+    public Item findItem(String indexName) {
         for (Item item : inventory) {
-            if (item.getName().startsWith(name)) {
+            if (item.getIndexName().startsWith(indexName)) {
                 return item;
             }
         }
@@ -191,10 +209,10 @@ public class Player {
     }
 
 
-    public Eatable playerEat(String name) {
-        if (name != null) {
+    public Eatable playerEat(String indexName) {
+        if (indexName != null) {
             for (Item food : inventory) {
-                if (food.getName().equalsIgnoreCase(name)) {
+                if (food.getIndexName().equalsIgnoreCase(indexName)) {
                     if (food instanceof Food) {
                         int healthRestored = ((Food) food).getHealth();
                         health += healthRestored;
@@ -234,14 +252,6 @@ public class Player {
 
     public ArrayList<Enemy> enemiesInRoom() {
         return currentRoom.getEnemies();
-    }
-    public void enemiesInPlayerRoom(){
-        for (Enemy enemy : enemiesInRoom()){
-            if (enemy != null){
-                //System.out.println("Enemies in the room:");
-                System.out.print(enemy);
-            }
-        }
     }
 
     public Attackable playerAttack() {

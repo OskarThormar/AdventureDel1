@@ -73,12 +73,13 @@ public class UserInterface {
                     System.exit(0);
                     break;
                 case "take":
-                   if (userSelection.length > 1) {
+                    if (userSelection.length > 2){
+                        playerTake(userSelection[1].trim()+userSelection[2].trim());
+                    }
+                    if (userSelection.length < 3) {
                        //String secondWordTake = userSelection[1];
                        playerTake(userSelection[1]);
-                   } else {
-                       System.out.println("What do you want to take?");
-                   }
+                    }
                     break;
                 case "drop":
                     //secondword
@@ -86,12 +87,44 @@ public class UserInterface {
                     break;
                 case "unequip":
                     if (userSelection.length > 1) {
-
                     }
                 case "equip":
-                    if (userSelection.length > 1) {
-                        Equipable result = adventure.playerEquip(userSelection[1]);
-                        switch (result) {
+                    if (userSelection.length == 3){
+                        Equipable result1 = adventure.playerEquip(userSelection[1].trim()+userSelection[2].trim());
+                        switch (result1) {
+                            case NOT_FOUND:
+                                System.out.println("no such thing1");
+                                break;
+                            case CANT:
+                                System.out.println("You can't equip that");
+                                break;
+                            case EQUIPPED:
+                                System.out.println("You have equipped: " + adventure.getCurrentWeapon());
+                                break;
+                            default:
+                                System.out.println("ERROR");
+                                break;
+                        }
+                    } else {
+                        Equipable playerToEquipTwoWord = adventure.playerEquip(userSelection[1]);
+                        switch (playerToEquipTwoWord) {
+                            case NOT_FOUND:
+                                System.out.println("no such thing1");
+                                break;
+                            case CANT:
+                                System.out.println("You can't equip that");
+                                break;
+                            case EQUIPPED:
+                                System.out.println("You have equipped: " + adventure.getCurrentWeapon());
+                                break;
+                            default:
+                                System.out.println("ERROR");
+                                break;
+                        }
+                    }
+                    if (userSelection.length == 3) {
+                        Equipable playerToEquipThreeWord = adventure.playerEquip(userSelection[1].trim()+userSelection[2].trim());
+                        switch (playerToEquipThreeWord) {
                             case NOT_FOUND:
                                 System.out.println("no such thing1");
                                 break;
@@ -108,8 +141,8 @@ public class UserInterface {
                     }
                 case "eat":
                     if (userSelection.length > 1) {
-                        Eatable result = adventure.playerEat(userSelection[1]);
-                        switch (result) {
+                        Eatable playerToEat = adventure.playerEat(userSelection[1]);
+                        switch (playerToEat) {
                             case NOT_FOUND:
                                 System.out.println("No such thing");
                                 break;
@@ -186,8 +219,8 @@ public class UserInterface {
             //String itemName = userSelection.substring(5);
             Item itemToTake = adventure.getCurrentRoom().getItemByName(userSelection);
             if (itemToTake != null) {
+                System.out.println("You picked up " + itemToTake);
                 adventure.getPlayer().playerTake(itemToTake);
-                System.out.println("You picked up " + userSelection);
             } else {
                 System.out.println("Item not found in this room");
             }
@@ -214,6 +247,10 @@ public class UserInterface {
             }
         }
         System.out.println(adventure.getCurrentArrowCount() + " Arrows");
+    }
+    public void playerEquip(String userSelection){
+        Item itemToEquip = adventure.getInventoryByItemName(userSelection);
+        adventure.playerEquip(userSelection);
     }
 
  /*   public void showInventory() {
@@ -244,6 +281,9 @@ public class UserInterface {
                 System.out.println(enemy);
             }
         }
+    }
+    public void indexName(){
+        System.out.println(adventure.getIndexName());
     }
 /*    public void playerAttack(){
         if (adventure.enemiesInRoom() != null){

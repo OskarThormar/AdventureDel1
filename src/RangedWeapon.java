@@ -1,10 +1,11 @@
 public class RangedWeapon extends Weapon{
     public int arrows;
 
-    public RangedWeapon(String name, String description, int damage, String type, int arrows) {
-        super(name, description, damage, type);
+    public RangedWeapon(String name, String indexName, String description, int damage, String type, int arrows) {
+        super(name, indexName, description, damage, type);
         this.arrows = arrows;
     }
+
     @Override
     public String toString() {
         StringBuilder stringBuilder = new StringBuilder();
