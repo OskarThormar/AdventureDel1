@@ -4,6 +4,7 @@ import java.util.Objects;
 
 public class Player {
     private Room currentRoom;
+    private boolean equipped = false;
     private String currentWeapon;
     private String currentWeaponType;
     private int currentWeaponDamage;
@@ -46,41 +47,52 @@ public class Player {
             System.out.println("Item not found in this room");
         }
     }
+ /*   public String getIndexedTrackPlaylist(){
+        StringBuilder stringBuilder = new StringBuilder();
+        for (Track track : playlist){
+            stringBuilder.append(playlist.indexOf(track) + 1);
+            stringBuilder.append(" ");
+            stringBuilder.append(track);
+            stringBuilder.append("\n");
+        }
+        return stringBuilder.toString();
+    }
+    public String toString(){
+        String favoriteIcon = "";
+        if (isFavorite()){
+            favoriteIcon = "\u2764";
+        }
+        return title + " - " + artist + " " + favoriteIcon;
+    }
+    public boolean isEquipped(){
+        return equipped;
+    }*/
 
     public Equipable playerEquip(String name) {
-        for (Item weapon : inventory) {
-            if (weapon instanceof Weapon) {
-                if (equipment.isEmpty()) {
-                        setCurrentWeapon(name);
-                        setCurrentWeaponDamage(((Weapon) weapon).getDamage());
-                        setCurrentWeaponType(((Weapon) weapon).getType());
-                        //inventory.remove(weapon);
-                        equipment.add(weapon);
-                        return Equipable.EQUIPPED;
-                }
-                if (equipment.size() == 1) {
-                        setCurrentWeapon(name);
-                        setCurrentWeaponDamage(((Weapon) weapon).getDamage());
-                        setCurrentWeaponType(((Weapon) weapon).getType());
-                        //inventory.add(equipment.get(0));
-                        equipment.remove(equipment.get(0));
-                        //inventory.remove(weapon);
-                        equipment.add(weapon);
-                        return Equipable.EQUIPPED;
-                }
+        if (name != null) {
+            for (Item item : inventory) {
+                if (item instanceof Weapon) {
+                    setCurrentWeaponType(((Weapon) item).getType());
+                    setCurrentWeapon(name);
+                    setCurrentWeaponDamage(((Weapon) item).getDamage());
+                    return Equipable.EQUIPPED;
+
                 } else {
                     return Equipable.CANT;
                 }
-        }
-        return Equipable.NOT_FOUND;
+            }
+        } else {
+            return Equipable.NOT_FOUND;
+        } return null;
     }
 
 
         public void playerUnequip() {
-            equipment.remove(equipment.get(0));
+            //equipment.remove(equipment.get(0));
             //inventory.add(item);
             setCurrentWeapon("Unarmed ");
             setCurrentWeaponDamage(unarmedDamage);
+            setCurrentWeaponType("Melee");
         }
     public void setCurrentWeapon(String currentWeapon) {
         this.currentWeapon = currentWeapon;
@@ -113,9 +125,6 @@ public class Player {
     public int getCurrentArrowCount() {
         return currentArrowCount;
     }
-
-
-    //Allows the player to drop the item, and add the item to the current room.
     public void dropItem(String itemName, Room currentRoom) {
         Item itemToDrop = null;
         for (Item item : inventory) {
@@ -129,8 +138,6 @@ public class Player {
             currentRoom.addItem(itemToDrop);
         }
     }
-
-    //retrieves the currentroom of the player
     public Room getCurrentRoom() {
         return currentRoom;
     }
@@ -185,6 +192,24 @@ public class Player {
 
 
     public Eatable playerEat(String name) {
+        if (name != null) {
+            for (Item food : inventory) {
+                if (food.getName().equalsIgnoreCase(name)) {
+                    if (food instanceof Food) {
+                        int healthRestored = ((Food) food).getHealth();
+                        health += healthRestored;
+                        inventory.remove(food);
+                        return Eatable.EATEN;
+                    } else {
+                        return Eatable.CANT;
+                    }
+                } else {
+                    return Eatable.NOT_FOUND;
+                }
+            }
+        } return null;
+    }
+    /*public Eatable playerEat(String name) {
         Item itemToEat = null;
         for (Item food : inventory) {
             if (food.getName().equalsIgnoreCase(name)) {
@@ -205,10 +230,18 @@ public class Player {
             return Eatable.NOT_FOUND;
         }
 
-    }
+    }*/
 
     public ArrayList<Enemy> enemiesInRoom() {
         return currentRoom.getEnemies();
+    }
+    public void enemiesInPlayerRoom(){
+        for (Enemy enemy : enemiesInRoom()){
+            if (enemy != null){
+                //System.out.println("Enemies in the room:");
+                System.out.print(enemy);
+            }
+        }
     }
 
     public Attackable playerAttack() {
@@ -238,7 +271,7 @@ public class Player {
                         }
                     } else {
                         System.out.println("You dont have any arrows");
-                        System.out.println(enemiesInRoom() + " attacks!");
+                        System.out.println(enemy.getEnemyName() + " attacks!");
                         int healthLeftPlayer = getPlayerHealth() - enemy.getEnemyDamage();
                         setPlayerHealth(healthLeftPlayer);
                         System.out.println("You have: " + healthLeftPlayer + " health left");
@@ -268,15 +301,20 @@ public class Player {
                 }
             }
 
-        }
-        if (Objects.equals(getCurrentWeaponType(), "Ranged")) {
-            System.out.println("You fired an arrow, but the room is empty. Practice makes perfect i guess");
-            setCurrentArrowCount(getCurrentArrowCount() - 1);
-            return Attackable.NO_ENEMY;
-        }
-        if (Objects.equals(getCurrentWeaponType(), "Melee")) {
-            System.out.println("You are swinging in the air, but the room is empty. Practice makes perfect i guess");
-            return Attackable.NO_ENEMY;
+        } else {
+            if (Objects.equals(getCurrentWeaponType(), "Ranged")) {
+                if (currentArrowCount > 0){
+                    System.out.println("You fired an arrow, but the room is empty. Practice makes perfect i guess");
+                    setCurrentArrowCount(getCurrentArrowCount() - 1);
+                    return Attackable.NO_ENEMY;
+                } else {
+                    System.out.println("You dont have any arrows, the room is also empty, what are you doing?");
+                }
+            }
+            if (Objects.equals(getCurrentWeaponType(), "Melee")) {
+                System.out.println("You are swinging in the air, but the room is empty. Practice makes perfect i guess");
+                return Attackable.NO_ENEMY;
+            }
         }
         return null;
     }

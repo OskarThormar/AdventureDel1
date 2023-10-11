@@ -5,12 +5,15 @@ public class RangedWeapon extends Weapon{
         super(name, description, damage, type);
         this.arrows = arrows;
     }
-
-
-
     @Override
     public String toString() {
-        return "RangedWeapon" +
-                "damage=" + damage + ", type='" + type +", name='" + name + ", description='" + description;
+        StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append(name);
+        stringBuilder.append(" - ");
+        stringBuilder.append(description);
+        stringBuilder.append(", ");
+        stringBuilder.append(damage);
+        stringBuilder.append(" damage");
+        return stringBuilder.toString();
     }
 }

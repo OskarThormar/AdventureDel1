@@ -61,9 +61,6 @@ public class UserInterface {
                 case "inventory":
                     showInventory();
                     showEquipment();
-                    //GØR PÆNT
-                    //System.out.println(adventure.getCurrentWeaponDamage());
-                    //System.out.println(adventure.getCurrentWeapon());
                     break;
                 case "health":
                     showHealth();
@@ -118,9 +115,6 @@ public class UserInterface {
                                 break;
                             case CANT:
                                 System.out.println("You can't eat that");
-                                break;
-                            case OK:
-                                System.out.println("You have eaten: ");
                                 break;
                             case EATEN:
                                 System.out.println("You have eaten and gained health ❤\uFE0F");
@@ -213,23 +207,17 @@ public class UserInterface {
         for (Item item : adventure.showInventory()) {
             if (adventure.showInventory() != null) {
                 System.out.println(item.getName());
-                System.out.println(adventure.getCurrentArrowCount() + " Arrows");
             } else {
                 System.out.println("You don't have any items in your inventory.");
             }
         }
+        System.out.println(adventure.getCurrentArrowCount() + " Arrows");
     }
 
     public void showEquipment(){
         System.out.println("Equipment: ");
-        if (adventure.showEquipment() != null){
-            for (Item item : adventure.showEquipment()){
-                System.out.println(item.getName());
-                System.out.println("Damage per attack: " + adventure.getCurrentWeaponDamage());
-            }
-        } else {
-            System.out.println("You are not wearing any equipment");
-        }
+        System.out.println(adventure.getCurrentWeapon());
+        System.out.println(adventure.getCurrentWeaponDamage());
     }
 
     public void showHealth(){
@@ -238,7 +226,7 @@ public class UserInterface {
     public void enemiesInRoom(){
         for (Enemy enemy : adventure.enemiesInRoom()){
             if (enemy != null){
-                System.out.println("Enemies in the room:");
+                //System.out.println("Enemies in the room:");
                 System.out.println(enemy);
             }
         }
