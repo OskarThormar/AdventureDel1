@@ -66,7 +66,6 @@ public class Enemy {
         stringBuilder.append(" damage and ");
         stringBuilder.append(enemyHealth);
         stringBuilder.append("health");
-        stringBuilder.append("\n");
         return stringBuilder.toString();
     }
 }
