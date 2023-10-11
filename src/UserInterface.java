@@ -205,6 +205,20 @@ public class UserInterface {
     public void showInventory() {
         System.out.println("\uD83C\uDF92 Inventory: ");
         for (Item item : adventure.showInventory()) {
+            if (item instanceof Food) {
+                Food foodItem = (Food) item;
+                System.out.println(item.getName() + " • " + foodItem.getHealth() + " healthpoints! ");
+
+            } else {
+                System.out.println("You don't have any items in your inventory.");
+            }
+        }
+        System.out.println(adventure.getCurrentArrowCount() + " Arrows");
+    }
+
+ /*   public void showInventory() {
+        System.out.println("\uD83C\uDF92 Inventory: ");
+        for (Item item : adventure.showInventory()) {
             if (adventure.showInventory() != null) {
                 System.out.println(item.getName());
             } else {
@@ -212,7 +226,7 @@ public class UserInterface {
             }
         }
         System.out.println(adventure.getCurrentArrowCount() + " Arrows");
-    }
+    }*/
 
     public void showEquipment(){
         System.out.println("Equipment: ");
