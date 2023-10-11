@@ -60,10 +60,10 @@ public class UserInterface {
                     break;
                 case "inventory":
                     showInventory();
-                    //showEquipment();
+                    showEquipment();
                     //GØR PÆNT
-                    System.out.println(adventure.getCurrentWeaponDamage());
-                    System.out.println(adventure.getCurrentWeapon());
+                    //System.out.println(adventure.getCurrentWeaponDamage());
+                    //System.out.println(adventure.getCurrentWeapon());
                     break;
                 case "health":
                     showHealth();
@@ -202,6 +202,7 @@ public class UserInterface {
     //drop item method
     public void playerDrop(String userSelection) {
         //String itemName = userSelection.substring(5);
+        adventure.playerUnequip();
         Player player = adventure.getPlayer();
         player.dropItem(userSelection, adventure.getCurrentRoom());
         System.out.println("You have dropped " + userSelection);
@@ -235,9 +236,9 @@ public class UserInterface {
         System.out.println(adventure.getPlayerHealth());
     }
     public void enemiesInRoom(){
-        System.out.println("Enemies in the room:");
         for (Enemy enemy : adventure.enemiesInRoom()){
             if (enemy != null){
+                System.out.println("Enemies in the room:");
                 System.out.println(enemy);
             }
         }

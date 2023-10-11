@@ -9,7 +9,7 @@ public class Adventure {
     public Adventure() {
         this.map = new Map();
         //set the player maximum inventory to
-        this.player = new Player(map.getStartingRoom(), "Unarmed", "Unarmed", 2, 5);
+        this.player = new Player(map.getStartingRoom(), "Unarmed", "Melee", 2, 5);
 
         initializeGame();
     }
@@ -53,6 +53,15 @@ public class Adventure {
     public String getCurrentWeapon(){
         return player.getCurrentWeapon();
     }
+    public void setCurrentArrowCount(int currentArrowCount){
+        this.player.setCurrentArrowCount(currentArrowCount);
+    }
+    public int getCurrentArrowCount(){
+        return player.getCurrentArrowCount();
+    }
+    public void playerUnequip(){
+        this.player.playerUnequip();
+    }
 
     public int getCurrentWeaponDamage(){
         return player.getCurrentWeaponDamage();
@@ -69,12 +78,4 @@ public class Adventure {
     public Attackable playerAttack(){
         return player.playerAttack();
     }
-
-
-/*    public void setCurrentWeaponUnarmed() {
-        this.player.setUnarmed();
-    }
-    public void setCurrentWeaponUnarmedDamage(){
-        this.player.setUnarmedDamage();
-    }*/
 }

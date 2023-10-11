@@ -32,8 +32,13 @@ public class Player {
     public void playerTake(Item item) {
         if (currentRoom.containsItem(item)) {
             if (inventory.size() < maxInventorySize) {
-                inventory.add(item);
-                currentRoom.removeItem(item);
+                if (item instanceof RangedWeaponAmmo) {
+                    setCurrentArrowCount(((RangedWeaponAmmo) item).getArrows());
+                    currentRoom.removeItem(item);
+                } else {
+                    inventory.add(item);
+                    currentRoom.removeItem(item);
+                }
             } else {
                 System.out.println("Your inventory is full.");
             }
@@ -41,6 +46,7 @@ public class Player {
             System.out.println("Item not found in this room");
         }
     }
+
     public Equipable playerEquip(String name) {
         for (Item weapon : inventory) {
             if (weapon instanceof Weapon) {
@@ -51,26 +57,22 @@ public class Player {
                         //inventory.remove(weapon);
                         equipment.add(weapon);
                         return Equipable.EQUIPPED;
-                    }
-                    if (equipment.size() == 1) {
-                        currentWeapon = ((Weapon) weapon).getName();
-                        currentWeaponDamage = ((Weapon) weapon).getDamage();
-                        inventory.add(equipment.get(0));
+                }
+                if (equipment.size() == 1) {
+                        setCurrentWeapon(name);
+                        setCurrentWeaponDamage(((Weapon) weapon).getDamage());
+                        setCurrentWeaponType(((Weapon) weapon).getType());
+                        //inventory.add(equipment.get(0));
                         equipment.remove(equipment.get(0));
-
-                        inventory.remove(weapon);
+                        //inventory.remove(weapon);
                         equipment.add(weapon);
                         return Equipable.EQUIPPED;
-                    }
-
+                }
                 } else {
                     return Equipable.CANT;
                 }
-            } else {
-                return Equipable.NOT_FOUND;
-            }
         }
-        return Equipable.ERROR;
+        return Equipable.NOT_FOUND;
     }
 
 
@@ -88,20 +90,28 @@ public class Player {
         this.currentWeaponDamage = currentWeaponDamage;
     }
 
-    public String getCurrentWeapon(){
+    public String getCurrentWeapon() {
         return currentWeapon;
     }
+
     public int getCurrentWeaponDamage() {
         return currentWeaponDamage;
     }
-    public String getCurrentWeaponType(){
+
+    public String getCurrentWeaponType() {
         return currentWeaponType;
     }
-    public void setCurrentWeaponType(String currentWeaponType){
+
+    public void setCurrentWeaponType(String currentWeaponType) {
         this.currentWeaponType = currentWeaponType;
     }
-    public void setCurrentArrowCount(Item arrowCount){
-        inventory.add(arrowCount);
+
+    public void setCurrentArrowCount(int currentArrowCount) {
+        this.currentArrowCount = currentArrowCount;
+    }
+
+    public int getCurrentArrowCount() {
+        return currentArrowCount;
     }
 
 
@@ -124,7 +134,8 @@ public class Player {
     public Room getCurrentRoom() {
         return currentRoom;
     }
-    public List<Item> itemsInRoom(){
+
+    public List<Item> itemsInRoom() {
         return currentRoom.getItems();
     }
 
@@ -150,9 +161,11 @@ public class Player {
     public List<Item> showInventory() {
         return inventory;
     }
-    public ArrayList<Item>showEquipment(){
+
+    public ArrayList<Item> showEquipment() {
         return equipment;
     }
+
     public int getPlayerHealth() {
         return health;
     }
@@ -171,7 +184,6 @@ public class Player {
     }
 
 
-
     public Eatable playerEat(String name) {
         Item itemToEat = null;
         for (Item food : inventory) {
@@ -188,15 +200,17 @@ public class Player {
                 return Eatable.EATEN;
             } else {
                 return Eatable.CANT;
-        }
+            }
         } else {
             return Eatable.NOT_FOUND;
         }
 
     }
-    public ArrayList<Enemy> enemiesInRoom(){
+
+    public ArrayList<Enemy> enemiesInRoom() {
         return currentRoom.getEnemies();
     }
+
     public Attackable playerAttack() {
         if (enemiesInRoom() != null) {
             for (Enemy enemy : enemiesInRoom()) {
@@ -230,14 +244,14 @@ public class Player {
                         System.out.println("You have: " + healthLeftPlayer + " health left");
                     }
                 }
-                if (Objects.equals(getCurrentWeaponType(), "Melee")){
+                if (Objects.equals(getCurrentWeaponType(), "Melee")) {
                     int healthLeftEnemy = enemy.getEnemyHealth() - getCurrentWeaponDamage();
                     enemy.setEnemyHealth(healthLeftEnemy);
                     System.out.println("You hit the " + enemy.getEnemyName());
                     if (enemy.getEnemyHealth() > 0) {
                         System.out.println("Your enemy have: " + healthLeftEnemy + " health left");
                     }
-                    if (enemy.getEnemyHealth() > 0){
+                    if (enemy.getEnemyHealth() > 0) {
                         int healthLeftPlayer = getPlayerHealth() - enemy.getEnemyDamage();
                         setPlayerHealth(healthLeftPlayer);
                         System.out.println("You have: " + healthLeftPlayer + " health left");
@@ -254,7 +268,17 @@ public class Player {
                 }
             }
 
-        } return null;
+        }
+        if (Objects.equals(getCurrentWeaponType(), "Ranged")) {
+            System.out.println("You fired an arrow, but the room is empty. Practice makes perfect i guess");
+            setCurrentArrowCount(getCurrentArrowCount() - 1);
+            return Attackable.NO_ENEMY;
+        }
+        if (Objects.equals(getCurrentWeaponType(), "Melee")) {
+            System.out.println("You are swinging in the air, but the room is empty. Practice makes perfect i guess");
+            return Attackable.NO_ENEMY;
+        }
+        return null;
     }
 
 }

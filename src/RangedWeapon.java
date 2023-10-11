@@ -6,9 +6,7 @@ public class RangedWeapon extends Weapon{
         this.arrows = arrows;
     }
 
-    public int getArrows(){
-        return arrows;
-    }
+
 
     @Override
     public String toString() {

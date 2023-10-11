@@ -12,9 +12,10 @@ public class Map {
                 " There are footsteps going further in to the cave. Which way would you like to explore?");
         Item Sword = new MeleeWeapon("Sword", "Appears sharp and shiny \uD83D\uDDE1\uFE0F", 4, "Melee");
         room2.addItem(Sword);
-        Item Bow1 = new RangedWeapon("Bow", "looks Elvish", 16, "Ranged", 10);
-        Item Arrow1 = new Item("Arrows", "Bundle of arrows");
+        Item Bow1 = new RangedWeapon("Bow", "looks Elvish", 16, "Ranged", 0);
+        Item Arrow1 = new RangedWeaponAmmo("Arrows", "Bundle of arrows", 0, "Arrows", 20);
         room2.addItem(Bow1);
+        room2.addItem(Arrow1);
 
         Room room3 = new Room(" ", "You stop and see that you are standing on edge of a cliff,\n" +
                 "and you need to cross a wooden bridge to get over to the other side. Would you like to go across or in another direction?\n "
