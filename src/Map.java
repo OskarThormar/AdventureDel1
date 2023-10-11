@@ -9,16 +9,21 @@ public class Map {
 
         Room room2 = new Room(" ", "You can see the remains of a fire and the embers glowing in the dark.\n" +
                 " There are footsteps going further in to the cave. Which way would you like to explore?");
-        Item Sword = new MeleeWeapon("Sword", "appears sharp and shiny", 4, "Melee");
+        Item Sword = new MeleeWeapon("Sword", "appears sharp and shiny", 24, "Melee");
         room2.addItem(Sword);
+        Item Bow1 = new RangedWeapon("Bow", "looks Elvish", 16, "Ranged", 10);
+        Item Arrow1 = new Item("Arrows", "Bundle of arrows");
+        room2.addItem(Bow1);
 
         Room room3 = new Room(" ", "You stop and see that you are standing on edge of a cliff, \n " +
                 "and you need to cross a wooden bridge to get over to the other side. Would you like to go across or in another direction? \n "
                 + "WAAAUUUUUGHH \n" + "There's an enemy in the room!");
         Item food2Room3 = new Food("Mushroom", "Funky looking", -40);
         room3.addItem(food2Room3);
-        Enemy enemyRoom3 = new Enemy("Goblin", " small but aggressive", 20, 3);
-        room3.addEnemy(enemyRoom3);
+        Enemy goblinRoom3 = new Enemy("Goblin", " small but aggressive", 20, 3);
+        Item goblinDagger = new MeleeWeapon("Goblin dagger", "Greasy and disgusting, looks dull", 5, "Melee");
+        room3.addEnemy(goblinRoom3);
+        goblinRoom3.addEnemyItems(goblinDagger);
 
         Room room4 = new Room(" ", "You have followed the sound of water, and now you are standing on a riverbank.\n" +
                 "You see a small boat floating around. The boat seems rather broken, would you like to try to get to the other side or explore another direction?");

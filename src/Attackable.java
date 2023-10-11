@@ -1,4 +1,4 @@
-public enum Attack {
+public enum Attackable {
     CANT,
     SUCCESS,
     NO_WEAPON,

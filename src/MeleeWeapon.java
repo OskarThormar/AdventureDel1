@@ -7,7 +7,7 @@ public class MeleeWeapon extends Weapon{
     public String toString() {
         StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.append(name);
-        stringBuilder.append(", ");
+        stringBuilder.append(" - ");
         stringBuilder.append(description);
         stringBuilder.append(", ");
         stringBuilder.append(damage);

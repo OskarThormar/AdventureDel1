@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
@@ -49,7 +50,6 @@ public class UserInterface {
 
     private void handleUserInput() {
         boolean menuLoop = true;
-
         while (menuLoop) {
             String[] userSelection = keyboard.nextLine().toLowerCase().trim().split(" ");
             String firstWord = userSelection[0];
@@ -94,15 +94,19 @@ public class UserInterface {
                 case "equip":
                     if (userSelection.length > 1) {
                         Equipable result = adventure.playerEquip(userSelection[1]);
-                        switch (result){
-                            case NOT_FOUND -> System.out.println("No such thing");
-                            case CANT -> System.out.println("You can't equip that");
-                            case EQUIPPED ->{
-                                System.out.println("You have equipped");
-                                System.out.println("Current weapon:" + adventure.getCurrentWeapon());
-                            }
-
-
+                        switch (result) {
+                            case NOT_FOUND:
+                                System.out.println("no such thing1");
+                                break;
+                            case CANT:
+                                System.out.println("You can't equip that");
+                                break;
+                            case EQUIPPED:
+                                System.out.println("You have equipped: " + adventure.getCurrentWeapon());
+                                break;
+                            default:
+                                System.out.println("ERROR");
+                                break;
                         }
                     }
                 case "eat":
@@ -124,6 +128,7 @@ public class UserInterface {
                                 break;
                             default:
                                 System.err.println("Internal error");
+                                break;
                         }
                     } else {
                         System.out.println("Eat what?");
@@ -146,7 +151,8 @@ public class UserInterface {
                     }
                     break;
                 case "attack":
-                    playerAttack();
+                    //playerAttack();
+                    adventure.playerAttack();
                     break;
                 default:
                     System.out.println("I don't understand");
@@ -220,6 +226,14 @@ public class UserInterface {
         } else {
             System.out.println("inventory is empty");
         }
+        ArrayList<Item> equipment = adventure.showEquipment();
+        if (equipment != null){
+            for (Item item : equipment){
+                System.out.println(item.getName());
+            }
+        } else {
+            System.out.println("You are not wearing any Equipment");
+        }
     }
 
     public void showHealth(){
@@ -233,12 +247,14 @@ public class UserInterface {
             }
         }
     }
-    public void playerAttack(){
+/*    public void playerAttack(){
         if (adventure.enemiesInRoom() != null){
             for (Enemy enemy : adventure.enemiesInRoom()){
                 int healthLeftEnemy = enemy.getEnemyHealth() - adventure.getCurrentWeaponDamage();
                 enemy.setEnemyHealth(healthLeftEnemy);
                 if (enemy.getEnemyHealth() < 1){
+                    adventure.enemyDeath();
+                }
 
                 }
                 System.out.println("monster liv tilbage " + healthLeftEnemy);
@@ -251,6 +267,6 @@ public class UserInterface {
 
             }
         }
-    }
+    }*/
 }
 

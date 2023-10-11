@@ -4,11 +4,12 @@ import java.util.List;
 public class Adventure {
     private Player player;
     private Map map;
+    private Enemy enemy;
 
     public Adventure() {
         this.map = new Map();
         //set the player maximum inventory to
-        this.player = new Player(map.getStartingRoom(), "Unarmed", 2, 5);
+        this.player = new Player(map.getStartingRoom(), "Unarmed", "Unarmed", 2, 5);
 
         initializeGame();
     }
@@ -34,11 +35,14 @@ public class Adventure {
     public List<Item> showInventory() {
         return player.showInventory();
     }
+    public ArrayList<Item>showEquipment(){
+        return player.showEquipment();
+    }
     public int getPlayerHealth(){
-        return player.healthPoints();
+        return player.getPlayerHealth();
     }
     public void setPlayerHealth(int health){
-        this.player.setHealthPoints(health);
+        this.player.setPlayerHealth(health);
     }
     public Eatable playerEat(String name){
         return player.playerEat(name);
@@ -61,6 +65,9 @@ public class Adventure {
     }
     public ArrayList<Enemy> enemiesInRoom(){
         return player.enemiesInRoom();
+    }
+    public Attackable playerAttack(){
+        return player.playerAttack();
     }
 
 

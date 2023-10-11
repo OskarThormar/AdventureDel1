@@ -1,15 +1,23 @@
+import java.util.ArrayList;
+
 public class Enemy {
     private String enemyName;
     private int enemyHealth;
     private int enemyDamage;
     private String enemyDescription;
+    private ArrayList<Enemy> enemies;
+    private ArrayList<Item> enemyItems;
 
     public Enemy(String enemyName, String enemyDescription, int enemyHealth, int enemyDamage) {
         this.enemyName = enemyName;
         this.enemyDescription = enemyDescription;
         this.enemyHealth = enemyHealth;
         this.enemyDamage = enemyDamage;
+        this.enemies = new ArrayList<>();
+        this.enemyItems = new ArrayList<>();
     }
+    Item goblinDagger = new MeleeWeapon("Goblin dagger", "Greasy and disgusting, looks dull", 5, "Melee");
+
     public String getEnemyName(){
         return enemyName;
     }
@@ -33,6 +41,17 @@ public class Enemy {
     }
     public void setEnemyDescription(){
         this.enemyDescription = enemyDescription;
+    }
+    public ArrayList<Item> addEnemyItems(Item item) {
+        this.enemyItems.add(item);
+        return null;
+    }
+    public Item getEnemyItems(){
+        for (Item enemyItem : enemyItems) {
+            return enemyItem;
+        }
+
+        return null;
     }
 
     @Override
