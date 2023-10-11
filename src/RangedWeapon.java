@@ -12,11 +12,7 @@ public class RangedWeapon extends Weapon{
 
     @Override
     public String toString() {
-        return "RangedWeapon{" +
-                "damage=" + damage +
-                ", type='" + type + '\'' +
-                ", name='" + name + '\'' +
-                ", description='" + description + '\'' +
-                '}';
+        return "RangedWeapon" +
+                "damage=" + damage + ", type='" + type +", name='" + name + ", description='" + description;
     }
 }

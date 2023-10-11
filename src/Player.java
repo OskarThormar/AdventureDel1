@@ -43,12 +43,12 @@ public class Player {
     }
     public Equipable playerEquip(String name) {
         for (Item weapon : inventory) {
-            if (weapon.getName().equalsIgnoreCase(name)){
-                if (weapon instanceof Weapon) {
-                    if (equipment.isEmpty()) {
-                        currentWeapon = ((Weapon) weapon).getName();
-                        currentWeaponDamage = ((Weapon) weapon).getDamage();
-                        inventory.remove(weapon);
+            if (weapon instanceof Weapon) {
+                if (equipment.isEmpty()) {
+                        setCurrentWeapon(name);
+                        setCurrentWeaponDamage(((Weapon) weapon).getDamage());
+                        setCurrentWeaponType(((Weapon) weapon).getType());
+                        //inventory.remove(weapon);
                         equipment.add(weapon);
                         return Equipable.EQUIPPED;
                     }
@@ -73,57 +73,13 @@ public class Player {
         return Equipable.ERROR;
     }
 
- /*   public Equipable playerEquip1(String name) {
-        Item itemToEquip = null;
-        for (Item weapon : inventory) {
-            if (weapon.getName().equalsIgnoreCase(name)) {
-                itemToEquip = weapon;
-                break;
-            }
-            if (itemToEquip != null) {
-                if (itemToEquip instanceof Weapon) {
-                    currentWeapon = ((Weapon) itemToEquip).getName();
-                    currentWeaponDamage = ((Weapon) itemToEquip).getDamage();
-                    if ()
-                        inventory.remove(itemToEquip);
-                    equipment.add(itemToEquip);
-                    return Equipable.EQUIPPED;
-                } else {
-                    return Equipable.CANT;
-                }
-            } return Equipable.NOT_FOUND;
+
+        public void playerUnequip() {
+            equipment.remove(equipment.get(0));
+            //inventory.add(item);
+            setCurrentWeapon("Unarmed ");
+            setCurrentWeaponDamage(unarmedDamage);
         }
-
-    }*/
-    public void playerUnequip(Item item) {
-        equipment.remove(item);
-        inventory.add(item);
-        setCurrentWeapon("unarmed");
-        setCurrentWeaponDamage(unarmedDamage);
-    }
-
-/*    public Attackable playerAttack() {
-        if (enemiesInRoom() != null){
-            for (Enemy enemy : enemiesInRoom()){
-                int healthLeftEnemy = enemy.getEnemyHealth() - getCurrentWeaponDamage();
-                enemy.setEnemyHealth(healthLeftEnemy);
-                if (enemy.getEnemyHealth() < 1){
-                    enemiesArrayList().remove(enemy);
-                    System.out.println(enemy.getEnemyName() + "has died");
-                }
-                System.out.println("monster liv tilbage " + healthLeftEnemy);
-                if (enemy.getEnemyHealth() > 0){
-                    int healthLeftPlayer = getPlayerHealth() - enemy.getEnemyDamage();
-                    setPlayerHealth(healthLeftPlayer);
-                    System.out.println(" spiller liv tilbage " + healthLeftPlayer);
-                } else {
-                    System.out.println(enemy.getEnemyName() + "is already dead");
-                }
-            }
-
-        }
-    }*/
-
     public void setCurrentWeapon(String currentWeapon) {
         this.currentWeapon = currentWeapon;
     }
@@ -147,6 +103,7 @@ public class Player {
     public void setCurrentArrowCount(Item arrowCount){
         inventory.add(arrowCount);
     }
+
 
     //Allows the player to drop the item, and add the item to the current room.
     public void dropItem(String itemName, Room currentRoom) {
@@ -241,40 +198,49 @@ public class Player {
         return currentRoom.getEnemies();
     }
     public Attackable playerAttack() {
-        if (enemiesInRoom() != null){
-            for (Enemy enemy : enemiesInRoom()){
-                if (Objects.equals(getCurrentWeaponType(), "Ranged")){
-                    if (inventory.contains())
-                    int healthLeftEnemy = enemy.getEnemyHealth() - getCurrentWeaponDamage();
-                    enemy.setEnemyHealth(healthLeftEnemy);
-                    if (enemy.getEnemyHealth() > 0){
-                        System.out.println("monster liv tilbage " + healthLeftEnemy);
-                    }
-                    if (enemy.getEnemyHealth() > 0){
+        if (enemiesInRoom() != null) {
+            for (Enemy enemy : enemiesInRoom()) {
+                if (Objects.equals(getCurrentWeaponType(), "Ranged")) {
+                    if (currentArrowCount > 0) {
+                        int healthLeftEnemy = enemy.getEnemyHealth() - getCurrentWeaponDamage();
+                        enemy.setEnemyHealth(healthLeftEnemy);
+                        setCurrentArrowCount(getCurrentArrowCount() - 1);
+                        System.out.println("You fired an arrow at " + enemy.getEnemyName() + " you have " + getCurrentArrowCount() + " arrows left");
+                        if (enemy.getEnemyHealth() > 0) {
+                            System.out.println("Your enemy have: " + healthLeftEnemy + " health left");
+                        }
+                        if (enemy.getEnemyHealth() > 0) {
+                            int healthLeftPlayer = getPlayerHealth() - enemy.getEnemyDamage();
+                            setPlayerHealth(healthLeftPlayer);
+                            System.out.println("You have: " + healthLeftPlayer + " health left");
+                            return Attackable.SUCCESS;
+                        } else {
+                            System.out.println(enemy.getEnemyName() + " died");
+                            System.out.println("It dropped: ");
+                            System.out.println(enemy.getEnemyItems());
+                            currentRoom.addItem(enemy.getEnemyItems());
+                            currentRoom.removeEnemies(enemy);
+                            return Attackable.CANT;
+                        }
+                    } else {
+                        System.out.println("You dont have any arrows");
+                        System.out.println(enemiesInRoom() + " attacks!");
                         int healthLeftPlayer = getPlayerHealth() - enemy.getEnemyDamage();
                         setPlayerHealth(healthLeftPlayer);
-                        System.out.println(" spiller liv tilbage " + healthLeftPlayer);
-                        return Attackable.SUCCESS;
-                    } else {
-                        System.out.println(enemy.getEnemyName() + " died");
-                        System.out.println("It dropped: ");
-                        currentRoom.addItem(enemy.getEnemyItems());
-                        currentRoom.removeEnemies(enemy);
-
-                        System.out.println(currentRoom.getItems());
-                        return Attackable.CANT;
+                        System.out.println("You have: " + healthLeftPlayer + " health left");
                     }
                 }
                 if (Objects.equals(getCurrentWeaponType(), "Melee")){
                     int healthLeftEnemy = enemy.getEnemyHealth() - getCurrentWeaponDamage();
                     enemy.setEnemyHealth(healthLeftEnemy);
-                    if (enemy.getEnemyHealth() > 0){
-                        System.out.println("monster liv tilbage " + healthLeftEnemy);
+                    System.out.println("You hit the " + enemy.getEnemyName());
+                    if (enemy.getEnemyHealth() > 0) {
+                        System.out.println("Your enemy have: " + healthLeftEnemy + " health left");
                     }
                     if (enemy.getEnemyHealth() > 0){
                         int healthLeftPlayer = getPlayerHealth() - enemy.getEnemyDamage();
                         setPlayerHealth(healthLeftPlayer);
-                        System.out.println(" spiller liv tilbage " + healthLeftPlayer);
+                        System.out.println("You have: " + healthLeftPlayer + " health left");
                         return Attackable.SUCCESS;
                     } else {
                         System.out.println(enemy.getEnemyName() + " died");
