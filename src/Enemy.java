@@ -16,7 +16,7 @@ public class Enemy {
         this.enemies = new ArrayList<>();
         this.enemyItems = new ArrayList<>();
     }
-    Item goblinDagger = new MeleeWeapon("Goblin dagger", "Greasy and disgusting, looks dull", 5, "Melee");
+   // Item goblinDagger = new MeleeWeapon("Goblin dagger", "Greasy and disgusting, looks dull", 5, "Melee");
 
     public String getEnemyName(){
         return enemyName;
@@ -61,11 +61,11 @@ public class Enemy {
         stringBuilder.append(enemyName);
         stringBuilder.append(", ");
         stringBuilder.append(enemyDescription);
-        stringBuilder.append(" - ");
+        stringBuilder.append(" deals ");
         stringBuilder.append(enemyDamage);
-        stringBuilder.append(" damage and ");
+        stringBuilder.append(" damage and has ");
         stringBuilder.append(enemyHealth);
-        stringBuilder.append("health");
+        stringBuilder.append(" health");
         return stringBuilder.toString();
     }
 }
