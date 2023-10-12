@@ -20,6 +20,9 @@ public class Item {
     public String getDescription() {
         return description;
     }
+    public String getCurrentWeaponType(){
+        return null;
+    }
     @Override
     public String toString() {
         return name + " " + description;

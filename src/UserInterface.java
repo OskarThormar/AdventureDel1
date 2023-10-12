@@ -85,13 +85,10 @@ public class UserInterface {
                     //secondword
                     playerDrop(userSelection[1]);
                     break;
-                case "unequip":
-                    if (userSelection.length > 1) {
-                    }
                 case "equip":
-                    if (userSelection.length == 3){
-                        Equipable result1 = adventure.playerEquip(userSelection[1].trim()+userSelection[2].trim());
-                        switch (result1) {
+                    if (userSelection.length == 2){
+                        Equipable result = adventure.playerEquip(userSelection[1]);
+                        switch (result) {
                             case NOT_FOUND:
                                 System.out.println("no such thing1");
                                 break;
@@ -99,15 +96,15 @@ public class UserInterface {
                                 System.out.println("You can't equip that");
                                 break;
                             case EQUIPPED:
-                                System.out.println("You have equipped: " + adventure.getCurrentWeapon());
+                                System.out.println("You have equipped: " + adventure.getCurrentWeaponArray());
                                 break;
                             default:
                                 System.out.println("ERROR");
                                 break;
                         }
                     } else {
-                        Equipable playerToEquipTwoWord = adventure.playerEquip(userSelection[1]);
-                        switch (playerToEquipTwoWord) {
+                        Equipable result = adventure.playerEquip(userSelection[1].trim() + userSelection[2].trim());
+                        switch (result) {
                             case NOT_FOUND:
                                 System.out.println("no such thing1");
                                 break;
@@ -115,52 +112,51 @@ public class UserInterface {
                                 System.out.println("You can't equip that");
                                 break;
                             case EQUIPPED:
-                                System.out.println("You have equipped: " + adventure.getCurrentWeapon());
+                                System.out.println("You have equipped: " + adventure.getCurrentWeaponArray());
                                 break;
                             default:
                                 System.out.println("ERROR");
                                 break;
                         }
-                    }
-                    if (userSelection.length == 3) {
-                        Equipable playerToEquipThreeWord = adventure.playerEquip(userSelection[1].trim()+userSelection[2].trim());
-                        switch (playerToEquipThreeWord) {
-                            case NOT_FOUND:
-                                System.out.println("no such thing1");
-                                break;
-                            case CANT:
-                                System.out.println("You can't equip that");
-                                break;
-                            case EQUIPPED:
-                                System.out.println("You have equipped: " + adventure.getCurrentWeapon());
-                                break;
-                            default:
-                                System.out.println("ERROR");
-                                break;
-                        }
-                    }
-                case "eat":
-                    if (userSelection.length > 1) {
-                        Eatable playerToEat = adventure.playerEat(userSelection[1]);
-                        switch (playerToEat) {
-                            case NOT_FOUND:
-                                System.out.println("No such thing");
-                                break;
-                            case CANT:
-                                System.out.println("You can't eat that");
-                                break;
-                            case EATEN:
-                                System.out.println("You have eaten and gained health ❤\uFE0F");
-                                System.out.println("Current healthstatus: " + adventure.getPlayerHealth());
-                                break;
-                            default:
-                                System.err.println("Internal error");
-                                break;
-                        }
-                    } else {
-                        System.out.println("Sorry, what would you like to eat?");
                     }
                     break;
+                    case "eat":
+                            if (userSelection.length == 2) {
+                                Eatable playerToEat = adventure.playerEat(userSelection[1]);
+                                switch (playerToEat) {
+                                    case NOT_FOUND:
+                                        System.out.println("No such thing");
+                                        break;
+                                    case CANT:
+                                        System.out.println("You can't eat that");
+                                        break;
+                                    case EATEN:
+                                        System.out.println("You have eaten and gained health ❤\uFE0F");
+                                        System.out.println("Current healthstatus: " + adventure.getPlayerHealth());
+                                        break;
+                                    default:
+                                        System.err.println("Internal error");
+                                        break;
+                                }
+                            } else {
+                                Eatable playerToEat = adventure.playerEat(userSelection[1].trim() + userSelection[2].trim());
+                                switch (playerToEat) {
+                                    case NOT_FOUND:
+                                        System.out.println("No such thing");
+                                        break;
+                                    case CANT:
+                                        System.out.println("You can't eat that");
+                                        break;
+                                    case EATEN:
+                                        System.out.println("You have eaten and gained health ❤\uFE0F");
+                                        System.out.println("Current healthstatus: " + adventure.getPlayerHealth());
+                                        break;
+                                    default:
+                                        System.err.println("Internal error");
+                                        break;
+                                }
+                            }
+                            break;
                 case "go":
                     if (userSelection.length > 1) {
                         //String secondWordMove = userSelection[1];
@@ -180,6 +176,7 @@ public class UserInterface {
                 case "attack":
                     //playerAttack();
                     adventure.playerAttack();
+                    playerDeath();
                     break;
                 default:
                     System.out.println("I don't understand");
@@ -228,7 +225,6 @@ public class UserInterface {
 
     //drop item method
     public void playerDrop(String userSelection) {
-        //String itemName = userSelection.substring(5);
         adventure.playerUnequip();
         Player player = adventure.getPlayer();
         player.dropItem(userSelection, adventure.getCurrentRoom());
@@ -241,34 +237,18 @@ public class UserInterface {
             if (item instanceof Food) {
                 Food foodItem = (Food) item;
                 System.out.println(item.getName() + " • " + foodItem.getHealth() + " healthpoints! ");
-
-            } else {
-                System.out.println("You don't have any items in your inventory.");
+            }
+            if (item instanceof Weapon) {
+                Weapon weapon = (Weapon) item;
+                System.out.println(item.getName() + " • " + weapon.getDamage() + " damage! ");
             }
         }
         System.out.println(adventure.getCurrentArrowCount() + " Arrows");
     }
-    public void playerEquip(String userSelection){
-        Item itemToEquip = adventure.getInventoryByItemName(userSelection);
-        adventure.playerEquip(userSelection);
-    }
-
- /*   public void showInventory() {
-        System.out.println("\uD83C\uDF92 Inventory: ");
-        for (Item item : adventure.showInventory()) {
-            if (adventure.showInventory() != null) {
-                System.out.println(item.getName());
-            } else {
-                System.out.println("You don't have any items in your inventory.");
-            }
-        }
-        System.out.println(adventure.getCurrentArrowCount() + " Arrows");
-    }*/
-
     public void showEquipment(){
         System.out.println("Equipment: ");
-        System.out.println(adventure.getCurrentWeapon());
-        System.out.println(adventure.getCurrentWeaponDamage());
+        //System.out.println(adventure.getCurrentWeapon() + " : " + adventure.getCurrentWeaponDamage() + " damage");
+        System.out.println(adventure.getCurrentWeaponArray());
     }
 
     public void showHealth(){
@@ -282,29 +262,5 @@ public class UserInterface {
             }
         }
     }
-    public void indexName(){
-        System.out.println(adventure.getIndexName());
-    }
-/*    public void playerAttack(){
-        if (adventure.enemiesInRoom() != null){
-            for (Enemy enemy : adventure.enemiesInRoom()){
-                int healthLeftEnemy = enemy.getEnemyHealth() - adventure.getCurrentWeaponDamage();
-                enemy.setEnemyHealth(healthLeftEnemy);
-                if (enemy.getEnemyHealth() < 1){
-                    adventure.enemyDeath();
-                }
-
-                }
-                System.out.println("monster liv tilbage " + healthLeftEnemy);
-                if (enemy.getEnemyHealth() > 0){
-                    int healthLeftPlayer = adventure.getPlayerHealth() - enemy.getEnemyDamage();
-                    adventure.setPlayerHealth(healthLeftPlayer);
-                    System.out.println(" spiller liv tilbage " + healthLeftPlayer);
-                } else {
-                    System.out.println(enemy.getEnemyName() + "is already dead");
-
-            }
-        }
-    }*/
 }
 

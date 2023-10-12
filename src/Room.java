@@ -10,6 +10,7 @@ public class Room {
     private Room west;
     private List<Item> items;
     private ArrayList<Enemy> enemies;
+    private String enemyRoar;
 
 
     public Room(String name, String description) {
@@ -100,5 +101,8 @@ public class Room {
     }
     public void removeEnemies(Enemy enemy){
         enemies.remove(enemy);
+    }
+    public String getEnemyRoar(){
+        return enemyRoar;
     }
 }

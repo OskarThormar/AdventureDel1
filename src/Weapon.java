@@ -16,9 +16,15 @@ public class Weapon extends Item{
     }
 
     @Override
+    public String getCurrentWeaponType() {
+        return super.getCurrentWeaponType();
+    }
+
+    @Override
     public String getDescription() {
         return super.getDescription();
     }
+
 
     @Override
     public String toString() {

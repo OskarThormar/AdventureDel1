@@ -9,8 +9,7 @@ public class Adventure {
 
     public Adventure() {
         this.map = new Map();
-        //set the player maximum inventory to
-        this.player = new Player(map.getStartingRoom(), "Unarmed", "Melee", 2, 5);
+        this.player = new Player(map.getStartingRoom(), "Unarmed", "Melee", 2);
 
         initializeGame();
     }
@@ -59,6 +58,9 @@ public class Adventure {
     }
     public String getCurrentWeapon(){
         return player.getCurrentWeapon();
+    }
+    public Item getCurrentWeaponArray(){
+        return player.getCurrentWeaponArray1();
     }
     public void setCurrentArrowCount(int currentArrowCount){
         this.player.setCurrentArrowCount(currentArrowCount);

@@ -44,7 +44,7 @@ public class Map {
                 "You suddenly feel a wooden box, and it seems like the path splits up in serveral directions\n"+
                 "which way would you to go? \n");
         Item arrow2 = new RangedWeaponAmmo("Old Arrows", "OldArrows", " old, but maybe still working \uD83D\uDC81\u200D♂\uFE0F", 1, "arrow", 1);
-        Enemy ghostRoom6 = new Enemy("Nightshade ghost", " a dark shadow ", 30, 5);
+        Enemy ghostRoom6 = new Enemy("Nightshade ghost", " a dark shadow ", 30, 5, "\uD83D\uDCA5 WAAAUUUUUGHH!!!! \uD83D\uDCA5 \n" + "There's an enemy in the room! \uD83D\uDE31");
         Item key = new Item("Key", "Key", "A rusty old key.  \uD83D\uDDDD\uFE0F");
             room6.addEnemy(ghostRoom6);
             ghostRoom6.addEnemyItems(key);
@@ -54,15 +54,15 @@ public class Map {
                 "Which way would you like to go?");
         Enemy WaterSpiritRoom7 = new Enemy("Water Spirit ", " glowing enchantingly in blue tones \uD83E\uDDDE\u200D♀\uFE0F", 10, 2);
         room7.addEnemy(WaterSpiritRoom7);
-        Item water = new Food("Bottle of water", "BottleOfWater", "Magical crystal and crystal clear \uD83D\uDCA7", 10);
-        Item Sword = new MeleeWeapon("Sword", "Sword", "Appears sharp and shiny \uD83D\uDDE1\uFE0F", 4, "Melee");
+        Item water = new Food("Water Bottle", "WaterBottle", "Magical crystal and crystal clear \uD83D\uDCA7", 10);
+        Item Sword = new MeleeWeapon("Sword", "Sword", "Appears sharp and shiny \uD83D\uDDE1\uFE0F", 16, "Melee");
         room7.addItem(Sword);
         room7.addItem(water);
 
         Room room8 = new Room(" ", "You feel a sudden heat, and starts to sweat. You look down and see lava floating \n"+
                 "around you, dangerously close. There are stones floating around in the lava. Where would you like to go?");
         Item beer = new Food("Beer", "Beer", "Refreshing and very much needed  \uD83C\uDF7A", 20);
-        Enemy lavamonster = new Enemy("Lava Monster", "A giant creature made of burning lava that blazes with intense heat", 80, 20);
+        Enemy lavamonster = new Enemy("Lava Monster", "A giant creature made of burning lava that blazes with intense heat", 80, 20, "\uD83D\uDCA5 WAAAUUUUUGHH!!!! \uD83D\uDCA5 \n" + "There's an enemy in the room! \uD83D\uDE31");
         room8.addEnemy(lavamonster);
         room8.addItem(beer);
 

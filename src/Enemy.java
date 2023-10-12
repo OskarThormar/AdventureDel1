@@ -5,16 +5,18 @@ public class Enemy {
     private int enemyHealth;
     private int enemyDamage;
     private String enemyDescription;
+    private String enemyRoar;
     private ArrayList<Enemy> enemies;
     private ArrayList<Item> enemyItems;
 
-    public Enemy(String enemyName, String enemyDescription, int enemyHealth, int enemyDamage) {
+    public Enemy(String enemyName, String enemyDescription, int enemyHealth, int enemyDamage, String enemyRoar) {
         this.enemyName = enemyName;
         this.enemyDescription = enemyDescription;
         this.enemyHealth = enemyHealth;
         this.enemyDamage = enemyDamage;
         this.enemies = new ArrayList<>();
         this.enemyItems = new ArrayList<>();
+        this.enemyRoar = enemyRoar;
     }
    // Item goblinDagger = new MeleeWeapon("Goblin dagger", "Greasy and disgusting, looks dull", 5, "Melee");
 
@@ -52,6 +54,9 @@ public class Enemy {
         }
 
         return null;
+    }
+    public String getEnemyRoar(){
+        return enemyRoar;
     }
 
     @Override
