@@ -68,11 +68,12 @@ public class Map {
         room8.addEnemy(lavamonster);
         room8.addItem(beer);
 
-        Room room9 = new Room(" ", "You are now deep into the cave, you have to climb up a steep hill to go west. \n "+
-                "The hillside is entirely covered in vines, and nestled among the leaves, you see the most beautiful flower. \n " +
+        Room room9 = new Room(" ", "You are now deep into the cave, you have to climb up a steep hill to go west. \n"+
+                "The hillside is entirely covered in vines, and nestled among the leaves, you see the most beautiful flower. \n" +
                 "Can you take the climp, or go in another direction?");
         Item boots = new Item("Boots", "Boots", " With an exceptional grip \uD83E\uDD7E");
         Item flower = new Food("Flower", "Flower", "No color can describe this flower ", 5);
+        Item chest = new Item("Chest", "chest", "a big golden shiny chest, but it is locked");
         room9.addItem(flower);
         room9.addItem(boots);
 
