@@ -22,7 +22,7 @@ public class Player {
         this.currentWeaponType = currentWeaponType;
         this.currentWeaponDamage = currentWeaponDamage;
         this.inventory = new ArrayList<>();
-        this.equipment = new ArrayList<>(1);
+        this.equipment = new ArrayList<>();
     }
 
     //Check the items in the currentRoom before adding them to the inventory
@@ -69,18 +69,16 @@ public class Player {
                             Item equippedItem = equipment.get(0);
                             equipment.remove(equippedItem);
                             equipment.add(item);
-                            //setCurrentWeaponType(equipment.get(0).getCurrentWeaponType());
-                            //setCurrentWeaponType(((Weapon) item).getType());
-                            //setCurrentWeapon(indexName);
-                            //setCurrentWeaponDamage(((Weapon) item).getDamage());
+                            Item newEquippedItem = equipment.get(0);
+                            setCurrentWeaponDamage(newEquippedItem.getCurrentWeaponDamage());
+                            setCurrentWeaponType(newEquippedItem.getCurrentWeaponType());
                             return Equipable.EQUIPPED;
                         } else {
                             equipment.add(item);
-                            //setCurrentWeaponType(equipment.get(0).getCurrentWeaponType());
-                            //setCurrentWeaponType(((Weapon) item).getType());
+                            Item newEquippedItem = equipment.get(0);
+                            setCurrentWeaponDamage(newEquippedItem.getCurrentWeaponDamage());
+                            setCurrentWeaponType(newEquippedItem.getCurrentWeaponType());
                             return Equipable.EQUIPPED;
-                            //setCurrentWeapon(indexName);
-                            //setCurrentWeaponDamage(((Weapon) item).getDamage());
                         }
                     }
                     if (item instanceof RangedWeapon){
@@ -88,18 +86,16 @@ public class Player {
                             Item equippedItem = equipment.get(0);
                             equipment.remove(equippedItem);
                             equipment.add(item);
-                            //setCurrentWeaponType(equipment.get(0).getCurrentWeaponType());
-                            //setCurrentWeaponType(((Weapon) item).getType());
-                            //setCurrentWeapon(indexName);
-                            //setCurrentWeaponDamage(((Weapon) item).getDamage());
+                            Item newEquippedItem = equipment.get(0);
+                            setCurrentWeaponDamage(newEquippedItem.getCurrentWeaponDamage());
+                            setCurrentWeaponType(newEquippedItem.getCurrentWeaponType());
                             return Equipable.EQUIPPED;
                         } else {
                             equipment.add(item);
-                            //setCurrentWeaponType(equipment.get(0).getCurrentWeaponType());
-                            //setCurrentWeaponType(((Weapon) item).getType());
+                            Item newEquippedItem = equipment.get(0);
+                            setCurrentWeaponDamage(newEquippedItem.getCurrentWeaponDamage());
+                            setCurrentWeaponType(newEquippedItem.getCurrentWeaponType());
                             return Equipable.EQUIPPED;
-                            //setCurrentWeapon(indexName);
-                            //setCurrentWeaponDamage(((Weapon) item).getDamage());
                     }
 
                     }
@@ -112,13 +108,17 @@ public class Player {
     }
 
 
-        public void playerUnequip() {
-            //equipment.remove(equipment.get(0));
-            //inventory.add(item);
-            setCurrentWeapon("Unarmed ");
-            setCurrentWeaponDamage(unarmedDamage);
-            setCurrentWeaponType("Melee");
+    public void playerUnequip() {
+        if (!equipment.isEmpty()){
+            Item equippedItem = equipment.get(0);
+            equipment.remove(equippedItem);
         }
+            setCurrentWeapon("Unarmed");
+            setCurrentWeaponDamage(unarmedDamage);
+            setCurrentWeaponType("unarmed");
+    }
+
+
     public void setCurrentWeapon(String currentWeapon) {
         this.currentWeapon = currentWeapon;
     }
@@ -259,19 +259,19 @@ public class Player {
     public Eatable playerEat(String indexName) {
         if (indexName != null) {
             for (Item food : inventory) {
-                if (food.getIndexName().equalsIgnoreCase(indexName)) {
-                    if (food instanceof Food) {
+                if (food instanceof Food) {
+                    if (food.getIndexName().equalsIgnoreCase(indexName)) {
                         int healthRestored = ((Food) food).getHealth();
                         health += healthRestored;
                         inventory.remove(food);
                         return Eatable.EATEN;
-                    } else {
-                        return Eatable.CANT;
                     }
                 } else {
-                    return Eatable.NOT_FOUND;
+                    return Eatable.CANT;
                 }
             }
+        } else {
+            return Eatable.NOT_FOUND;
         } return null;
     }
     /*public Eatable playerEat(String name) {
@@ -302,8 +302,30 @@ public class Player {
     }
 
     public Attackable playerAttack() {
-        if (enemiesInRoom() != null) {
+        if (!enemiesInRoom().isEmpty()) {
             for (Enemy enemy : enemiesInRoom()) {
+                if (Objects.equals(getCurrentWeaponType(), "unarmed")){
+                    int healthLeftEnemy = enemy.getEnemyHealth() - getCurrentWeaponDamage();
+                    enemy.setEnemyHealth(healthLeftEnemy);
+                    System.out.println("You hit the " + enemy.getEnemyName());
+                    if (enemy.getEnemyHealth() > 0) {
+                        System.out.println("Your enemy have: " + healthLeftEnemy + " health left");
+                    }
+                    if (enemy.getEnemyHealth() > 0) {
+                        int healthLeftPlayer = getPlayerHealth() - enemy.getEnemyDamage();
+                        setPlayerHealth(healthLeftPlayer);
+                        System.out.println(enemy.getEnemyName() + " hits you back");
+                        System.out.println("You have: " + healthLeftPlayer + " health left");
+                        return Attackable.SUCCESS;
+                    } else {
+                        System.out.println(enemy.getEnemyName() + " died");
+                        System.out.println("It dropped: ");
+                        System.out.println(enemy.getEnemyItems());
+                        currentRoom.addItem(enemy.getEnemyItems());
+                        currentRoom.removeEnemies(enemy);
+                        return Attackable.CANT;
+                    }
+                }
                 if (equipment.get(0) instanceof RangedWeapon) {
                     if (currentArrowCount > 0) {
                         int healthLeftEnemy = enemy.getEnemyHealth() - getCurrentWeaponDamage();
@@ -349,20 +371,31 @@ public class Player {
                         return Attackable.SUCCESS;
                     } else {
                         System.out.println(enemy.getEnemyName() + " died");
-                        System.out.println("It dropped: ");
-                        System.out.println(enemy.getEnemyItems());
-                        currentRoom.addItem(enemy.getEnemyItems());
-                        currentRoom.removeEnemies(enemy);
+                        if (enemy.getEnemyItems() != null){
+                            System.out.println("It dropped: ");
+                            System.out.println(enemy.getEnemyItems());
+                            currentRoom.addItem(enemy.getEnemyItems());
+                            currentRoom.removeEnemies(enemy);
+                        } else {
+                            System.out.println("It dropped: ");
+                            System.out.println("Nothing");
+                            currentRoom.removeEnemies(enemy);
+                        }
                         return Attackable.CANT;
                     }
                 }
             }
-        } else {
-            if (enemiesInRoom() == null){
+        }
+        if (enemiesInRoom().isEmpty()){
+            if (Objects.equals(getCurrentWeaponType(), "unarmed")){
+                System.out.println("You don't have any weapon equipped. You are swinging in the air, but the room is empty. Practice makes perfect i guess");
+                return Attackable.NO_ENEMY;
+            } else {
                 if (equipment.get(0) instanceof RangedWeapon) {
                     if (currentArrowCount > 0){
                         System.out.println("You fired an arrow, but the room is empty. Practice makes perfect i guess");
                         setCurrentArrowCount(getCurrentArrowCount() - 1);
+                        System.out.println(getCurrentArrowCount() + " arrows left");
                         return Attackable.NO_ENEMY;
                     } else {
                         System.out.println("You dont have any arrows, the room is also empty, what are you doing?");
@@ -373,6 +406,7 @@ public class Player {
                     return Attackable.NO_ENEMY;
                 }
             }
+
         }
         return null;
     }

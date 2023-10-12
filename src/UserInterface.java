@@ -82,8 +82,14 @@ public class UserInterface {
                     }
                     break;
                 case "drop":
-                    //secondword
-                    playerDrop(userSelection[1]);
+                    adventure.playerUnequip();
+                    if (userSelection.length > 2){
+                        playerDrop(userSelection[1].trim()+userSelection[2].trim());
+                    }
+                    if (userSelection.length < 3) {
+                        //String secondWordTake = userSelection[1];
+                        playerDrop(userSelection[1]);
+                    }
                     break;
                 case "equip":
                     if (userSelection.length == 2){
@@ -163,6 +169,11 @@ public class UserInterface {
                         switch (userSelection[1]) {
                             case "north", "south", "west", "east":
                                 adventure.move(userSelection[1]);
+                                if (!adventure.getCurrentRoom().getEnemies().isEmpty()){
+                                    for (Enemy enemy : adventure.enemiesInRoom()){
+                                        System.out.println(enemy.getEnemyRoar());
+                                    }
+                                }
                                 System.out.println(adventure.getCurrentRoom().getDescription());
                                 break;
                             default:
@@ -247,7 +258,11 @@ public class UserInterface {
     public void showEquipment(){
         System.out.println("Equipment: ");
         //System.out.println(adventure.getCurrentWeapon() + " : " + adventure.getCurrentWeaponDamage() + " damage");
-        System.out.println(adventure.getCurrentWeaponArray());
+        if (adventure.getCurrentWeaponArray() != null){
+            adventure.getCurrentWeaponArray();
+        } else {
+            System.out.println("Empty");
+        }
     }
 
     public void showHealth(){
@@ -257,6 +272,11 @@ public class UserInterface {
         if (adventure.getPlayerHealth() < 1 ){
             System.out.println("YOU HAVE DIED! GAME OVER");
             System.exit(0);
+        }
+    }
+    public void playerWin(){
+        for (Item item : adventure.showInventory()){
+            if (item instanceof )
         }
     }
     public void enemiesInRoom(){

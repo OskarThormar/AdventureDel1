@@ -5,10 +5,6 @@ public class Food extends Item {
         super(name, indexName, description);
         this.health = health;
     }
-
-    public void foodObjekt(){
-        System.out.println("You found food!");
-    }
     public int getHealth(){
         return health;
     }

@@ -23,6 +23,9 @@ public class Item {
     public String getCurrentWeaponType(){
         return null;
     }
+    public int getCurrentWeaponDamage(){
+        return 0;
+    }
     @Override
     public String toString() {
         return name + " " + description;

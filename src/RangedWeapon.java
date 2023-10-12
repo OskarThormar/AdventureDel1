@@ -7,6 +7,11 @@ public class RangedWeapon extends Weapon{
     }
 
     @Override
+    public int getCurrentWeaponDamage() {
+        return super.getCurrentWeaponDamage();
+    }
+
+    @Override
     public String toString() {
         StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.append(name);

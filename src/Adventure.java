@@ -9,7 +9,7 @@ public class Adventure {
 
     public Adventure() {
         this.map = new Map();
-        this.player = new Player(map.getStartingRoom(), "Unarmed", "Melee", 2);
+        this.player = new Player(map.getStartingRoom(), "Unarmed", "unarmed", 2);
 
         initializeGame();
     }
@@ -86,5 +86,8 @@ public class Adventure {
     }
     public Attackable playerAttack(){
         return player.playerAttack();
+    }
+    public String getEnemyRoar(){
+        return player.getEnemyRoar();
     }
 }

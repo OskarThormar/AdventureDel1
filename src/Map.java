@@ -9,7 +9,7 @@ public class Map {
 
         Room room2 = new Room(" ", "You can see the remains of a fire and the embers glowing in the dark.\n" +
                 "There are footsteps going further in to the cave. Which way would you like to explore?");
-        Item Bow = new RangedWeapon("Bow", "Bow", " Looks Elvish  \uD83C\uDFF9", 5, "Ranged", 0);
+        Item Bow = new RangedWeapon("Bow", "Bow", " Looks Elvish  \uD83C\uDFF9", 12, "Ranged", 2);
         Item rustySword = new MeleeWeapon("Rusty Sword", "RustySword", "Dull and worn", 5, "Melee");
         room2.addItem(rustySword);
         room2.addItem(Bow);
@@ -17,7 +17,7 @@ public class Map {
         room2.addItem(Arrow1);
 
         Room room3 = new Room(" ", "You stop and see that you are standing on edge of a cliff,\n" +
-                "and you need to cross a wooden bridge to get over to the other side. Would you like to go across or in another direction?\n ");
+                "and you need to cross a wooden bridge to get over to the other side. Would you like to go across or in another direction?");
         Item mushroom = new Food("Mushroom", "Mushroom", "Very funky looking \uD83C\uDF44", -40);
         room3.addItem(mushroom);
         Enemy goblinRoom3 = new Enemy("Goblin", " small but aggressive \uD83D\uDC7F", 20, 3, "\uD83D\uDCA5 WAAAUUUUUGHH!!!! \uD83D\uDCA5 \n" + "There's an enemy in the room! \uD83D\uDE31");
@@ -35,6 +35,8 @@ public class Map {
         Room room5 = new Room(" ", "You have entered a great cave with a big lake covered in shimmering light.\n" +
                 "Three stones leads the way to the center of the lake, where you see a big chest with a big rusty lock on it. \n" +
                 "Which way would like to go?");
+        Item treasure = new Treasure("Treasure", "treasure", "Boundless treasure from a foregone era");
+            room5.addItem(treasure);
         Item berries = new Food("Berries", "Berries", " Blue and maybe fresh  \uD83C\uDF47", -80);
             room5.addItem(berries);
 

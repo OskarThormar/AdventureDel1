@@ -21,6 +21,11 @@ public class Weapon extends Item{
     }
 
     @Override
+    public int getCurrentWeaponDamage() {
+        return damage;
+    }
+
+    @Override
     public String getDescription() {
         return super.getDescription();
     }
