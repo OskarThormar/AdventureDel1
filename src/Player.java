@@ -14,10 +14,9 @@ public class Player {
     private String unarmed;
     private ArrayList<Item> inventory;
     private ArrayList<Item> equipment;
-    //Kan implementeres senere
     private int health = 100;
 
-    public Player(Room currentRoom, String currentWeapon, String currentWeaponType, int currentWeaponDamage, int maxInventorySize) {
+    public Player(Room currentRoom, String currentWeapon, String currentWeaponType, int currentWeaponDamage) {
         this.currentRoom = currentRoom;
         this.currentWeapon = currentWeapon;
         this.currentWeaponType = currentWeaponType;

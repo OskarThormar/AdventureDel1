@@ -8,8 +8,8 @@ public class Map {
         room1.addItem(apple);
 
         Room room2 = new Room(" ", "You can see the remains of a fire and the embers glowing in the dark.\n" +
-                " There are footsteps going further in to the cave. Which way would you like to explore?");
-        Item Bow = new RangedWeapon("Bow", "Bow", " Looks Elvish  \uD83C\uDFF9", 2, "Ranged", 0);
+                "There are footsteps going further in to the cave. Which way would you like to explore?");
+        Item Bow = new RangedWeapon("Bow", "Bow", " Looks Elvish  \uD83C\uDFF9", 5, "Ranged", 0);
         Item rustySword = new MeleeWeapon("Rusty Sword", "RustySword", "Dull and worn", 5, "Melee");
         room2.addItem(rustySword);
         room2.addItem(Bow);
@@ -17,11 +17,10 @@ public class Map {
         room2.addItem(Arrow1);
 
         Room room3 = new Room(" ", "You stop and see that you are standing on edge of a cliff,\n" +
-                "and you need to cross a wooden bridge to get over to the other side. Would you like to go across or in another direction?\n "
-                + "\uD83D\uDCA5 WAAAUUUUUGHH!!!! \uD83D\uDCA5 \n" + "There's an enemy in the room! \uD83D\uDE31");
+                "and you need to cross a wooden bridge to get over to the other side. Would you like to go across or in another direction?\n ");
         Item mushroom = new Food("Mushroom", "Mushroom", "Very funky looking \uD83C\uDF44", -40);
         room3.addItem(mushroom);
-        Enemy goblinRoom3 = new Enemy("Goblin", " small but aggressive \uD83D\uDC7F", 20, 3);
+        Enemy goblinRoom3 = new Enemy("Goblin", " small but aggressive \uD83D\uDC7F", 20, 3, "\uD83D\uDCA5 WAAAUUUUUGHH!!!! \uD83D\uDCA5 \n" + "There's an enemy in the room! \uD83D\uDE31");
         Item goblinDagger = new MeleeWeapon("Goblin dagger", "GoblinDagger", "Greasy and disgusting, looks dull", 5, "Melee");
         room3.addEnemy(goblinRoom3);
         goblinRoom3.addEnemyItems(goblinDagger);
@@ -33,26 +32,27 @@ public class Map {
         Item seaweed= new Food("Seaweed", "Seaweed", "Can be tasty \uD83C\uDF3F", 1);
         room4.addItem(seaweed);
 
-        Room room5 = new Room(" ", "You have entered a great cave with a big lake covered in shimmering light.\n " +
+        Room room5 = new Room(" ", "You have entered a great cave with a big lake covered in shimmering light.\n" +
                 "Three stones leads the way to the center of the lake, where you see a big chest with a big rusty lock on it. \n" +
                 "Which way would like to go?");
         Item berries = new Food("Berries", "Berries", " Blue and maybe fresh  \uD83C\uDF47", -80);
-        room5.addItem(berries);
+            room5.addItem(berries);
 
-        Room room6 = new Room(" ", "You are now going down a small path, there is suspeciously quiet. The darkness is overwhelming you can't see\n" +
-                " see anything, and you feel your way through the darkness. \n" +
+        Room room6 = new Room(" ", "You are now going down a small path, there is suspiciously quiet. The darkness is overwhelming you can't see\n" +
+                "anything, and you feel your way through the darkness. \n" +
                 "You suddenly feel a wooden box, and it seems like the path splits up in serveral directions\n"+
-                "which way would you to go? \n");
+                "which way would you to go? ");
         Item arrow2 = new RangedWeaponAmmo("Old Arrows", "OldArrows", " old, but maybe still working \uD83D\uDC81\u200D♂\uFE0F", 1, "arrow", 1);
         Enemy ghostRoom6 = new Enemy("Nightshade ghost", " a dark shadow ", 30, 5, "\uD83D\uDCA5 WAAAUUUUUGHH!!!! \uD83D\uDCA5 \n" + "There's an enemy in the room! \uD83D\uDE31");
         Item key = new Item("Key", "Key", "A rusty old key.  \uD83D\uDDDD\uFE0F");
+            room6.addItem(arrow2);
             room6.addEnemy(ghostRoom6);
             ghostRoom6.addEnemyItems(key);
 
         Room room7 = new Room(" ", "You are now standing on the riverbank. Suddenly you notice a silent sound of drums. \n"+
                 "The sound of the drums get louder and louder \uD83D\uDE28. You can't quite hear where the sound is comming from. Nearby in the river something is floating around. \n" +
                 "Which way would you like to go?");
-        Enemy WaterSpiritRoom7 = new Enemy("Water Spirit ", " glowing enchantingly in blue tones \uD83E\uDDDE\u200D♀\uFE0F", 10, 2);
+        Enemy WaterSpiritRoom7 = new Enemy("Water Spirit ", " glowing enchantingly in blue tones \uD83E\uDDDE\u200D♀\uFE0F", 10, 2, "\uD83D\uDCA5 WAAAUUUUUGHH!!!! \uD83D\uDCA5 \n" + "There's an enemy in the room! \uD83D\uDE31");
         room7.addEnemy(WaterSpiritRoom7);
         Item water = new Food("Water Bottle", "WaterBottle", "Magical crystal and crystal clear \uD83D\uDCA7", 10);
         Item Sword = new MeleeWeapon("Sword", "Sword", "Appears sharp and shiny \uD83D\uDDE1\uFE0F", 16, "Melee");

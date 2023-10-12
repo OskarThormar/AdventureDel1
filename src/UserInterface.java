@@ -213,7 +213,6 @@ public class UserInterface {
 
     //pick up item method
     public void playerTake(String userSelection){
-            //String itemName = userSelection.substring(5);
             Item itemToTake = adventure.getCurrentRoom().getItemByName(userSelection);
             if (itemToTake != null) {
                 System.out.println("You picked up " + itemToTake);
@@ -253,6 +252,12 @@ public class UserInterface {
 
     public void showHealth(){
         System.out.println(adventure.getPlayerHealth());
+    }
+    public void playerDeath () {
+        if (adventure.getPlayerHealth() < 1 ){
+            System.out.println("YOU HAVE DIED! GAME OVER");
+            System.exit(0);
+        }
     }
     public void enemiesInRoom(){
         for (Enemy enemy : adventure.enemiesInRoom()){
