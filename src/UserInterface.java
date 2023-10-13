@@ -195,9 +195,15 @@ public class UserInterface {
         System.out.println("- Water: Stay hydrated during your adventure.");
         System.out.println("- Food: Restore your energy, but be aware! Some food can be poisonous.");
 
-        System.out.println("Tools and Weapons:");
-        System.out.println("- Sword: Use for close combat.");
-        System.out.println("- Shield: Provides defense against enemy attacks.");
+        System.out.println("Commands:");
+        System.out.println("equip *item to equip*");
+        System.out.println("eat *item to eat*");
+        System.out.println("take *item to take*");
+        System.out.println("drop *item to drop*");
+        System.out.println("inventory 'opens inventory'");
+        System.out.println("look 'looks at room'");
+        System.out.println("health 'shows health status'");
+        System.out.println("attack 'attacks with weapon'");
 
         System.out.println(" \uD83E\uDDED Navigation:");
         System.out.println("- N: Go North");
