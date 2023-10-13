@@ -29,10 +29,10 @@ public class Map {
                 "You see a small boat floating around. The boat seems rather broken, would you like to try to get to the other side or explore another direction?");
         Item paddle = new MeleeWeapon("Paddle", "Paddle", "looks old and rotten.", 3, "Melee");
         room4.addItem(paddle);
-        Item seaweed= new Food("Seaweed", "Seaweed", "Can be tasty \uD83C\uDF3F", 1);
+        Item seaweed = new Food("Seaweed", "Seaweed", "Can be tasty \uD83C\uDF3F", 1);
         room4.addItem(seaweed);
 
-        Room room5 = new Room(" ", "You have entered a great cave with a big lake covered in shimmering light.\n" +
+        Room room5 = new Room("End", "You have entered a great cave with a big lake covered in shimmering light.\n" +
                 "Three stones leads the way to the center of the lake, where you see a big chest with a big rusty lock on it. \n" +
                 "Which way would like to go?");
         Item treasure = new Treasure("Treasure", "treasure", "Boundless treasure from a foregone era");
@@ -45,8 +45,8 @@ public class Map {
                 "You suddenly feel a wooden box, and it seems like the path splits up in serveral directions\n"+
                 "which way would you to go? ");
         Item arrow2 = new RangedWeaponAmmo("Old Arrows", "OldArrows", " old, but maybe still working \uD83D\uDC81\u200D♂\uFE0F", 1, "arrow", 1);
-        Enemy ghostRoom6 = new Enemy("Nightshade ghost", " a dark shadow ", 30, 5, "\uD83D\uDCA5 WAAAUUUUUGHH!!!! \uD83D\uDCA5 \n" + "There's an enemy in the room! \uD83D\uDE31");
-        Item key = new Item("Key", "Key", "A rusty old key.  \uD83D\uDDDD\uFE0F");
+        Enemy ghostRoom6 = new Enemy("Nightshade ghost", " a dark shadow ", 30, 5, "\uD83D\uDCA5 uuuuoooohh \uD83D\uDCA5 \n" + "There's an enemy in the room! \uD83D\uDE31");
+        Item key = new TreasureKey("Key", "Key", "A rusty old key.  \uD83D\uDDDD\uFE0F");
             room6.addItem(arrow2);
             room6.addEnemy(ghostRoom6);
             ghostRoom6.addEnemyItems(key);
@@ -54,7 +54,7 @@ public class Map {
         Room room7 = new Room(" ", "You are now standing on the riverbank. Suddenly you notice a silent sound of drums. \n"+
                 "The sound of the drums get louder and louder \uD83D\uDE28. You can't quite hear where the sound is comming from. Nearby in the river something is floating around. \n" +
                 "Which way would you like to go?");
-        Enemy WaterSpiritRoom7 = new Enemy("Water Spirit ", " glowing enchantingly in blue tones \uD83E\uDDDE\u200D♀\uFE0F", 10, 2, "\uD83D\uDCA5 WAAAUUUUUGHH!!!! \uD83D\uDCA5 \n" + "There's an enemy in the room! \uD83D\uDE31");
+        Enemy WaterSpiritRoom7 = new Enemy("Water Spirit ", " glowing enchantingly in blue tones \uD83E\uDDDE\u200D♀\uFE0F", 10, 2, "\uD83D\uDCA5 *Waterfall sounds* \uD83D\uDCA5 \n" + "There's an enemy in the room! \uD83D\uDE31");
         room7.addEnemy(WaterSpiritRoom7);
         Item water = new Food("Water Bottle", "WaterBottle", "Magical crystal and crystal clear \uD83D\uDCA7", 10);
         Item Sword = new MeleeWeapon("Sword", "Sword", "Appears sharp and shiny \uD83D\uDDE1\uFE0F", 16, "Melee");
@@ -73,7 +73,7 @@ public class Map {
                 "Can you take the climp, or go in another direction?");
         Item boots = new Item("Boots", "Boots", " With an exceptional grip \uD83E\uDD7E");
         Item flower = new Food("Flower", "Flower", "No color can describe this flower ", 5);
-        Item chest = new Item("Chest", "chest", "a big golden shiny chest, but it is locked");
+        Item chest = new Treasure("Chest", "chest", "a big golden shiny chest, but it is locked");
         room9.addItem(flower);
         room9.addItem(boots);
 
@@ -113,13 +113,8 @@ public class Map {
         room4.setNorth(room1);
 
 
-        // ADD ITEMS TO EACH ROOM
-
-
     }
 
-
-    //Getter for startingroom
     public Room getStartingRoom() {
         return startingRoom;
     }

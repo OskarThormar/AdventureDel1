@@ -58,10 +58,6 @@ public class Room {
         return description;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
     public Room getNorth() {
         return north;
     }

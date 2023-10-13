@@ -5,7 +5,6 @@ import java.util.Objects;
 public class Player {
     private Room currentRoom;
     private Enemy enemy;
-    private boolean equipped = false;
     private String currentWeapon;
     private String currentWeaponType;
     private int currentWeaponDamage;
@@ -39,26 +38,6 @@ public class Player {
             System.out.println("Item not found in this room");
         }
     }
- /*   public String getIndexedTrackPlaylist(){
-        StringBuilder stringBuilder = new StringBuilder();
-        for (Track track : playlist){
-            stringBuilder.append(playlist.indexOf(track) + 1);
-            stringBuilder.append(" ");
-            stringBuilder.append(track);
-            stringBuilder.append("\n");
-        }
-        return stringBuilder.toString();
-    }
-    public String toString(){
-        String favoriteIcon = "";
-        if (isFavorite()){
-            favoriteIcon = "\u2764";
-        }
-        return title + " - " + artist + " " + favoriteIcon;
-    }
-    public boolean isEquipped(){
-        return equipped;
-    }*/
 
     public Equipable playerEquip(String indexName) {
         for (Item item : inventory) {
@@ -126,18 +105,10 @@ public class Player {
     public void setCurrentWeaponDamage(int currentWeaponDamage) {
         this.currentWeaponDamage = currentWeaponDamage;
     }
-
-    public String getCurrentWeapon() {
-        return currentWeapon;
-    }
-    public ArrayList<Item> getCurrentWeaponArray(){
-        return equipment;
-    }
-    public Item getCurrentWeaponArray1(){
+    public Item getCurrentWeaponArray(){
         for (Item equipment : equipment) {
             return equipment;
         }
-
         return null;
     }
 
@@ -176,11 +147,6 @@ public class Player {
     public Room getCurrentRoom() {
         return currentRoom;
     }
-    public String getEnemyRoar(){
-        return enemy.getEnemyRoar();
-    }
-
-
     public List<Item> itemsInRoom() {
         return currentRoom.getItems();
     }
@@ -188,24 +154,6 @@ public class Player {
     public void setCurrentRoom(Room room) {
         currentRoom = room;
     }
-  /*  public void move1(String direction){
-        Room nextRoom = switch (direction){
-            case "north", "n":
-                currentRoom.getNorth();
-            case "south", "s":
-                currentRoom.getSouth();
-            default:
-                null:
-
-
-
-        };
-        if (nextRoom != null) {
-            currentRoom = nextRoom;
-        } else {
-            System.out.println("You cannot go that way.");
-        }
-    }*/
 
     public void move(String direction) {
         Room nextRoom = switch (direction) {
@@ -226,18 +174,6 @@ public class Player {
         return inventory;
     }
 
-    public ArrayList<Item> showEquipment() {
-        return equipment;
-    }
-    public Item getInventoryByItemName(String indexName){
-        for (Item item : inventory) {
-            if (item.getIndexName().equalsIgnoreCase(indexName)) {
-                return item;
-            }
-        }
-        return null; // Item not found in this room
-    }
-
     public int getPlayerHealth() {
         return health;
     }
@@ -245,19 +181,7 @@ public class Player {
     public void setPlayerHealth(int health) {
         this.health = health;
     }
-
-    public Item findItem(String indexName) {
-        for (Item item : inventory) {
-            if (item.getIndexName().startsWith(indexName)) {
-                return item;
-            }
-        }
-        return null;
-    }
-
-
     public Eatable playerEat(String indexName) {
-        if (indexName != null) {
             for (Item food : inventory) {
                 if (food instanceof Food) {
                     if (food.getIndexName().equalsIgnoreCase(indexName)) {
@@ -265,37 +189,12 @@ public class Player {
                         health += healthRestored;
                         inventory.remove(food);
                         return Eatable.EATEN;
+                    } else {
+                        return Eatable.CANT;
                     }
-                } else {
-                    return Eatable.CANT;
                 }
-            }
-        } else {
-            return Eatable.NOT_FOUND;
         } return null;
     }
-    /*public Eatable playerEat(String name) {
-        Item itemToEat = null;
-        for (Item food : inventory) {
-            if (food.getName().equalsIgnoreCase(name)) {
-                itemToEat = food;
-                break;
-            }
-        }
-        if (itemToEat != null) {
-            if (itemToEat instanceof Food) {
-                int healthRestored = ((Food) itemToEat).getHealth();
-                health += healthRestored;
-                inventory.remove(itemToEat);
-                return Eatable.EATEN;
-            } else {
-                return Eatable.CANT;
-            }
-        } else {
-            return Eatable.NOT_FOUND;
-        }
-
-    }*/
 
     public ArrayList<Enemy> enemiesInRoom() {
         return currentRoom.getEnemies();

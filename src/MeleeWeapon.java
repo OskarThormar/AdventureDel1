@@ -2,10 +2,6 @@ public class MeleeWeapon extends Weapon{
     public MeleeWeapon(String name, String indexName, String description, int damage, String type) {
         super(name, indexName, description, damage, type);
     }
-    public String getCurrentMeleeWeaponType(){
-        return type;
-    }
-
     @Override
     public String toString() {
         StringBuilder stringBuilder = new StringBuilder();

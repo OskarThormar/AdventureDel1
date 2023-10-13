@@ -19,6 +19,5 @@ public class Food extends Item {
         stringBuilder.append(" \u2022 ");
         stringBuilder.append(health + " health");
         return stringBuilder.toString();
-        //return super.name + "\n" + super.description + "\n" + health + "\u2764";
     }
 }

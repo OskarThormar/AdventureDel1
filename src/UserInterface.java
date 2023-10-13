@@ -5,7 +5,6 @@ import java.util.Scanner;
 public class UserInterface {
     private Scanner keyboard = new Scanner(System.in);
     private Adventure adventure;
-    private Eatable result;
 
     public UserInterface() {
         this.adventure = new Adventure();
@@ -42,8 +41,6 @@ public class UserInterface {
     }
 
     public void startGame() {
-        //adventure.setCurrentWeaponUnarmed();
-        //adventure.setCurrentWeaponUnarmedDamage();
         System.out.println(adventure.getCurrentRoom().getDescription());
         handleUserInput();
     }
@@ -77,7 +74,6 @@ public class UserInterface {
                         playerTake(userSelection[1].trim()+userSelection[2].trim());
                     }
                     if (userSelection.length < 3) {
-                       //String secondWordTake = userSelection[1];
                        playerTake(userSelection[1]);
                     }
                     break;
@@ -87,7 +83,6 @@ public class UserInterface {
                         playerDrop(userSelection[1].trim()+userSelection[2].trim());
                     }
                     if (userSelection.length < 3) {
-                        //String secondWordTake = userSelection[1];
                         playerDrop(userSelection[1]);
                     }
                     break;
@@ -96,7 +91,7 @@ public class UserInterface {
                         Equipable result = adventure.playerEquip(userSelection[1]);
                         switch (result) {
                             case NOT_FOUND:
-                                System.out.println("no such thing1");
+                                System.out.println("There's nothing to equip");
                                 break;
                             case CANT:
                                 System.out.println("You can't equip that");
@@ -112,7 +107,7 @@ public class UserInterface {
                         Equipable result = adventure.playerEquip(userSelection[1].trim() + userSelection[2].trim());
                         switch (result) {
                             case NOT_FOUND:
-                                System.out.println("no such thing1");
+                                System.out.println("There's nothing to equip ");
                                 break;
                             case CANT:
                                 System.out.println("You can't equip that");
@@ -131,7 +126,7 @@ public class UserInterface {
                                 Eatable playerToEat = adventure.playerEat(userSelection[1]);
                                 switch (playerToEat) {
                                     case NOT_FOUND:
-                                        System.out.println("No such thing");
+                                        System.out.println("No such thing ");
                                         break;
                                     case CANT:
                                         System.out.println("You can't eat that");
@@ -165,7 +160,6 @@ public class UserInterface {
                             break;
                 case "go":
                     if (userSelection.length > 1) {
-                        //String secondWordMove = userSelection[1];
                         switch (userSelection[1]) {
                             case "north", "south", "west", "east":
                                 adventure.move(userSelection[1]);
@@ -185,7 +179,6 @@ public class UserInterface {
                     }
                     break;
                 case "attack":
-                    //playerAttack();
                     adventure.playerAttack();
                     playerDeath();
                     break;
@@ -222,7 +215,6 @@ public class UserInterface {
         }
     }
 
-    //pick up item method
     public void playerTake(String userSelection){
             Item itemToTake = adventure.getCurrentRoom().getItemByName(userSelection);
             if (itemToTake != null) {
@@ -233,7 +225,6 @@ public class UserInterface {
             }
         }
 
-    //drop item method
     public void playerDrop(String userSelection) {
         adventure.playerUnequip();
         Player player = adventure.getPlayer();
@@ -257,9 +248,8 @@ public class UserInterface {
     }
     public void showEquipment(){
         System.out.println("Equipment: ");
-        //System.out.println(adventure.getCurrentWeapon() + " : " + adventure.getCurrentWeaponDamage() + " damage");
         if (adventure.getCurrentWeaponArray() != null){
-            adventure.getCurrentWeaponArray();
+            System.out.println(adventure.getCurrentWeaponArray());
         } else {
             System.out.println("Empty");
         }
@@ -274,15 +264,9 @@ public class UserInterface {
             System.exit(0);
         }
     }
-    public void playerWin(){
-        for (Item item : adventure.showInventory()){
-            if (item instanceof )
-        }
-    }
     public void enemiesInRoom(){
         for (Enemy enemy : adventure.enemiesInRoom()){
             if (enemy != null){
-                //System.out.println("Enemies in the room:");
                 System.out.println(enemy);
             }
         }
